@@ -1,6 +1,6 @@
 ### TODO:
 ## Maks:
-- asf
+- dodać przycisk "connect to Metamask"
 - 
 ## Maks:
 - asf

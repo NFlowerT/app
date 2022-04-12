@@ -1,5 +1,5 @@
-const SimpleStorage = artifacts.require('./SimpleStorage.sol')
+const HeloWorld = artifacts.require("HelloWorld");
 
 module.exports = function (deployer) {
-  deployer.deploy(SimpleStorage)
-}
+  deployer.deploy(HeloWorld);
+};
