@@ -1,0 +1,29 @@
+@import "../global/utilities.scss";
+
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.guideSection{
+  width: 100%;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title{
+  font-weight: 500;
+  color: green;
+  //background-image: url("../../images/Rectangle 14.svg");
+  //background-size: 200rem 400rem;
+}
+.productsContainer{
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  align-items: center;
+  //justify-content: center;
+}

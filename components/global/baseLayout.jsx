@@ -1,10 +1,10 @@
-// import Navbar from "./navbar"
+import Navbar from "../navbar/navbar"
 // import Footer from "./footer"
 
 const BaseLayout = ({ children }) => {
 	return (
 		<>
-			{/*<Navbar/>*/}
+			<Navbar/>
 			<main> {children} </main>
 			{/*<Footer/>*/}
 		</>

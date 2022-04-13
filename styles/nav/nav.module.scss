@@ -1,0 +1,56 @@
+@import "../global/utilities";
+.metaMaskButton{
+
+}
+.nav{
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+
+}
+.categoryContainer{
+  cursor: pointer;
+  list-style: none;
+}
+.categoryContainer div {
+  display: inline-block;
+  padding: 0px 50px;
+  //font-weight: bold;
+}
+.logoContainer{
+  width: 10rem;
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin-left: -2rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+.logoTitle{
+  margin-left: 1rem;
+}
+.routerAccount{
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  background-size: 2rem 2rem;
+}
+.routerAccount:hover{
+  font-size: 3rem;
+}

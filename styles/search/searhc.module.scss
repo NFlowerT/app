@@ -1,0 +1,23 @@
+@import "../global/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Scada&display=swap');
+.searchBar{
+  width: 17rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  border: #582F0E 3px solid;
+  border-radius: 0.5rem;
+  justify-content: center;
+  margin-right: 1rem;
+}
+.search{
+  border: none;
+  font-size: 1.2rem;
+  width: 15rem;
+}
+.search:focus{
+  outline: none;
+}
+.searchIcon{
+  font-size: 1.7rem;
+}

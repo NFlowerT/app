@@ -6,7 +6,7 @@ import Search from "../components/search/search";
 import Filter from "../components/filter/filter";
 import ProductTile from "../components/productTile/productTile";
 
-const Market = () => {
+const Gallery = () => {
     return (
         <main className={style.container}>
             marketdfdsdfds
@@ -29,4 +29,4 @@ const Market = () => {
     );
 };
 
-export default Market;
+export default Gallery;

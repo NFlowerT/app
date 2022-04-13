@@ -4,6 +4,7 @@ import BaseLayout from "../components/global/baseLayout"
 import '../styles/globals.css'
 
 import Web3 from "web3"
+import HelloWorld from '../src/abis/HelloWorld.json'
 
 function MyApp({ Component, pageProps }) {
     const [web3, setWeb3] = useState()
@@ -18,16 +19,18 @@ function MyApp({ Component, pageProps }) {
     const [accountBalance, setAccountBalance] = useState(0)
 
     useEffect( () =>{
-        console.log("useeff loas")
-         loadWeb3()
+        (async () =>{await loadWeb3()})()
+
     }, [])
 
     useEffect(()=>{
         if(web3!==undefined){
-            console.log(web3)
-            const networkId = async () =>{await web3.eth.net.getId()}
-            const network = HelloWorld.networks[networkId]
-            setNetworkData(network)
+            //console.log(web3)
+            (async () =>{const networkId = await web3.eth.net.getId()
+                const network = HelloWorld.networks[networkId]
+                setNetworkData(network)
+            })()
+
         }
 
     }, [web3])
@@ -51,7 +54,6 @@ function MyApp({ Component, pageProps }) {
     }, [contract])
 
     useEffect(()=>{
-        console.log("ACCOUNT LOAD")
         (async () => {
             await changeAccountHandler()
         })()
