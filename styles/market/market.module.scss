@@ -11,11 +11,22 @@
   align-items: center;
   justify-content: space-between;
 }
-.title{
+.titleContainer{
   font-weight: 500;
   color: green;
-  //background-image: url("../../images/Rectangle 14.svg");
-  //background-size: 200rem 400rem;
+  position: relative;
+  width: 20rem;
+  height: 2rem;
+  //color:white;
+}
+.title{
+  position: absolute;
+  top:-0.80rem;
+}
+.titleImage{
+  height: 50rem;
+  width: 40rem;
+  background-size: 60rem 3rem;
 }
 .productsContainer{
   width: 90%;

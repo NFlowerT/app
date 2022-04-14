@@ -9,7 +9,7 @@ import HelloWorld from '../src/abis/HelloWorld.json'
 function MyApp({ Component, pageProps }) {
     const [web3, setWeb3] = useState()
     const [account, setAccount] = useState(undefined)
-    const [accountFounds, setAccountFounds] = useState(undefined)
+    const [accountFounds, setAccountFounds] = useState(0)
     const [contract, setContract] = useState(undefined)
     const [networkData, setNetworkData] = useState(undefined)
     const [totalSupply, setTotalSupply] = useState(0)
@@ -22,6 +22,10 @@ function MyApp({ Component, pageProps }) {
         (async () =>{await loadWeb3()})()
 
     }, [])
+    useEffect( () =>{
+        (async () =>{await loadActiveAccountTrees()})()
+
+    }, [treesOnSale])
 
     useEffect(()=>{
         if(web3!==undefined){
@@ -171,11 +175,12 @@ function MyApp({ Component, pageProps }) {
                 for(var i = 0; ; i++){
                     let tokenId = await contract.methods.tokenOfOwnerByIndex(account, i).call()
                     let tree = await contract.methods.trees(tokenId).call()
-                    let treeObj = {"id":tokenId, "tree":tree}
+                    let treeObj = {}
+                    treeObj = {"id":tokenId, "tree":tree}
                     treesOnSale.forEach((treeOnsale, saleIndex) => {
-                        if(treeOnsale.tree.TreeId==tokenId){
-                            alert("tak")
-                            treeObj.saleId = treesOnSale[saleIndex].id
+                        if(treeOnsale.tree.TreeId===tokenId){
+                            // alert("tak")
+                            treeObj = {"id":tokenId, "tree":tree, "saleId": treesOnSale[saleIndex].id}
                         }
                     })
                     treesTab.push(treeObj)
@@ -358,8 +363,22 @@ function MyApp({ Component, pageProps }) {
     }
 
   return (
-      <BaseLayout>
-        <Component {...pageProps} />
+      <BaseLayout
+          setAccount={setAccount}
+          loadBlockChainData={async()=>{await loadBlockChainData()}}
+          mint={async () => await mint()}>
+        <Component {...pageProps}
+                   mint={async () => await mint()}
+                   trees={trees}
+                   accountsTrees={accountsTrees}
+                   putOnSale={putOnSale}
+                   endSale={endSale}
+                   contract={contract}
+                   account={account}
+                   treesOnSale={treesOnSale}
+                   buyTreeFromSale={buyTreeFromSale}
+                   accountFounds={accountFounds}
+                   receiveFunds={receiveFunds}/>
       </BaseLayout>
   )
 }

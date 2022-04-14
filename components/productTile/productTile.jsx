@@ -1,7 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Link from 'next/link'
 import style from "../../styles/productTile/productTile.module.scss"
-const ProductTile = ({ id , putOnSale, genes, saleId, endSale}) => {
+const ProductTile = ({ id , putOnSale, genes, saleId, endSale, buyTreeFromSale, price, contract, account}) => {
+    // useState(()=>{
+    //     (async()=> await ownerOfTreeOnSale(saleId))()
+    // }, [account])
+
+    const ownerOfTreeOnSale = async (saleId)=>{
+        if(!contract || contract==undefined) return 0
+        let tree = await contract.methods.sales(saleId).call()
+        let owner = tree.owner
+       console.log(owner.toLowerCase(),owner.toLowerCase() == account, saleId)
+        if(owner.toLowerCase() == account){
+            // alert("tak")
+            return true
+        }
+        return false
+    }
     return (
         <Link className={'productPageLink'} href={'/'}>
             <div className={style.productTile}>
@@ -9,8 +24,11 @@ const ProductTile = ({ id , putOnSale, genes, saleId, endSale}) => {
                 <div className={"drzewkoAleksa"}>
                 </div>
                 <div className={style.productTitle}>Dąb Maksymiliański</div>
+                {(putOnSale)? <button onClick={async()=>await putOnSale(id)}>sale</button>:null}
                 {/*<button onClick={()=>{putOnSale(id)}}>sale</button>*/}
-                {/*{(saleId!==undefined)? <button onClick={()=>{endSale(saleId)}}>end sale</button> :null}*/}
+                {
+                    (saleId!==undefined && ownerOfTreeOnSale(saleId))? <button onClick={async()=>{ await endSale(saleId)}}>end sale</button> :null}
+                {(buyTreeFromSale)?<button onClick={async()=>await buyTreeFromSale(saleId, price)}>buy</button>:null}
             </div>
         </Link>
     );

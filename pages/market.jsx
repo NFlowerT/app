@@ -6,7 +6,21 @@ import Search from "../components/search/search";
 import Filter from "../components/filter/filter";
 import ProductTile from "../components/productTile/productTile";
 
-const Market = () => {
+const Market = ({contract, account, treesOnSale, buyTreeFromSale}) => {
+
+    const renderProducts = () => {
+        const productTiles = []
+        for (let i = 0; i<treesOnSale.length; i++) {
+            console.log(treesOnSale, treesOnSale.length)
+            productTiles.push(<ProductTile id={treesOnSale[i].tree.TreeId} saleId={treesOnSale[i].id} contract={contract} account={account} buyTreeFromSale={buyTreeFromSale} price={treesOnSale[i].tree.valueWei}/>)
+        }
+        return (
+            <section className={"productsContainer"}>
+                {productTiles}
+            </section>
+        )
+    }
+
     return (
         <main className={style.container}>
             marketdfdsdfds
@@ -17,11 +31,7 @@ const Market = () => {
                 <Search></Search>
             </div>
             <div className={style.productsContainer}>
-                <ProductTile id={0} genes={"lol"} ></ProductTile>
-                <ProductTile id={0} genes={"lol"} ></ProductTile>
-                <ProductTile id={0} genes={"lol"} ></ProductTile>
-                <ProductTile id={0} genes={"lol"} ></ProductTile>
-                <ProductTile id={0} genes={"lol"} ></ProductTile>
+                {(treesOnSale.length)?renderProducts() :null}
 
             </div>
         </main>
@@ -30,3 +40,4 @@ const Market = () => {
 };
 
 export default Market;
+
