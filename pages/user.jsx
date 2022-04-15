@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductTile from "../components/productTile/productTile";
+import ProductTile from "../components/global/productTile";
 const UserPage = ({account, accountsFounds, accountsTrees, putOnSale, endSale, treesOnSale, receiveFunds}) => {
     const renderProductTileAccount = () => {
         const productTiles = []

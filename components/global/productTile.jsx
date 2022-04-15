@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Link from 'next/link'
-import style from "../../styles/productTile/productTile.module.scss"
+import style from "../../styles/global/productTile.module.scss"
 const ProductTile = ({ id , putOnSale, genes, saleId, endSale, buyTreeFromSale, price, contract, account}) => {
     // useState(()=>{
     //     (async()=> await ownerOfTreeOnSale(saleId))()

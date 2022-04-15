@@ -2,9 +2,9 @@ import React from 'react';
 import style from "../styles/market/market.module.scss"
 import Image from 'next/image'
 //components
-import Search from "../components/search/search";
-import Filter from "../components/filter/filter";
-import ProductTile from "../components/productTile/productTile";
+import Search from "../components/global/search";
+import Filter from "../components/global/filter";
+import ProductTile from "../components/global/productTile";
 
 const Market = ({contract, account, treesOnSale, buyTreeFromSale}) => {
 
@@ -26,7 +26,7 @@ const Market = ({contract, account, treesOnSale, buyTreeFromSale}) => {
             marketdfdsdfds
             <div className={style.guideSection}>
                 <div className={style.title}>
-                    <Image src="/../images/Rectangle 14.svg" height={100} width={200}/>
+                    <Image src="/Rectangle14.svg" height={100} width={200}/>
                 </div>
                 <Search></Search>
             </div>

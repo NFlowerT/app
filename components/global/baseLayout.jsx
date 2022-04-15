@@ -1,4 +1,4 @@
-import Navbar from "../navbar/navbar"
+import Navbar from "./navbar"
 // import Footer from "./footer"
 
 const BaseLayout = ({ children, setAccount, loadBlockChainData, mint }) => {

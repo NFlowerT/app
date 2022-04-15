@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import style from "../../../styles/nav/wallet.module.scss";
+import style from "../../styles/wallet/wallet.module.scss";
 import Image from "next/image";
 
 const Wallet = ({ setAccount, loadBlockChainData}) => {
