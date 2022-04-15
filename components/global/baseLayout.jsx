@@ -7,7 +7,7 @@ const BaseLayout = ({ children, setAccount, loadBlockChainData, mint }) => {
 		<>
 			<Navbar setAccount={setAccount} loadBlockChainData={async()=>{await loadBlockChainData()}}/>
 			<main
-			mint={async () => await mint()}>
+			mint={mint}>
 				{children} </main>
 			{/*<Footer/>*/}
 		</>
