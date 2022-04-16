@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }) {
 
     useEffect(()=>{
         if(web3!==undefined){
-            //console.log(web3)
+            ////console.log(web3)
             (async () =>{const networkId = await web3.eth.net.getId()
                 const network = HelloWorld.networks[networkId]
                 setNetworkData(network)
@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps }) {
     }, [web3])
 
     useEffect(()=>{
-        console.log(networkData, account)
+        //console.log(networkData, account)
         if(networkData!==undefined ){
             (async () => await loadBlockChainData())();
 
@@ -75,7 +75,7 @@ function MyApp({ Component, pageProps }) {
     const loadAccountFunds = async () =>{
         if(account!==undefined && account!=="" && account!=="0x0" && contract){
             let founds = await contract.methods.ownerToFunds(account).call()
-            console.log(founds)
+            //console.log(founds)
             setAccountFounds(founds)
         }
     }
@@ -84,7 +84,7 @@ function MyApp({ Component, pageProps }) {
         if(account!==undefined && account!=="" && account!=="0x0" && contract && accountFounds!=0) {
             await contract.methods.withdraw().send({from: account})
                 .once('receipt', async(receipt) => {
-                    console.log("zwrocono srodki")
+                    //console.log("zwrocono srodki")
                     await loadAccountFunds()
                 })
         }
@@ -95,11 +95,11 @@ function MyApp({ Component, pageProps }) {
             await window.ethereum.enable()
         }
         else{
-            console.log("install Metamask")
+            //console.log("install Metamask")
         }
 
         setWeb3(new Web3(Web3.givenProvider || "ws://localhost:7545"))
-        console.log("account =============", account)
+        //console.log("account =============", account)
 
     }
 
@@ -108,50 +108,50 @@ function MyApp({ Component, pageProps }) {
 
             contract.events.Transfer({}, async(error, data)=>{
                 if (error) {
-                    console.log("😥 " + error.message);
+                    //console.log("😥 " + error.message);
                 } else {
                     // setMessage(data.returnValues[1]);
-                    console.log("🎉 Your message has been updated!");
+                    //console.log("🎉 Your message has been updated!");
                     await loadTrees()
                     await loadActiveAccountTrees()
                 }
             })
             contract.events.TreeRequested({}, async(error, data)=>{
                 if (error) {
-                    console.log("😥 " + error.message);
+                    //console.log("😥 " + error.message);
                 } else {
                     // setMessage(data.returnValues[1]);
-                    console.log("🎉 Your message has been updated!");
+                    //console.log("🎉 Your message has been updated!");
                     await loadTrees()
                     await loadActiveAccountTrees()
                 }
             })
             contract.events.BoughtTreeOnSale({}, async(error, data)=>{
                 if (error) {
-                    console.log("😥 " + error.message);
+                    //console.log("😥 " + error.message);
                 } else {
                     // setMessage(data.returnValues[1]);
-                    console.log("🎉 Your message has been updated!");
+                    //console.log("🎉 Your message has been updated!");
                     await loadTrees()
                     await loadActiveAccountTrees()
                 }
             })
             contract.events.SaleEnded({}, async(error, data)=>{
                 if (error) {
-                    console.log("😥 " + error.message);
+                    //console.log("😥 " + error.message);
                 } else {
                     // setMessage(data.returnValues[1]);
-                    console.log("🎉 Your message has been updated!");
+                    //console.log("🎉 Your message has been updated!");
                     await loadTrees()
                     await loadActiveAccountTrees()
                 }
             })
             contract.events.TreePutOnSale({}, async(error, data)=>{
                 if (error) {
-                    console.log("😥 " + error.message);
+                    //console.log("😥 " + error.message);
                 } else {
                     // setMessage(data.returnValues[1]);
-                    console.log("🎉 Your message has been updated!");
+                    //console.log("🎉 Your message has been updated!");
                     await loadTrees()
                     await loadActiveAccountTrees()
                 }
@@ -160,11 +160,11 @@ function MyApp({ Component, pageProps }) {
     }
 
     const loadActiveAccountTrees = async () => {
-        console.log("load my trees and balance", contract, account)
+        //console.log("load my trees and balance", contract, account)
         if(contract && account!==undefined && account!== "" && account!=="0x0"){
-            console.log("load my trees and balance", contract, account, "jest account")
+            //console.log("load my trees and balance", contract, account, "jest account")
             let balance = await contract.methods.balanceOf(account).call();
-            console.log("balans: ", balance)
+            //console.log("balans: ", balance)
             setAccountBalance(balance)
 
 
@@ -187,10 +187,10 @@ function MyApp({ Component, pageProps }) {
                 }
             }
             catch {
-                console.log("koniec drzew account")
+                //console.log("koniec drzew account")
             }
             finally {
-                console.log(treesTab)
+                //console.log(treesTab)
                 setAccountsTrees([...treesTab])
             }
         }
@@ -198,7 +198,7 @@ function MyApp({ Component, pageProps }) {
 
 
     const loadBlockChainData = async() => {
-        console.log("load blockchaindata", account)
+        //console.log("load blockchaindata", account)
         if(web3===undefined || networkData===undefined) return 0;
 
         if(networkData){
@@ -234,7 +234,7 @@ function MyApp({ Component, pageProps }) {
             //
             // });
             // web3.eth.subscribe('newBlockHeaders' , ()=>{
-            //     console.log("looolll")
+            //     //console.log("looolll")
             // });
             await loadTrees()
 
@@ -242,14 +242,14 @@ function MyApp({ Component, pageProps }) {
     }
 
     const loadTrees = async() =>{
-        console.log("load trees", contract, account)
+        //console.log("load trees", contract, account)
         if(contract== undefined) return 0
-        console.log("load trees")
+        //console.log("load trees")
 
         //load totalSupply
         const totalSupply = await contract.methods.totalSupply().call()
         setTotalSupply(totalSupply)
-        console.log("toteal supply", totalSupply)
+        //console.log("toteal supply", totalSupply)
 
         //load requests to mint tree
         try{
@@ -258,7 +258,7 @@ function MyApp({ Component, pageProps }) {
             }
         }
         catch {
-            console.log("koniec requestów")
+            //console.log("koniec requestów")
         }
 
 
@@ -272,16 +272,16 @@ function MyApp({ Component, pageProps }) {
             }
         }
         catch {
-            console.log("koniec drzew")
+            //console.log("koniec drzew")
         }
         finally {
             setTrees([...treesTab])
         }
 
         //load account's trees
-        console.log(account, "looooooooooll")
+        //console.log(account, "looooooooooll")
         if(account!== undefined && account!== "" && account!=="0x"){
-            console.log("dfgvmfdkgjdkic")
+            //console.log("dfgvmfdkgjdkic")
             await loadActiveAccountTrees()
         }
 
@@ -290,16 +290,16 @@ function MyApp({ Component, pageProps }) {
         try{
             for(var i = 0; ; i++){
                 let tree = await contract.methods.sales(i).call()
-                console.log("===============")
+                //console.log("===============")
                 if(tree.active){
                     let treeObj = {"id":i, "tree":tree}
-                    console.log("on sale, ", treeObj)
+                    //console.log("on sale, ", treeObj)
                     treesTabOnSale.push(treeObj)
                 }
             }
         }
         catch {
-            console.log("koniec drzew on sale")
+            //console.log("koniec drzew on sale")
         }
         finally {
             setTreesOnSale([...treesTabOnSale])
@@ -307,15 +307,15 @@ function MyApp({ Component, pageProps }) {
     }
 
     const mint = async () => {
-        console.log("account ktory kupuje", account)
+        //console.log("account ktory kupuje", account)
 
         if(account!="" && account!= undefined){
-            console.log(totalSupply, "total supply przed")
+            //console.log(totalSupply, "total supply przed")
             await contract.methods.requestTree().send({ from: account, value: Web3.utils.toWei(String(1), 'ether')})
                 .once('receipt', async(receipt) => {
-                    console.log("kupiono drzewk0")
+                    //console.log("kupiono drzewk0")
 
-                    console.log(totalSupply, "total supply po")
+                    //console.log(totalSupply, "total supply po")
                     await loadWeb3()
                 })
         }
@@ -323,24 +323,24 @@ function MyApp({ Component, pageProps }) {
     }
 
     const putOnSale = async (tokenId) => {
-        console.log("PUT ON SALE", tokenId)
+        //console.log("PUT ON SALE", tokenId)
         if(account!="" && account!= undefined && tokenId!==undefined && tokenId!==null){
-            console.log("PUT ON SALE")
+            //console.log("PUT ON SALE")
             await contract.methods.putTreeOnSale(tokenId,Web3.utils.toWei(String(1), 'ether')).send({ from: account})
                 .once('receipt', async(receipt) => {
-                    console.log("put on sale")
+                    //console.log("put on sale")
                     await loadWeb3()
                 })
         }
     }
 
     const endSale = async (tokenIdOnSale) => {
-        console.log("END SALE", tokenIdOnSale)
+        //console.log("END SALE", tokenIdOnSale)
         if(account!="" && account!= undefined && tokenIdOnSale!==undefined && tokenIdOnSale!==null){
-            console.log("END SALE")
+            //console.log("END SALE")
             await contract.methods.endSale(tokenIdOnSale).send({ from: account})
                 .once('receipt', async(receipt) => {
-                    console.log("put on sale")
+                    //console.log("put on sale")
                     await loadWeb3()
 
                 })
@@ -348,11 +348,11 @@ function MyApp({ Component, pageProps }) {
     }
 
     const buyTreeFromSale = async (tokenId, price) => {
-        console.log("BUY FROM SALE", tokenId)
+        //console.log("BUY FROM SALE", tokenId)
         if(account!="" && account!= undefined && tokenId!==undefined && tokenId!==null && price!==undefined && price!=null){
             await contract.methods.buyTree(tokenId).send({ from: account, value: String(price)})
                 .once('receipt', async(receipt) => {
-                    console.log("put on sale")
+                    //console.log("put on sale")
 
                     await loadWeb3()
 
