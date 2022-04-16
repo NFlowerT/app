@@ -12,40 +12,42 @@ const Navbar = ({setAccount, loadBlockChainData}) => {
 	console.log(location)
 
 	return (
-		<nav className={style.nav}>
+		<div className={style.navWrapper}>
+			<nav className={style.nav}>
 
-			<div className={style.logoContainer}>
-				<Link href={"/"}>
-					<div className={style.logoTitle }>FORESTA</div>
-				</Link>
-			</div>
-
-			<Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>
-
-			<div className={style.categoryContainer}>
-				<div>
-					<Link href={"/"}><div>SAPPLINGS</div></Link>
-				</div>
-				<div>
-					<Link href={"/gallery"}><div>GALLERY</div></Link>
-				</div>
-				<div>
-					<Link href={"/market"}><div>MARKET</div></Link>
-				</div>
-				<div  className={style.AccountIcon}>
-					<Link href={"/user"}>
-						<BiUserCircle></BiUserCircle>
+				<div className={style.logoContainer}>
+					<Link href={"/"}>
+						<div className={style.logoTitle }>FORESTA</div>
 					</Link>
 				</div>
-			</div>
 
-			{/*<div>*/}
-			{/*    <Link className={style.routerAccount} href={'/'}>*/}
-			{/*        <BiUserCircle></BiUserCircle>*/}
-			{/*    </Link>*/}
-			{/*</div>*/}
+				<Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>
 
-		</nav>
+				<div className={style.categoryContainer}>
+					<div>
+						<Link href={"/"}><div>SAPPLINGS</div></Link>
+					</div>
+					<div>
+						<Link href={"/gallery"}><div>GALLERY</div></Link>
+					</div>
+					<div>
+						<Link href={"/market"}><div>MARKET</div></Link>
+					</div>
+					<div  className={style.AccountIcon}>
+						<Link href={"/user"}>
+							<BiUserCircle></BiUserCircle>
+						</Link>
+					</div>
+				</div>
+
+				{/*<div>*/}
+				{/*    <Link className={style.routerAccount} href={'/'}>*/}
+				{/*        <BiUserCircle></BiUserCircle>*/}
+				{/*    </Link>*/}
+				{/*</div>*/}
+
+			</nav>
+		</div>
 	)
 }
 
