@@ -17,7 +17,7 @@ const Gallery = ({ trees, accountsTrees, putOnSale, endSale }) => {
             productTiles.push(<ProductTile key={null} id={trees[i].id} genes={trees[i].tree.genes} />)
         }
         return (
-            <section className={"productsContainer"}>
+            <section className={style.productsContainer}>
                 {productTiles}
             </section>
         )
@@ -39,19 +39,19 @@ const Gallery = ({ trees, accountsTrees, putOnSale, endSale }) => {
 
     return (
         <main className={style.container}>
-            marketdfdsdfds
             <div className={style.guideSection}>
                 <div className={style.title}>
-                    <Image src="/../images/Rectangle 14.svg" height={100} width={200}/>
+                    <div className={style.titleImageContainer}>
+                        <Image src="/Rectangle14.svg" height={55} width={421}/>
+                    </div>
+                    <div className={style.tileTextContainer}>
+                        <h1 className={style.titleText}>GALLERY</h1>
+                    </div>
+
                 </div>
                 <Search></Search>
             </div>
             <div className={style.productsContainer}>
-                {/*<ProductTile id={0} genes={"lol"} ></ProductTile>*/}
-                {/*<ProductTile id={0} genes={"lol"} ></ProductTile>*/}
-                {/*<ProductTile id={0} genes={"lol"} ></ProductTile>*/}
-                {/*<ProductTile id={0} genes={"lol"} ></ProductTile>*/}
-                {/*<ProductTile id={0} genes={"lol"} ></ProductTile>*/}
                 {(trees.length)?renderProductTileAll():null}
 
             </div>

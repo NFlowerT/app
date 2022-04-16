@@ -15,18 +15,24 @@
   font-weight: 500;
   color: green;
   position: relative;
-  width: 20rem;
+  width: 8rem;
   height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   //color:white;
 }
 .title{
-  position: absolute;
-  top:-0.80rem;
+  position: relative;
+  width: 21rem;
+  height: auto;
 }
-.titleImage{
-  height: 50rem;
-  width: 40rem;
-  background-size: 60rem 3rem;
+.titleImageContainer{
+  width: 21rem;
+  position: absolute;
+  z-index: -2;
+  display: block;
+
 }
 .productsContainer{
   width: 90%;
@@ -34,7 +40,22 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  flex-direction: row;
   margin: 0 auto;
+
+}
+.titleText{
+  z-index: 3;
+  margin: 0;
+  color: white;
+  height: 100%;
+  //padding-bottom: 1rem;
+}
+.tileTextContainer{
+  display: flex;
+  justify-content: center;
   align-items: center;
-  //justify-content: center;
+  width: 19rem;
+  //padding-top: -0.4rem;
+
 }

@@ -12,10 +12,10 @@ const Market = ({contract, account, treesOnSale, buyTreeFromSale}) => {
         const productTiles = []
         for (let i = 0; i<treesOnSale.length; i++) {
             console.log(treesOnSale, treesOnSale.length)
-            productTiles.push(<ProductTile id={treesOnSale[i].tree.TreeId} saleId={treesOnSale[i].id} contract={contract} account={account} buyTreeFromSale={buyTreeFromSale} price={treesOnSale[i].tree.valueWei}/>)
+            productTiles.push(<ProductTile market={true} id={treesOnSale[i].tree.TreeId} saleId={treesOnSale[i].id} contract={contract} account={account} buyTreeFromSale={buyTreeFromSale} price={treesOnSale[i].tree.valueWei}/>)
         }
         return (
-            <section className={"productsContainer"}>
+            <section className={style.productsContainer}>
                 {productTiles}
             </section>
         )
@@ -23,10 +23,15 @@ const Market = ({contract, account, treesOnSale, buyTreeFromSale}) => {
 
     return (
         <main className={style.container}>
-            marketdfdsdfds
             <div className={style.guideSection}>
                 <div className={style.title}>
-                    <Image src="/Rectangle14.svg" height={100} width={200}/>
+                    <div className={style.titleImageContainer}>
+                        <Image src="/Rectangle14.svg" height={55} width={421}/>
+                    </div>
+                    <div className={style.tileTextContainer}>
+                        <h1 className={style.titleText}>MARKET</h1>
+                    </div>
+
                 </div>
                 <Search></Search>
             </div>

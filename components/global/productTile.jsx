@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Link from 'next/link'
+import Image from 'next/image'
 import style from "../../styles/global/productTile.module.scss"
 const ProductTile = ({ id , putOnSale, genes, saleId, endSale, buyTreeFromSale, price, contract, account}) => {
     // useState(()=>{
@@ -17,18 +18,33 @@ const ProductTile = ({ id , putOnSale, genes, saleId, endSale, buyTreeFromSale, 
         }
         return false
     }
+    const convertWei = (price) =>{
+        return price/1000000000000000000+" ETH"
+    }
+
     return (
         <Link className={'productPageLink'} href={'/'}>
             <div className={style.productTile}>
-                <div className={"productPrice"}>id drzewka: {id}  geny:{genes} }}} {saleId}</div>
+                {(price)?
+                    <div className={style.priceContainer}>
+                        <div className={style.priceImge}>
+                            <Image src="/Rectangle64.svg" height={40} width={170} className={style.image}></Image>
+
+                        </div>
+                        <div className={style.price}>
+                            <div>{convertWei(price)}</div>
+                        </div>
+                    </div> : null
+                }
+
+                {/*<div className={"productPrice"}>id drzewka: {id}  geny:{genes} }}} {saleId}</div>*/}
                 <div className={"drzewkoAleksa"}>
                 </div>
                 <div className={style.productTitle}>Dąb Maksymiliański</div>
-                {(putOnSale)? <button onClick={async()=>await putOnSale(id)}>sale</button>:null}
+                {/*{(putOnSale)? <button onClick={async()=>await putOnSale(id)}>sale</button>:null}*/}
                 {/*<button onClick={()=>{putOnSale(id)}}>sale</button>*/}
-                {
-                    (saleId!==undefined && ownerOfTreeOnSale(saleId))? <button onClick={async()=>{ await endSale(saleId)}}>end sale</button> :null}
-                {(buyTreeFromSale)?<button onClick={async()=>await buyTreeFromSale(saleId, price)}>buy</button>:null}
+                {/*{(saleId!==undefined && ownerOfTreeOnSale(saleId))? <button onClick={async()=>{ await endSale(saleId)}}>end sale</button> :null}*/}
+                {/*{(buyTreeFromSale)?<button onClick={async()=>await buyTreeFromSale(saleId, price)}>buy</button>:null}*/}
             </div>
         </Link>
     );
