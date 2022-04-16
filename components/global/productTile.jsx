@@ -23,7 +23,7 @@ const ProductTile = ({ id , putOnSale, genes, saleId, endSale, buyTreeFromSale, 
     }
 
     return (
-        <Link className={'productPageLink'} href={'/'}>
+        <Link className={'productPageLink'} href={'/product?id='+id}>
             <div className={style.productTile}>
                 {(price)?
                     <div className={style.priceContainer}>
@@ -34,13 +34,13 @@ const ProductTile = ({ id , putOnSale, genes, saleId, endSale, buyTreeFromSale, 
                         <div className={style.price}>
                             <div>{convertWei(price)}</div>
                         </div>
-                    </div> : null
+                    </div> : <p>{id}</p>
                 }
 
                 {/*<div className={"productPrice"}>id drzewka: {id}  geny:{genes} }}} {saleId}</div>*/}
                 <div className={"drzewkoAleksa"}>
                 </div>
-                <div className={style.productTitle}>Dąb Maksymiliański</div>
+                <div className={style.productTitle}>{genes}</div>
                 {/*{(putOnSale)? <button onClick={async()=>await putOnSale(id)}>sale</button>:null}*/}
                 {/*<button onClick={()=>{putOnSale(id)}}>sale</button>*/}
                 {/*{(saleId!==undefined && ownerOfTreeOnSale(saleId))? <button onClick={async()=>{ await endSale(saleId)}}>end sale</button> :null}*/}
