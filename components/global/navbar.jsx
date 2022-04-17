@@ -10,7 +10,6 @@ import Wallet from "../wallet/wallet"
 const Navbar = ({setAccount, loadBlockChainData}) => {
 	const router = useRouter()
 	const location = router.pathname
-	console.log("location: ",location)
 	return (
 		<>
 			<nav className={style.nav}>

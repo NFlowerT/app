@@ -20,7 +20,7 @@ const ProductTile = ({ id , putOnSale, genes, saleId, endSale, buyTreeFromSale, 
     }
     const rem = document && parseFloat(getComputedStyle(document.documentElement).fontSize)
     return (
-        <Link className={'productPageLink'} href={'/'}>
+        // <Link className={'productPageLink'} href={'/'}>
             <div className={style.productTile}>
                 <div className={"productPrice"}>id drzewka: {id}  geny:{genes} }}} {saleId}</div>
                 <NTree
@@ -37,7 +37,7 @@ const ProductTile = ({ id , putOnSale, genes, saleId, endSale, buyTreeFromSale, 
                     (saleId!==undefined && ownerOfTreeOnSale(saleId))? <button onClick={async()=>{ await endSale(saleId)}}>end sale</button> :null}
                 {(buyTreeFromSale)?<button onClick={async()=>await buyTreeFromSale(saleId, price)}>buy</button>:null}
             </div>
-        </Link>
+        //</Link>
     );
 };
 

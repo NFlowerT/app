@@ -1,12 +1,12 @@
 import {AmbientLight, DirectionalLight, MOUSE, PerspectiveCamera, Scene, WebGL1Renderer} from "three"
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
 
-export const generateModel = (scene, setScene, container, camera, setCamera, group, width, height) => {
+export const generateModel = (scene, setScene, container, camera, setCamera, group, width, height, cameraPosition) => {
     setScene(new Scene())
 
     //camera
     setCamera(new PerspectiveCamera( 75, width / height, 0.1, 500))
-    camera.position.set( 13, 0, 13 )
+    camera.position.set( cameraPosition.x, cameraPosition.y, cameraPosition.z )
 
     //light
     const light = new AmbientLight( 0x404040 )

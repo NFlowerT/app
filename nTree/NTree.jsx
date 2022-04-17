@@ -9,7 +9,7 @@ import {getRandomFloat} from "./globalFunctions"
 import {rock} from "./rock"
 import {generateModel} from "./generateModel"
 
-const NTree = ({dnaArray, rockAmount, islandSize, width, height}) => {
+const NTree = ({dnaArray, rockAmount, islandSize, width, height, className, cameraPosition, y, innerRadius}) => {
 	const [scene, setScene] = useState(new Scene())
 	const [camera, setCamera] = useState(new PerspectiveCamera( 75, width / height, 0.1, 1000))
 	const container = useRef(null)
@@ -30,9 +30,6 @@ const NTree = ({dnaArray, rockAmount, islandSize, width, height}) => {
 		const islandMesh = createIsland(scene, islandSize)
 		const group = new Group()
 		group.add(islandMesh)
-		islandMesh.translateY(-4)
-
-
 		const sampler = new MeshSurfaceSampler(islandMesh).build()
 		const tempPosition = new Vector3()
 		const meshPositions = []
@@ -40,13 +37,12 @@ const NTree = ({dnaArray, rockAmount, islandSize, width, height}) => {
 		let treeCounter = 0
 		while (treeCounter < dnaArray.length){
 			sampler.sample(tempPosition)
-			if(new Vector3(0,0,0).distanceTo(tempPosition) < (islandSize - 1)){
+			if(new Vector3(0,0,0).distanceTo(tempPosition) < (innerRadius)){
 				const {mesh, width} = growTree(
 					tempPosition,
-					dnaArray[treeCounter],
-					getRandomFloat(11, 20)
+					dnaArray[treeCounter].dna,
+					dnaArray[treeCounter].age
 				)
-				mesh.translateY(-3)
 				let check = true
 				meshPositions.forEach(item => {
 					if (item.position.distanceTo(mesh.position) < item.width + 1.5)
@@ -64,8 +60,8 @@ const NTree = ({dnaArray, rockAmount, islandSize, width, height}) => {
 		while (rockCounter <= rockAmount){
 			sampler.sample(tempPosition)
 			let mesh = rock(tempPosition)
-			if (tempPosition.y > -3 && new Vector3(0,0,0).distanceTo(tempPosition) < (islandSize - 1)){
-				mesh.position.set(tempPosition.x, tempPosition.y - 3, tempPosition.z);
+			if (tempPosition.y > -3 && new Vector3(0,0,0).distanceTo(tempPosition) < (innerRadius)){
+				mesh.position.set(tempPosition.x, tempPosition.y, tempPosition.z);
 				let check = true
 				meshPositions.forEach(item => {
 					if (item.position.distanceTo(mesh.position) < 1)
@@ -78,12 +74,13 @@ const NTree = ({dnaArray, rockAmount, islandSize, width, height}) => {
 				}
 			}
 		}
+		group.translateY(y)
 		scene.add(group)
-		generateModel(scene, setScene, container, camera, setCamera, group, width, height)
-	}, [])
+		generateModel(scene, setScene, container, camera, setCamera, group, width, height, cameraPosition)
+	}, [dnaArray])
 
 	return (
-		<div ref={container}/>
+		<div ref={container} className={className}/>
 	)
 }
 
