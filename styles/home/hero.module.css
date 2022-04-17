@@ -1,5 +1,32 @@
-.container {
-  background: "#ffffff";
+.heroMain {
+  max-width: 1980px;
+  max-height: 1080px;
+  width: 100vw;
+  height: 100vh;
+  background-color: aliceblue;
+}
+
+.heroLogoContainer {
+  width: 60%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 6rem;
+}
+.heroLogo h1 {
+  font-size: 13rem;
+  height: 16rem;
+}
+.heroLogo p {
+  font-size: 3rem;
 }
 
 /*# sourceMappingURL=hero.module.css.map */

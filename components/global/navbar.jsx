@@ -1,15 +1,19 @@
 import React from "react"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { BiUserCircle } from "react-icons/bi"
+import Image from "next/image"
 import style from "../../styles/global/nav.module.scss"
 import Wallet from "../wallet/wallet"
 
+
 const Navbar = ({setAccount, loadBlockChainData}) => {
-
+	const router = useRouter()
+	const location = router.pathname
+	console.log("location: ",location)
 	return (
-		<div className={style.navWrapper}>
+		<>
 			<nav className={style.nav}>
-
 				<div className={style.logoContainer}>
 					<Link href={"/"}>
 						<div className={style.logoTitle }>FORESTA</div>
@@ -34,15 +38,9 @@ const Navbar = ({setAccount, loadBlockChainData}) => {
 						</Link>
 					</div>
 				</div>
-
-				{/*<div>*/}
-				{/*    <Link className={style.routerAccount} href={'/'}>*/}
-				{/*        <BiUserCircle></BiUserCircle>*/}
-				{/*    </Link>*/}
-				{/*</div>*/}
-
 			</nav>
-		</div>
+			{location !== "/" && <div className={style.navWrapper}/>}
+		</>
 	)
 }
 

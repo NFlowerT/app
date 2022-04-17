@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Link from 'next/link'
-import Image from 'next/image'
 import style from "../../styles/global/productTile.module.scss"
+import NTree from "../../nTree/NTree"
 const ProductTile = ({ id , putOnSale, genes, saleId, endSale, buyTreeFromSale, price, contract, account}) => {
     // useState(()=>{
     //     (async()=> await ownerOfTreeOnSale(saleId))()
@@ -18,33 +18,24 @@ const ProductTile = ({ id , putOnSale, genes, saleId, endSale, buyTreeFromSale, 
         }
         return false
     }
-    const convertWei = (price) =>{
-        return price/1000000000000000000+" ETH"
-    }
-
+    const rem = document && parseFloat(getComputedStyle(document.documentElement).fontSize)
     return (
-        <Link className={'productPageLink'} href={'/product?id='+id}>
+        <Link className={'productPageLink'} href={'/'}>
             <div className={style.productTile}>
-                {(price)?
-                    <div className={style.priceContainer}>
-                        <div className={style.priceImge}>
-                            <Image src="/Rectangle64.svg" height={40} width={170} className={style.image}></Image>
-
-                        </div>
-                        <div className={style.price}>
-                            <div>{convertWei(price)}</div>
-                        </div>
-                    </div> : <p>{id}</p>
-                }
-
-                {/*<div className={"productPrice"}>id drzewka: {id}  geny:{genes} }}} {saleId}</div>*/}
-                <div className={"drzewkoAleksa"}>
-                </div>
-                <div className={style.productTitle}>{genes}</div>
-                {/*{(putOnSale)? <button onClick={async()=>await putOnSale(id)}>sale</button>:null}*/}
+                <div className={"productPrice"}>id drzewka: {id}  geny:{genes} }}} {saleId}</div>
+                <NTree
+                    dnaArray={[genes]}
+                    islandSize={5}
+                    rockAmount={2}
+                    width={15 * rem}
+                    height={20 * rem}
+                />
+                <div className={style.productTitle}>Dąb Maksymiliański</div>
+                {(putOnSale)? <button onClick={async()=>await putOnSale(id)}>sale</button>:null}
                 {/*<button onClick={()=>{putOnSale(id)}}>sale</button>*/}
-                {/*{(saleId!==undefined && ownerOfTreeOnSale(saleId))? <button onClick={async()=>{ await endSale(saleId)}}>end sale</button> :null}*/}
-                {/*{(buyTreeFromSale)?<button onClick={async()=>await buyTreeFromSale(saleId, price)}>buy</button>:null}*/}
+                {
+                    (saleId!==undefined && ownerOfTreeOnSale(saleId))? <button onClick={async()=>{ await endSale(saleId)}}>end sale</button> :null}
+                {(buyTreeFromSale)?<button onClick={async()=>await buyTreeFromSale(saleId, price)}>buy</button>:null}
             </div>
         </Link>
     );
