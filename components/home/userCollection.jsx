@@ -4,7 +4,7 @@ import Image from "next/image";
 import ProductTile from "../global/productTile";
 
 
-const UserCollection = ({accountTrees}) => {
+const UserCollection = ({accountTrees, accountsFounds, receiveFunds}) => {
     const [activeTreeId, setActiveTreeId] = useState()
     const [activeTreeGenes, setActiveTreeGenes] = useState()
     const [activeTreeBirthdate, setActiveTreeBirthdate] = useState()
@@ -36,6 +36,17 @@ const UserCollection = ({accountTrees}) => {
     return (
         <div className={style.main}>
             <div className={style.tabContainer}>
+                <div className={style.foundsContainer}>
+                    <h3>Your founds:
+                        {(accountsFounds!==undefined)?
+                            ((BigInt(accountsFounds))?
+                                accountsFounds/1000000000000000000 +" ETH" : "0 ETH")
+                            :  " lol ETH"}</h3>
+                    {(accountsFounds)?
+                        ((BigInt(accountsFounds)>0)?
+                            <button onClick={async () => await receiveFunds()}>Recieve founds</button> : null)
+                        : null}
+                </div>
                 <div className={style.tabImages}>
                     <div className={style.tabImage}>
                         <Image src="/Rectangle15.svg" height={106} width={183} ></Image>

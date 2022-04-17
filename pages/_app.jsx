@@ -76,7 +76,7 @@ function MyApp({ Component, pageProps }) {
         if(account!==undefined && account!=="" && account!=="0x0" && contract){
             let founds = await contract.methods.ownerToFunds(account).call()
             //console.log(founds)
-            setAccountFounds(founds)
+            if(!isNaN(founds))setAccountFounds(founds)
         }
     }
 
@@ -335,7 +335,7 @@ function MyApp({ Component, pageProps }) {
     }
 
     const endSale = async (tokenIdOnSale) => {
-        //console.log("END SALE", tokenIdOnSale)
+        console.log("END SALE", tokenIdOnSale)
         if(account!="" && account!= undefined && tokenIdOnSale!==undefined && tokenIdOnSale!==null){
             //console.log("END SALE")
             await contract.methods.endSale(tokenIdOnSale).send({ from: account})
@@ -347,10 +347,10 @@ function MyApp({ Component, pageProps }) {
         }
     }
 
-    const buyTreeFromSale = async (tokenId, price) => {
-        //console.log("BUY FROM SALE", tokenId)
-        if(account!="" && account!= undefined && tokenId!==undefined && tokenId!==null && price!==undefined && price!=null){
-            await contract.methods.buyTree(tokenId).send({ from: account, value: String(price)})
+    const buyTreeFromSale = async (saleId, price) => {
+        console.log("BUY FROM SALE", saleId)
+        if(account!="" && account!= undefined && saleId!==undefined && saleId!==null && price!==undefined && price!=null){
+            await contract.methods.buyTree(saleId).send({ from: account, value: String(price)})
                 .once('receipt', async(receipt) => {
                     //console.log("put on sale")
 

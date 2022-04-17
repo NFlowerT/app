@@ -15,7 +15,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale, account, accountTrees
     const [saleId, setSaleId] = useState(undefined)
 
     useEffect(()=>{
-        setTreeId(router.query.id)
+        setTreeId(parseInt(router.query.id))
         console.log(router.query.id, "q")
     }, [])
 
@@ -64,7 +64,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale, account, accountTrees
                 if(tree.tree.TreeId == treeId){
                     if(tree.tree.active == true){
                         setSale(true)
-                        setSaleId(index)
+                        setSaleId(tree.id)
                         setPrice(tree.tree.valueWei)
                     }
                     else{
@@ -77,44 +77,47 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale, account, accountTrees
 
     return (
         <div className={style.body}>
+            {
+                (genes)?
+                    <div className={style.container}>
+                        <div className={style.titleContainer}>
+                            <div className={style.title}>
+                                <div className={style.titleImageContainer}>
+                                    <Image src="/Rectangle14.svg" height={54} width={421}/>
+                                </div>
+                                <div className={style.tileTextContainer}>
+                                    <h1 className={style.titleText}>NAME</h1>
+                                </div>
+                            </div>
+                            {
+                                (sale && owner===account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={async () => await endSale(saleId)}>END SALE</button> : null
+                            }
+                            {
+                                (!sale && owner==account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={async ()=> await putOnSale(treeId) }>SALE</button> : null
+                            }
+                            {
+                                (sale && owner!=account && account!="0x0" && account!=undefined)? <button className={style.button} onClick={async ()=> await buyTreeFromSale(saleId, price) }>BUY</button> : null
+                            }
+                        </div>
+                        <div className={style.productContainer}>
+                            <div className={style.infoContainer}>
+                                <div className={style.infoImage}>
+                                    <Image src="/Rectangle42.svg" height={140} width={653}></Image>
+                                </div>
+                                <div className={style.info}>
+                                    {(price)? <div>price: {price/1000000000000000000} ETH</div> : null}
+                                    <div>owner: {owner}</div>
+                                    <div>birthdate: {new Date(birthdate*1000).toLocaleDateString("en-US")}</div>
+                                </div>
+                            </div>
+                        </div>
 
-            <div className={style.container}>
-                <div className={style.titleContainer}>
-                    <div className={style.title}>
-                        <div className={style.titleImageContainer}>
-                            <Image src="/Rectangle14.svg" height={54} width={421}/>
-                        </div>
-                        <div className={style.tileTextContainer}>
-                            <h1 className={style.titleText}>NAME</h1>
-                        </div>
-                    </div>
-                    {
-                        (sale && owner==account)? <button className={style.button} onClick={async () => await endSale(saleId)}>END SALE</button> : null
-                    }
-                    {
-                        (!sale && owner==account)? <button className={style.button} onClick={async ()=> await putOnSale(treeId) }>SALE</button> : null
-                    }
-                    {
-                        (sale && owner!=account)? <button className={style.button} onClick={async ()=> await buyTreeFromSale(saleId, price) }>BUY</button> : null
-                    }
+                        {/*{treeId}*/}
+                    </div> : <div className={style.error}><h2>We could not find this tree :(</h2></div>}
+
                 </div>
-                <div className={style.productContainer}>
-                    <div className={style.infoContainer}>
-                        <div className={style.infoImage}>
-                            <Image src="/Rectangle42.svg" height={140} width={653}></Image>
-                        </div>
-                        <div className={style.info}>
-                            {(price)? <div>price: {price/1000000000000000000} ETH</div> : null}
-                            <div>owner: {owner}</div>
-                            <div>birthdate: {new Date(birthdate*1000).toLocaleDateString("en-US")}</div>
-                        </div>
-                    </div>
-                </div>
 
-                {/*{treeId}*/}
-            </div>
 
-        </div>
     );
 };
 

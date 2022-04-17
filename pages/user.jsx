@@ -18,17 +18,24 @@ const UserPage = ({account, accountsFounds, accountsTrees, putOnSale, endSale, t
     }
 
     return (
-        <div>
-            <Hero title={"WELCOME"} subtitle={account}></Hero>
-            <UserCollection accountTrees={accountsTrees}></UserCollection>
-            {account}
-            <div>
-                founds{accountsFounds}
-                {(accountsFounds!=0 && accountsFounds!=="0" && accountsFounds!=undefined)?<button onClick={async()=> await receiveFunds()}>receive founds</button>:null}
-            </div>
-            <div>your trees {(accountsTrees.length)?renderProductTileAccount() : null}</div>
+        <>
+            {
+                (account!==undefined && account!== "0x0" && account!== null)?
+                    <div>
+                        <Hero title={"WELCOME"} subtitle={account}></Hero>
+                        <UserCollection accountTrees={accountsTrees} accountsFounds={accountsFounds} receiveFunds={receiveFunds}></UserCollection>
+                        {account}
+                        <div>
+                            founds{accountsFounds}
+                            {(accountsFounds!=0 && accountsFounds!=="0" && accountsFounds!=undefined)?<button onClick={async()=> await receiveFunds()}>receive founds</button>:null}
+                        </div>
+                        <div>your trees {(accountsTrees.length)?renderProductTileAccount() : null}</div>
 
-        </div>
+                    </div>  : null
+            }
+        </>
+
+
     );
 };
 

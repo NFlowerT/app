@@ -9,7 +9,12 @@
 }
 .tabContainer{
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  height: 5rem;
+}
+.tabContainer h3{
+  margin-left: 2rem;
+  margin-top: 1.5rem;
 }
 .tabImages{
   position: relative;
@@ -75,4 +80,9 @@
 .treeNameActive{
   border-bottom: $buttonGray 2px solid;
   z-index: 6;
+}
+.foundsContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
