@@ -1,15 +1,10 @@
 import React from "react"
 import Link from "next/link"
-import { useRouter } from "next/router"
 import { BiUserCircle } from "react-icons/bi"
-import Image from "next/image"
 import style from "../../styles/global/nav.module.scss"
 import Wallet from "../wallet/wallet"
 
 const Navbar = ({setAccount, loadBlockChainData}) => {
-	const router = useRouter()
-	const location = router.pathname
-	console.log(location)
 
 	return (
 		<div className={style.navWrapper}>
