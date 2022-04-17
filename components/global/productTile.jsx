@@ -19,16 +19,21 @@ const ProductTile = ({ id , putOnSale, genes, saleId, endSale, buyTreeFromSale, 
         return false
     }
     const rem = document && parseFloat(getComputedStyle(document.documentElement).fontSize)
+    console.log(genes)
     return (
         // <Link className={'productPageLink'} href={'/'}>
             <div className={style.productTile}>
                 <div className={"productPrice"}>id drzewka: {id}  geny:{genes} }}} {saleId}</div>
                 <NTree
                     dnaArray={[genes]}
-                    islandSize={5}
+                    islandSize={10}
                     rockAmount={2}
-                    width={15 * rem}
-                    height={20 * rem}
+                    width={40 * rem}
+                    height={45 * rem}
+                    className={""}
+                    cameraPosition={{x: 15, y: 1, z: 15}}
+                    y={-3}
+                    innerRadius={8}
                 />
                 <div className={style.productTitle}>Dąb Maksymiliański</div>
                 {(putOnSale)? <button onClick={async()=>await putOnSale(id)}>sale</button>:null}
