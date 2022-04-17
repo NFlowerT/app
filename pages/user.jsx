@@ -1,5 +1,7 @@
 import React from 'react';
 import ProductTile from "../components/global/productTile";
+import Hero from "../components/home/hero";
+import UserCollection from "../components/home/userCollection";
 const UserPage = ({account, accountsFounds, accountsTrees, putOnSale, endSale, treesOnSale, receiveFunds}) => {
     const renderProductTileAccount = () => {
         const productTiles = []
@@ -17,6 +19,8 @@ const UserPage = ({account, accountsFounds, accountsTrees, putOnSale, endSale, t
 
     return (
         <div>
+            <Hero title={"WELCOME"} subtitle={account}></Hero>
+            <UserCollection accountTrees={accountsTrees}></UserCollection>
             {account}
             <div>
                 founds{accountsFounds}

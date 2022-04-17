@@ -6,7 +6,8 @@ import Hero from "../components/home/hero"
 const Home = ({mint}) => {
 	return (
 		<>
-			<Hero mint={async()=>await mint()}/>
+			<Hero mint={async()=>await mint()} title={"FORESTA"} subtitle={"MAKE YOUR FOREST FLY"}/>
+			<button onClick={async()=>await mint()}>buy</button>
 		</>
 	)
 }

@@ -1,13 +1,14 @@
 import React from "react"
 import style from "../../styles/home/hero.module.scss"
 
-const Hero = ({mint}) => {
+const Hero = ({mint, title, subtitle}) => {
 	return (
 		<div className={style.heroMain}>
+
 			<div className={style.heroLogoContainer}>
 				<div className={style.heroLogo}>
-					<h1>FORESTA</h1>
-					<p>MAKE YOUR FOREST FLY</p>
+					<h1>{title}</h1>
+					<p>{subtitle}</p>
 				</div>
 
 			</div>

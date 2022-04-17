@@ -4,7 +4,7 @@ import Image from 'next/image'
 import style from "../styles/product/product.module.scss"
 
 
-const ProductPage = ({putOnSale, endSale, buyFromSale, account, accountTrees, treesOnSale, trees, contract}) => {
+const ProductPage = ({putOnSale, endSale, buyTreeFromSale, account, accountTrees, treesOnSale, trees, contract}) => {
     const [router, setRouter] = useState(useRouter())
     const [treeId, setTreeId] = useState()
     const [owner, setOwner] = useState(undefined)
@@ -89,10 +89,13 @@ const ProductPage = ({putOnSale, endSale, buyFromSale, account, accountTrees, tr
                         </div>
                     </div>
                     {
-                        (sale && owner==account)? <button onClick={async () => await endSale(saleId)}>end sale</button> : null
+                        (sale && owner==account)? <button className={style.button} onClick={async () => await endSale(saleId)}>END SALE</button> : null
                     }
                     {
-                        (!sale && owner==account)? <button onClick={async ()=> await putOnSale(treeId) }>sale</button> : null
+                        (!sale && owner==account)? <button className={style.button} onClick={async ()=> await putOnSale(treeId) }>SALE</button> : null
+                    }
+                    {
+                        (sale && owner!=account)? <button className={style.button} onClick={async ()=> await buyTreeFromSale(saleId, price) }>BUY</button> : null
                     }
                 </div>
                 <div className={style.productContainer}>

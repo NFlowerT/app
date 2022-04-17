@@ -1,11 +1,11 @@
-@import "utilities.css";
+@import "utilities";
 @import url('https://fonts.googleapis.com/css2?family=Scada&display=swap');
 .searchBar{
   width: 17rem;
   height: 2.5rem;
   display: flex;
   align-items: center;
-  border: #582F0E 3px solid;
+  border: $buttonGray 3px solid;
   border-radius: 0.5rem;
   justify-content: center;
   margin-right: 1rem;
