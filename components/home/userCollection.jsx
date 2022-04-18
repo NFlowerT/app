@@ -4,13 +4,15 @@ import Image from "next/image";
 import ProductTile from "../global/productTile";
 
 
-const UserCollection = ({accountTrees, accountsFounds, receiveFunds}) => {
+const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale, endSale, putOnSale}) => {
     const [activeTreeId, setActiveTreeId] = useState()
     const [activeTreeGenes, setActiveTreeGenes] = useState()
     const [activeTreeBirthdate, setActiveTreeBirthdate] = useState()
-    // useEffect(()=>{
-    //     renderTrees()
-    // }, [accountTrees])
+    const [price, setPrice] = useState()
+    const [birthdate, setBirthdate] = useState()
+    const [sale, setSale] = useState(false)
+    const [saleId, setSaleId] = useState(undefined)
+
 
     const renderTrees = () => {
         if(accountTrees.length===0)
@@ -24,7 +26,17 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds}) => {
             //console.log(trees[i].tree.genes, "tilee", trees)
             treesNames.push(
                 <div className={(activeTreeId==accountTrees[i].id)? style.treeNameActive : style.treeName}
-                     onClick={()=>{setActiveTreeId(accountTrees[i].id); setActiveTreeGenes(accountTrees[i].tree.genes); setActiveTreeBirthdate(accountTrees[i].tree.birthdate)}}>name: {accountTrees[i].id}</div>)
+                     onClick={()=>{setActiveTreeId(accountTrees[i].id);
+                                    setActiveTreeGenes(accountTrees[i].tree.genes);
+                                    setActiveTreeBirthdate(accountTrees[i].tree.birthdate)}}>
+                    <p >name: {accountTrees[i].id}</p>
+                    {
+                        (accountTrees[i].saleId!==undefined)? <button className={style.button} onClick={async() => await endSale(accountTrees[i].saleId)}>END SALE</button> :null
+                    }
+                    {
+                        (accountTrees[i].saleId==undefined)? <button className={style.button} onClick={async() => await putOnSale(accountTrees[i].id)}>SALE</button> :null
+                    }
+                    </div>)
         }
         return (
             <div className={style.namesContainer}>
@@ -37,15 +49,15 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds}) => {
         <div className={style.main}>
             <div className={style.tabContainer}>
                 <div className={style.foundsContainer}>
-                    <h3>Your founds:
-                        {(accountsFounds!==undefined)?
-                            ((BigInt(accountsFounds))?
-                                accountsFounds/1000000000000000000 +" ETH" : "0 ETH")
-                            :  " lol ETH"}</h3>
-                    {(accountsFounds)?
-                        ((BigInt(accountsFounds)>0)?
-                            <button onClick={async () => await receiveFunds()}>Recieve founds</button> : null)
-                        : null}
+                    <h3>Your founds:{accountsFounds}
+                        {/*{(accountsFounds!==undefined)?*/}
+                        {/*    ((BigInt(accountsFounds))?*/}
+                        {/*        accountsFounds/1000000000000000000 +" ETH" : "0 ETH")*/}
+                        {/*    :  " lol ETH"}</h3>*/}</h3>
+                    {/*{(accountsFounds)?*/}
+                    {/*    ((BigInt(accountsFounds)>0)?*/}
+                    {/*        <button onClick={async () => await receiveFunds()}>Recieve founds</button> : null)*/}
+                    {/*    : null}*/}
                 </div>
                 <div className={style.tabImages}>
                     <div className={style.tabImage}>

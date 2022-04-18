@@ -9,7 +9,7 @@ import HelloWorld from '../src/abis/HelloWorld.json'
 function MyApp({ Component, pageProps }) {
     const [web3, setWeb3] = useState()
     const [account, setAccount] = useState(undefined)
-    const [accountFounds, setAccountFounds] = useState(0)
+    const [accountFounds, setAccountFounds] = useState(null)
     const [contract, setContract] = useState(undefined)
     const [networkData, setNetworkData] = useState(undefined)
     const [totalSupply, setTotalSupply] = useState(0)
@@ -75,7 +75,7 @@ function MyApp({ Component, pageProps }) {
     const loadAccountFunds = async () =>{
         if(account!==undefined && account!=="" && account!=="0x0" && contract){
             let founds = await contract.methods.ownerToFunds(account).call()
-            //console.log(founds)
+            console.log(founds, "founds")
             if(!isNaN(founds))setAccountFounds(founds)
         }
     }
@@ -236,7 +236,7 @@ function MyApp({ Component, pageProps }) {
             // web3.eth.subscribe('newBlockHeaders' , ()=>{
             //     //console.log("looolll")
             // });
-            await loadTrees()
+            // await loadTrees()
 
         }
     }
@@ -365,10 +365,10 @@ function MyApp({ Component, pageProps }) {
   return (
       <BaseLayout
           setAccount={setAccount}
-          loadBlockChainData={async()=>{await loadBlockChainData()}}
-          mint={async () => await mint()}>
+          loadBlockChainData={loadBlockChainData}
+          mint={mint}>
         <Component {...pageProps}
-                   mint={async () => await mint()}
+                   mint={mint}
                    trees={trees}
                    accountsTrees={accountsTrees}
                    putOnSale={putOnSale}

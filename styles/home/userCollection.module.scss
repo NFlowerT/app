@@ -74,15 +74,27 @@
   padding-left: 2rem;
 }
 .treeName:hover{
-  border-bottom: $buttonGray 2px solid;
+  border-left: $buttonGray 2px solid;
   z-index: 6;
 }
+.treeName{
+  padding-left: 0.3rem;
+}
 .treeNameActive{
-  border-bottom: $buttonGray 2px solid;
+  border-left: $buttonGray 2px solid;
+  padding-left: 0.3rem;
   z-index: 6;
 }
 .foundsContainer{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.button{
+  height: 2rem;
+  background-color: $buttonGray;
+  color: white;
+  border: none;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }

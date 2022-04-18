@@ -2,7 +2,10 @@ import React from 'react';
 import ProductTile from "../components/global/productTile";
 import Hero from "../components/home/hero";
 import UserCollection from "../components/home/userCollection";
-const UserPage = ({account, accountsFounds, accountsTrees, putOnSale, endSale, treesOnSale, receiveFunds}) => {
+import style from "../styles/market/market.module.scss";
+import Image from "next/image";
+import Search from "../components/global/search";
+const UserPage = ({account, accountsTrees, putOnSale, endSale, treesOnSale, receiveFunds, contract, accountsFounds}) => {
     const renderProductTileAccount = () => {
         const productTiles = []
         //console.log("tile",accountsTrees)
@@ -17,19 +20,54 @@ const UserPage = ({account, accountsFounds, accountsTrees, putOnSale, endSale, t
         )
     }
 
+    const renderProductsOnSale = () => {
+        const productTiles = []
+        for (let i = 0; i<accountsTrees.length; i++) {
+            if(accountsTrees[i].saleId !== undefined){
+                let treeId = accountsTrees[i].id
+                let saleId = accountsTrees[i].saleId
+                productTiles.push(<ProductTile  genes={accountsTrees[i].tree.genes} id={treeId} saleId={saleId} contract={contract} account={account}  price={treesOnSale.find(tree=> tree.id===saleId).tree.valueWei}/>)
+            }
+
+        }
+        return (
+            <section className={style.productsContainer}>
+                {productTiles}
+            </section>
+        )
+    }
+
     return (
         <>
             {
                 (account!==undefined && account!== "0x0" && account!== null)?
                     <div>
                         <Hero title={"WELCOME"} subtitle={account}></Hero>
-                        <UserCollection accountTrees={accountsTrees} accountsFounds={accountsFounds} receiveFunds={receiveFunds}></UserCollection>
-                        {account}
-                        <div>
-                            founds{accountsFounds}
-                            {(accountsFounds!=0 && accountsFounds!=="0" && accountsFounds!=undefined)?<button onClick={async()=> await receiveFunds()}>receive founds</button>:null}
-                        </div>
-                        <div>your trees {(accountsTrees.length)?renderProductTileAccount() : null}</div>
+                        <UserCollection
+                            accountTrees={accountsTrees}
+                            receiveFunds={receiveFunds}
+                            endSale={endSale}
+                            putOnSale={putOnSale}
+                            accountsFounds={accountsFounds}/>
+                        {/*<div>*/}
+                        {/*    {(accountsFounds!=0 && accountsFounds!=="0" && accountsFounds!=undefined)?<button onClick={async()=> await receiveFunds()}>receive founds</button>:null}*/}
+                        {/*</div>*/}
+                        {/*<div>your trees {(accountsTrees.length)?renderProductTileAccount() : null}</div>*/}
+                        <main className={style.container}>
+                            <div className={style.guideSection}>
+                                <div className={style.titleImageContainer}>
+                                    <Image src="/Rectangle14.svg" height={55} width={421}/>
+                                </div>
+                                <div className={style.tileTextContainer}>
+                                    <h3 className={style.titleText}>YOUR TREES ON SALE</h3>
+                                </div>
+                                <Search></Search>
+                            </div>
+                            <div className={style.productsContainer}>
+                                {(treesOnSale.length)?renderProductsOnSale() :null}
+
+                            </div>
+                        </main>
 
                     </div>  : null
             }

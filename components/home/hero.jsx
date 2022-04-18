@@ -45,5 +45,10 @@ const Hero = ({mint, title, subtitle}) => {
 		</div>
 	)
 }
+// , (prevProps, nextProps)=>{
+// 	 console.log(prevProps.trees, nextProps.trees)
+// 	return prevProps.trees === nextProps.trees;
+// }
+
 
 export default Hero
