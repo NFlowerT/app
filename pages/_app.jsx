@@ -322,11 +322,11 @@ function MyApp({ Component, pageProps }) {
         await loadWeb3()
     }
 
-    const putOnSale = async (tokenId) => {
+    const putOnSale = async (tokenId, price) => {
         //console.log("PUT ON SALE", tokenId)
         if(account!="" && account!= undefined && tokenId!==undefined && tokenId!==null){
             //console.log("PUT ON SALE")
-            await contract.methods.putTreeOnSale(tokenId,Web3.utils.toWei(String(1), 'ether')).send({ from: account})
+            await contract.methods.putTreeOnSale(tokenId,Web3.utils.toWei(String(price), 'ether')).send({ from: account})
                 .once('receipt', async(receipt) => {
                     //console.log("put on sale")
                     await loadWeb3()

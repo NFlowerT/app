@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useRouter} from "next/router";
 import Image from 'next/image'
 import style from "../styles/product/product.module.scss"
+import SellForm from "../components/global/sellForm";
 
 
 const ProductPage = ({putOnSale, endSale, buyTreeFromSale, account, accountTrees, treesOnSale, trees, contract}) => {
@@ -13,6 +14,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale, account, accountTrees
     const [birthdate, setBirthdate] = useState()
     const [sale, setSale] = useState(false)
     const [saleId, setSaleId] = useState(undefined)
+    const [showForm, setShowForm] = useState(false)
 
     useEffect(()=>{
         setTreeId(parseInt(router.query.id))
@@ -90,10 +92,10 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale, account, accountTrees
                                 </div>
                             </div>
                             {
-                                (sale && owner===account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={async () => await endSale(saleId)}>END SALE</button> : null
+                                (sale && owner===account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={async () => {await endSale(saleId); setShowForm(false)}}>END SALE</button> : null
                             }
                             {
-                                (!sale && owner==account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={async ()=> await putOnSale(treeId) }>SALE</button> : null
+                                (!sale && owner==account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={()=>setShowForm(!showForm) }>SALE</button> : null
                             }
                             {
                                 (sale && owner!=account && account!="0x0" && account!=undefined)? <button className={style.button} onClick={async ()=> await buyTreeFromSale(saleId, price) }>BUY</button> : null
@@ -102,14 +104,16 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale, account, accountTrees
                         <div className={style.productContainer}>
                             <div className={style.infoContainer}>
                                 <div className={style.infoImage}>
-                                    <Image src="/Rectangle42.svg" height={140} width={653}></Image>
+                                    <Image src="/Rectangle42.svg" height={185} width={653}></Image>
                                 </div>
                                 <div className={style.info}>
                                     {(price)? <div>price: {price/1000000000000000000} ETH</div> : null}
                                     <div>owner: {owner}</div>
                                     <div>birthdate: {new Date(birthdate*1000).toLocaleDateString("en-US")}</div>
                                 </div>
+                                <SellForm putOnSale={putOnSale} treeId={treeId} show={showForm} setShowForm={setShowForm}></SellForm>
                             </div>
+
                         </div>
 
                         {/*{treeId}*/}

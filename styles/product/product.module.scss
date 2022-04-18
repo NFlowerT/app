@@ -49,24 +49,28 @@
 .productContainer{
   display: flex;
   width: 100%;
+  height: 10rem;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  margin-top: 3rem;
 }
 .infoContainer{
-  margin-top: 3rem;
+  position: relative;
+  height: 100%;
+  width: 30rem;
 }
 .infoImage{
   width: 29.4rem;
-  position: relative;
   position: absolute;
 }
 .info{
   position: absolute;
   display: flex;
   justify-content: space-evenly;
-  height: 6rem;
-  width: 10rem;
+  height: 8rem;
+  width: 28rem;
   flex-direction: column;
   align-content: center;
   padding-left: 1.2rem;
