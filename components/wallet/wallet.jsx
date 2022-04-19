@@ -8,11 +8,11 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
 
     useEffect( () => {
         if(window.ethereum && window.ethereum.isMetaMask){
-            console.log("wallet")
-            window.ethereum.on('accountsChanged',  connectAutoWalletHandler);
-            window.ethereum.on('chainChanged', async()=>await loadBlockChainData());
             const accounts = (async () => await window.ethereum.request({ method: 'eth_requestAccounts' }))();
             (async () => await connectWalletHandler(accounts[0]))()
+            window.ethereum.on('accountsChanged',  connectAutoWalletHandler);
+            window.ethereum.on('chainChanged', async()=>await loadBlockChainData());
+            console.log("wallet")
         }
     }, []);
 

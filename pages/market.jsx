@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import style from "../styles/market/market.module.scss"
 import Image from 'next/image'
 //components
 import Search from "../components/global/search";
 import Filter from "../components/global/filter";
 import ProductTile from "../components/global/productTile";
+import {TreesContext} from "./_app";
 
-const Market = ({contract, account, treesOnSale, buyTreeFromSale, trees}) => {
+const Market = ({ buyTreeFromSale}) => {
+    const {trees, treesOnSale, contract, account} = useContext(TreesContext)
 
     const renderProducts = () => {
         const productTiles = []

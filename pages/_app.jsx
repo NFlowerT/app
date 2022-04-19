@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createContext} from 'react'
 
 import BaseLayout from "../components/global/baseLayout"
 import '../styles/globals.css'
@@ -6,17 +6,20 @@ import '../styles/globals.css'
 import Web3 from "web3"
 import HelloWorld from '../src/abis/HelloWorld.json'
 
+export const TreesContext = createContext()
+
 function MyApp({ Component, pageProps }) {
     const [web3, setWeb3] = useState()
     const [account, setAccount] = useState(undefined)
     const [accountFounds, setAccountFounds] = useState(null)
     const [contract, setContract] = useState(undefined)
     const [networkData, setNetworkData] = useState(undefined)
-    const [totalSupply, setTotalSupply] = useState(0)
     const [trees, setTrees] = useState([])
     const [treesOnSale, setTreesOnSale] = useState([])
     const [accountsTrees, setAccountsTrees] = useState([])
+    const [totalSupply, setTotalSupply] = useState(0)
     const [accountBalance, setAccountBalance] = useState(0)
+
 
     useEffect( () =>{
         (async () =>{await loadWeb3()})()
@@ -64,7 +67,7 @@ function MyApp({ Component, pageProps }) {
 
     }, [account])
 
-    const changeAccountHandler = ()=>{
+     const changeAccountHandler = ()=>{
         if(account!==undefined && account!=="" && account!=="0x0"){
             (async () => {
                 await loadActiveAccountTrees()
@@ -72,7 +75,8 @@ function MyApp({ Component, pageProps }) {
             })()
         }
     }
-    const loadAccountFunds = async () =>{
+
+     const loadAccountFunds = async () =>{
         if(account!==undefined && account!=="" && account!=="0x0" && contract){
             let founds = await contract.methods.ownerToFunds(account).call()
             console.log(founds, "founds")
@@ -80,7 +84,7 @@ function MyApp({ Component, pageProps }) {
         }
     }
 
-    const receiveFunds = async () => {
+     const receiveFunds = async () => {
         if(account!==undefined && account!=="" && account!=="0x0" && contract && accountFounds!=0) {
             await contract.methods.withdraw().send({from: account})
                 .once('receipt', async(receipt) => {
@@ -90,7 +94,7 @@ function MyApp({ Component, pageProps }) {
         }
     }
 
-    const loadWeb3 = async () => {
+     const loadWeb3 = async () => {
         if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
             await window.ethereum.enable()
         }
@@ -103,7 +107,7 @@ function MyApp({ Component, pageProps }) {
 
     }
 
-    const smartContractListener = async() =>{
+     const smartContractListener = async() =>{
         if(contract){
 
             contract.events.Transfer({}, async(error, data)=>{
@@ -159,7 +163,7 @@ function MyApp({ Component, pageProps }) {
         }
     }
 
-    const loadActiveAccountTrees = async () => {
+     const loadActiveAccountTrees = async () => {
         //console.log("load my trees and balance", contract, account)
         if(contract && account!==undefined && account!== "" && account!=="0x0"){
             //console.log("load my trees and balance", contract, account, "jest account")
@@ -196,8 +200,7 @@ function MyApp({ Component, pageProps }) {
         }
     }
 
-
-    const loadBlockChainData = async() => {
+     const loadBlockChainData = async() => {
         //console.log("load blockchaindata", account)
         if(web3===undefined || networkData===undefined) return 0;
 
@@ -241,7 +244,7 @@ function MyApp({ Component, pageProps }) {
         }
     }
 
-    const loadTrees = async() =>{
+     const loadTrees = async() =>{
         //console.log("load trees", contract, account)
         if(contract== undefined) return 0
         //console.log("load trees")
@@ -306,7 +309,7 @@ function MyApp({ Component, pageProps }) {
         }
     }
 
-    const mint = async () => {
+     const mint = async () => {
         //console.log("account ktory kupuje", account)
 
         if(account!="" && account!= undefined){
@@ -322,7 +325,7 @@ function MyApp({ Component, pageProps }) {
         await loadWeb3()
     }
 
-    const putOnSale = async (tokenId, price) => {
+     const putOnSale = async (tokenId, price) => {
         try{
             if(account!="" && account!= undefined && tokenId!==undefined && tokenId!==null  && parseFloat(price)>0){
                 //console.log("PUT ON SALE")
@@ -340,7 +343,7 @@ function MyApp({ Component, pageProps }) {
 
     }
 
-    const endSale = async (tokenIdOnSale) => {
+     const endSale = async (tokenIdOnSale) => {
         console.log("END SALE", tokenIdOnSale)
         if(account!="" && account!= undefined && tokenIdOnSale!==undefined && tokenIdOnSale!==null){
             //console.log("END SALE")
@@ -353,7 +356,7 @@ function MyApp({ Component, pageProps }) {
         }
     }
 
-    const buyTreeFromSale = async (saleId, price) => {
+     const buyTreeFromSale = async (saleId, price) => {
         console.log("BUY FROM SALE", saleId)
         if(account!="" && account!= undefined && saleId!==undefined && saleId!==null && price!==undefined && price!=null){
             await contract.methods.buyTree(saleId).send({ from: account, value: String(price)})
@@ -368,24 +371,32 @@ function MyApp({ Component, pageProps }) {
         }
     }
 
+
   return (
-      <BaseLayout
-          setAccount={setAccount}
-          loadBlockChainData={loadBlockChainData}
-          mint={mint}>
-        <Component {...pageProps}
-                   mint={mint}
-                   trees={trees}
-                   accountsTrees={accountsTrees}
-                   putOnSale={putOnSale}
-                   endSale={endSale}
-                   contract={contract}
-                   account={account}
-                   treesOnSale={treesOnSale}
-                   buyTreeFromSale={buyTreeFromSale}
-                   accountFounds={accountFounds}
-                   receiveFunds={receiveFunds}/>
-      </BaseLayout>
+      <TreesContext.Provider
+          value={
+              {trees: trees,
+                  accountsTrees: accountsTrees,
+                  treesOnSale:treesOnSale,
+                  accountFounds: accountFounds,
+                  account:account,
+                  contract:contract
+              }
+          }>
+          <BaseLayout
+              setAccount={setAccount}
+              loadBlockChainData={loadBlockChainData}
+              mint={mint}>
+              <Component {...pageProps}
+                         mint={mint}
+                         putOnSale={putOnSale}
+                         endSale={endSale}
+                         buyTreeFromSale={buyTreeFromSale}
+                         receiveFunds={receiveFunds}
+                        />
+          </BaseLayout>
+      </TreesContext.Provider>
+
   )
 }
 

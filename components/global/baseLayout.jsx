@@ -1,7 +1,8 @@
 import Navbar from "./navbar"
+import React from "react";
 // import Footer from "./footer"
 
-const BaseLayout = ({ children, setAccount, loadBlockChainData, mint }) => {
+const BaseLayout = React.memo(({ children, setAccount, loadBlockChainData, mint }) => {
 
 	return (
 		<>
@@ -12,6 +13,6 @@ const BaseLayout = ({ children, setAccount, loadBlockChainData, mint }) => {
 			{/*<Footer/>*/}
 		</>
 	)
-}
+})
 
 export default BaseLayout

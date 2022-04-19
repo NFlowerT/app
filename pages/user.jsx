@@ -1,24 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ProductTile from "../components/global/productTile";
 import Hero from "../components/home/hero";
 import UserCollection from "../components/home/userCollection";
 import style from "../styles/market/market.module.scss";
 import Image from "next/image";
 import Search from "../components/global/search";
-const UserPage = ({account, accountsTrees, putOnSale, endSale, treesOnSale, receiveFunds, contract, accountsFounds}) => {
-    // const renderProductTileAccount = () => {
-    //     const productTiles = []
-    //     //console.log("tile",accountsTrees)
-    //     for (let i = 0; i<accountsTrees.length; i++) {
-    //         console.log(accountsTrees[i], "tile saleid ")
-    //         productTiles.push(<ProductTile id={accountsTrees[i].id} saleId={accountsTrees[i].saleId} genes={accountsTrees[i].tree.genes} putOnSale={putOnSale} saleId={accountsTrees[i].saleId} endSale={endSale}/>)
-    //     }
-    //     return (
-    //         <section className={"productsContainer"}>
-    //             {productTiles}
-    //         </section>
-    //     )
-    // }
+import {TreesContext} from "./_app";
+const UserPage = ({ putOnSale, endSale, receiveFunds}) => {
+
+    const {accountsTrees, treesOnSale, account, contract, accountsFounds} = useContext(TreesContext)
+
     const [saleTrees, setSaleTrees] = useState([])
     useEffect(()=>{
         renderProductsOnSale()

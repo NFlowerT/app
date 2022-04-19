@@ -1,11 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useRouter} from "next/router";
 import Image from 'next/image'
 import style from "../styles/product/product.module.scss"
 import SellForm from "../components/global/sellForm";
+import {TreesContext} from "./_app";
 
 
-const ProductPage = ({putOnSale, endSale, buyTreeFromSale, account, accountTrees, treesOnSale, trees, contract}) => {
+const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
     const [router, setRouter] = useState(useRouter())
     const [treeId, setTreeId] = useState()
     const [owner, setOwner] = useState(undefined)
@@ -15,6 +16,8 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale, account, accountTrees
     const [sale, setSale] = useState(false)
     const [saleId, setSaleId] = useState(undefined)
     const [showForm, setShowForm] = useState(false)
+
+    const { treesOnSale, account, contract } = useContext(TreesContext)
 
     useEffect(()=>{
         setTreeId(parseInt(router.query.id))

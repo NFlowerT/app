@@ -1,37 +1,25 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import style from "../styles/market/market.module.scss"
 import Image from 'next/image'
+import {TreesContext} from "../pages/_app"
 //components
 import Search from "../components/global/search";
 import Filter from "../components/global/filter";
 import ProductTile from "../components/global/productTile";
 
-const Gallery = ({ trees, accountsTrees, putOnSale, endSale }) => {
+const Gallery = ({ putOnSale, endSale }) => {
+    const {trees} = useContext(TreesContext)
 
     const renderProductTileAll = () => {
         console.log(trees)
         if(trees.length===0) return 0
         const productTiles = []
         for (let i = 0; i<trees.length; i++) {
-            //console.log(trees[i].tree.genes, "tilee", trees)
+            console.log(trees[i].tree.genes, "tilee", trees)
             productTiles.push(<ProductTile key={trees[i].id} id={trees[i].id} genes={trees[i].tree.genes} />)
         }
         return (
             <section className={style.productsContainer}>
-                {productTiles}
-            </section>
-        )
-    }
-
-    const renderProductTileAccount = () => {
-        const productTiles = []
-        //console.log("tile",accountsTrees)
-        for (let i = 0; i<accountsTrees.length; i++) {
-            console.log(accountsTrees[i], "tile saleid ")
-            productTiles.push(<ProductTile id={accountsTrees[i].id} genes={accountsTrees[i].tree.genes} putOnSale={putOnSale} saleId={accountsTrees[i].saleId} endSale={endSale}/>)
-        }
-        return (
-            <section className={"productsContainer"}>
                 {productTiles}
             </section>
         )
@@ -52,7 +40,7 @@ const Gallery = ({ trees, accountsTrees, putOnSale, endSale }) => {
                 <Search></Search>
             </div>
             <div className={style.productsContainer}>
-                {(trees.length)?renderProductTileAll():null}
+                {(trees)?((trees.length!==0)?renderProductTileAll():null) :null}
             </div>
         </main>
 
