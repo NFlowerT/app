@@ -98,7 +98,7 @@ function MyApp({ Component, pageProps }) {
             //console.log("install Metamask")
         }
 
-        setWeb3(new Web3(Web3.givenProvider || "ws://localhost:7545"))
+        setWeb3(new Web3(Web3.givenProvider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
         //console.log("account =============", account)
 
     }
@@ -311,7 +311,7 @@ function MyApp({ Component, pageProps }) {
 
         if(account!="" && account!= undefined){
             //console.log(totalSupply, "total supply przed")
-            await contract.methods.requestTree().send({ from: account, value: Web3.utils.toWei(String(1), 'ether')})
+            await contract.methods.requestTree().send({ from: account, value: Web3.utils.toWei(String(0.1), 'ether')})
                 .once('receipt', async(receipt) => {
                     //console.log("kupiono drzewk0")
 
