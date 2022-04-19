@@ -323,15 +323,21 @@ function MyApp({ Component, pageProps }) {
     }
 
     const putOnSale = async (tokenId, price) => {
-        //console.log("PUT ON SALE", tokenId)
-        if(account!="" && account!= undefined && tokenId!==undefined && tokenId!==null){
-            //console.log("PUT ON SALE")
-            await contract.methods.putTreeOnSale(tokenId,Web3.utils.toWei(String(price), 'ether')).send({ from: account})
-                .once('receipt', async(receipt) => {
-                    //console.log("put on sale")
-                    await loadWeb3()
-                })
+        try{
+            if(account!="" && account!= undefined && tokenId!==undefined && tokenId!==null  && parseFloat(price)>0){
+                //console.log("PUT ON SALE")
+                await contract.methods.putTreeOnSale(tokenId,Web3.utils.toWei(String(price), 'ether')).send({ from: account})
+                    .once('receipt', async(receipt) => {
+                        //console.log("put on sale")
+                        await loadWeb3()
+                    })
+            }
         }
+        catch{
+
+        }
+        //console.log("PUT ON SALE", tokenId)
+
     }
 
     const endSale = async (tokenIdOnSale) => {

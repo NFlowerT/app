@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import style from "../../styles/home/userCollection.module.scss"
 import Image from "next/image";
 import ProductTile from "../global/productTile";
+import SellForm from "../global/sellForm";
 
 
 const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale, endSale, putOnSale}) => {
@@ -12,6 +13,7 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale
     const [birthdate, setBirthdate] = useState()
     const [sale, setSale] = useState(false)
     const [saleId, setSaleId] = useState(undefined)
+    const [showForm, setShowForm] = useState(false)
 
 
     const renderTrees = () => {
@@ -34,7 +36,7 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale
                         (accountTrees[i].saleId!==undefined)? <button className={style.button} onClick={async() => await endSale(accountTrees[i].saleId)}>END SALE</button> :null
                     }
                     {
-                        (accountTrees[i].saleId==undefined)? <button className={style.button} onClick={async() => await putOnSale(accountTrees[i].id)}>SALE</button> :null
+                        (accountTrees[i].saleId==undefined)? <button className={style.button} onClick={() => setShowForm(!showForm)}>SALE</button> :null
                     }
                     </div>)
         }
@@ -76,6 +78,9 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale
                     </div>
                     {renderTrees()}
                     <div className={style.collectionImage}><Image src="/Rectangle43.svg" height={842} width={838}></Image></div>
+                    <div className={style.sellForm}>
+                        <SellForm putOnSale={putOnSale} treeId={activeTreeId} show={showForm} setShowForm={setShowForm}></SellForm>
+                    </div>
 
                 </div>
 

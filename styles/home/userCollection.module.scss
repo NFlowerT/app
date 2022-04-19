@@ -45,7 +45,7 @@
 }
 .collectionContainer{
   height: 40rem;
-  width: 30rem;
+  width: 29.5rem;
   position: relative;
 }
 .collectionImage{
@@ -57,7 +57,7 @@
   justify-content: center;
   align-items: center;
   height: 3rem;
-  width: 26.7rem;
+  width: 26.2rem;
   border-bottom: $greenLine 4px solid;
   z-index: 5;
   position: absolute;
@@ -97,4 +97,7 @@
   border: none;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+.sellForm{
+  margin-top: 31rem;
 }
