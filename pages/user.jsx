@@ -22,7 +22,7 @@ const UserPage = ({ putOnSale, endSale, receiveFunds}) => {
             if(accountsTrees[i].saleId !== undefined){
                 let treeId = accountsTrees[i].id
                 let saleId = accountsTrees[i].saleId
-                productTiles.push(<ProductTile birthdate={accountsTrees[i].tree.birthdate} genes={accountsTrees[i].tree.genes} id={treeId} saleId={saleId} contract={contract} account={account}  price={treesOnSale.find(tree=> tree.id===saleId).tree.valueWei}/>)
+                productTiles.push(<ProductTile tree={accountsTrees[i]} id={treeId} saleId={saleId} contract={contract} account={account}  price={treesOnSale.find(tree=> tree.id===saleId).tree.valueWei}/>)
             }
 
         }
