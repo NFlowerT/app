@@ -5,7 +5,7 @@ import style from "../../styles/global/productTile.module.scss"
 import NTree from "../../nTree/NTree"
 
 // const ProductTile = ({ id, genes, price, contract, account, birthdate}) => {
-const ProductTile = ({ id, contract, account, tree}) => {
+const ProductTile = ({ id, contract, account, tree, price}) => {
 
 
 	const ownerOfTreeOnSale = async (saleId)=>{
@@ -26,13 +26,13 @@ const ProductTile = ({ id, contract, account, tree}) => {
 		<Link className={"productPageLink"} href={"/product?id="+id} passHref>
 			<div className={style.productTile}>
 				{	(tree)?
-					((tree.tree.valueWei)?
+					((price)?
 						<div className={style.priceContainer}>
 							<div className={style.priceImge}>
 								<Image src="/Rectangle64.svg" height={40} width={170} className={style.image} alt={""}/>
 							</div>
 							<div className={style.price}>
-								<div>{convertWei(tree.tree.valueWei)}</div>
+								<div>{convertWei(price)}</div>
 							</div>
 						</div> : <p></p>) : null
 				}
