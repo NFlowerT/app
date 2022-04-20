@@ -4,7 +4,7 @@ import NTree from "../../nTree/NTree"
 import {TreesContext} from "../../pages/_app"
 
 const Hero = memo(({title, subtitle}) => {
-	const {trees} = useContext(TreesContext)
+	const {trees, accountTrees} = useContext(TreesContext)
 	const [dataArray] = useState(
 		[
 			{
