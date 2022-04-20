@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import ProductTile from "../components/global/productTile";
 import Hero from "../components/home/hero";
-import UserCollection from "../components/home/userCollection";
+import UserCollection from "../components/user/userCollection";
 import style from "../styles/market/market.module.scss";
 import Image from "next/image";
 import Search from "../components/global/search";

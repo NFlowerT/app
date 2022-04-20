@@ -11,7 +11,7 @@ import {rock} from "./rock"
 import {generateModel} from "./generateModel"
 
 const NTree = ({
-	dataArray = [{age: 15, dna: "#52473e&0.68&0.83&0.33|0.00|0|57.94,0.03|0.80|0|96.48,0.39|1.60|0|33.90,0.26|2.40|0|31.57,0.10|3.20|0|62.56,0.29|4.00|0|6.20^#647a26&3.8&0.1&0.2&4.10|2.46|3.30|-20.00,3.48|2.09|3.30|30.00,2.96|1.78|3.50|30.00,2.52|1.51|3.30|10.00,2.14|1.28|3.30|-30.00&2&0&0"}],
+	dataArray = [{id: 0, tree: {birthdate: 15, genes: "#52473e&0.68&0.83&0.33|0.00|0|57.94,0.03|0.80|0|96.48,0.39|1.60|0|33.90,0.26|2.40|0|31.57,0.10|3.20|0|62.56,0.29|4.00|0|6.20^#647a26&3.8&0.1&0.2&4.10|2.46|3.30|-20.00,3.48|2.09|3.30|30.00,2.96|1.78|3.50|30.00,2.52|1.51|3.30|10.00,2.14|1.28|3.30|-30.00&2&0&0"}}],
 	rockAmount = 0, islandSize = 3, width = 500, height = 500,
 	className = "", cameraPosition = {x: 13, y: 1, z: 13}, y = 0, innerRadius = 1.5,
 	disabled = false
@@ -30,6 +30,7 @@ const NTree = ({
 		return {mesh: group, width: topData.data[0].bottomRadius}
 	}
 
+	console.log(dataArray)
 	useEffect(() => {
 		const islandMesh = createIsland(islandSize)
 		const group = new Group()
@@ -45,8 +46,8 @@ const NTree = ({
 			if(new Vector3(0,0,0).distanceTo(tempPosition) < (innerRadius)){
 				const {mesh, width} = growTree(
 					tempPosition,
-					dataArray[treeCounter].dna,
-					dataArray[treeCounter].age
+					dataArray[treeCounter].tree.genes,
+					15
 				)
 				let check = true
 				meshPositions.forEach(item => {

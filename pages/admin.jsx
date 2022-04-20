@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState} from "react"
 
 const Admin = ({mint}) => {
 	const [password, setPassword] = useState("")
