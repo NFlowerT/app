@@ -9,8 +9,6 @@ const Home = ({mint}) => {
 		<>
 			<Hero mint={async()=>await mint()} title={"FORESTA"} subtitle={"MAKE YOUR FOREST FLY"}/>
 			<TreeSection/>
-
-
 		</>
 	)
 }
