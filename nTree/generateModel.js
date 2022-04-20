@@ -1,7 +1,7 @@
 import {AmbientLight, DirectionalLight, MOUSE, PerspectiveCamera, Scene, WebGL1Renderer} from "three"
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
 
-export const generateModel = (group, container, width, height, cameraPosition) => {
+export const generateModel = (group, container, width, height, cameraPosition, disabled) => {
 	const scene = new Scene()
 	const camera = new PerspectiveCamera( 75, width / height, 0.1, 500)
 	camera.position.set( cameraPosition.x, cameraPosition.y, cameraPosition.z )
@@ -30,18 +30,21 @@ export const generateModel = (group, container, width, height, cameraPosition) =
 	//controls
 	let stop = false
 	const controls = new OrbitControls( camera, renderer.domElement)
-	controls.mouseButtons = {
-		LEFT: MOUSE.ROTATE,
-		MIDDLE: MOUSE.DOLLY,
-		// RIGHT: MOUSE.PAN
+	if (!disabled){
+		controls.mouseButtons = {
+			LEFT: MOUSE.ROTATE,
+			MIDDLE: MOUSE.DOLLY,
+			RIGHT: MOUSE.PAN
+		}
+
 	}
-	// controls.minDistance = 25
-	// controls.maxDistance = 200
 	controls.update()
 	controls.addEventListener( "change", () => {
 		stop = true
 		renderer.render(scene, camera)
 	})
+	// controls.minDistance = 25
+	// controls.maxDistance = 200
 
 	const animate = () => {
 		if (!stop){
