@@ -34,7 +34,7 @@ const ProductTile = ({ id, genes, price, contract, account, birthdate}) => {
 					</div> : <p></p>
 				}
 				<NTree
-					dataArray={[{age: 15, dna: genes}]}
+					dataArray={[{age: birthdate, dna: genes}]}
 					className={style.treeContainer}
 			        disabled={true}/>
 				<div className={style.productTitle}>Ala ma kota</div>
