@@ -1,23 +1,27 @@
-import {useEffect, useRef, useState} from 'react'
-import {Group, PerspectiveCamera, Scene, Vector3} from "three"
+// noinspection JSSuspiciousNameCombination
+
+import {useEffect, useRef} from "react"
+import {Group, Vector3} from "three"
 import {decoder} from "./decoder"
 import {generateTrunk} from "./trunk"
 import {generateTop} from "./treeTops"
 import {createIsland} from "./island"
 import {MeshSurfaceSampler} from "three/examples/jsm/math/MeshSurfaceSampler"
-import {getRandomFloat} from "./globalFunctions"
 import {rock} from "./rock"
 import {generateModel} from "./generateModel"
 
-const NTree = ({dnaArray, rockAmount, islandSize, width, height, className, cameraPosition, y, innerRadius}) => {
-	const [scene, setScene] = useState(new Scene())
-	const [camera, setCamera] = useState(new PerspectiveCamera( 75, width / height, 0.1, 1000))
+const NTree = ({
+	dataArray = [{age: 15, dna: "#52473e&0.68&0.83&0.33|0.00|0|57.94,0.03|0.80|0|96.48,0.39|1.60|0|33.90,0.26|2.40|0|31.57,0.10|3.20|0|62.56,0.29|4.00|0|6.20^#647a26&3.8&0.1&0.2&4.10|2.46|3.30|-20.00,3.48|2.09|3.30|30.00,2.96|1.78|3.50|30.00,2.52|1.51|3.30|10.00,2.14|1.28|3.30|-30.00&2&0&0"}],
+	rockAmount = 0, islandSize = 3, width = 500, height = 500,
+	className = "", cameraPosition = {x: 10, y: 1, z: 10}, y = 0, innerRadius = 1.5,
+	disabled = false
+}) => {
 	const container = useRef(null)
 
 	const growTree = (start, dna, age) => {
 		const {trunkData, topData, scale} = decoder(dna, age)
-		const {trunkMesh, trunkTop} = generateTrunk(scene, trunkData)
-		const topMesh = topData && generateTop(trunkTop, scene, topData)
+		const {trunkMesh, trunkTop} = generateTrunk(trunkData)
+		const topMesh = topData && generateTop(trunkTop, topData)
 		const group = new Group()
 		group.add(trunkMesh)
 		topData && group.add(topMesh)
@@ -27,21 +31,22 @@ const NTree = ({dnaArray, rockAmount, islandSize, width, height, className, came
 	}
 
 	useEffect(() => {
-		const islandMesh = createIsland(scene, islandSize)
+		const islandMesh = createIsland(islandSize)
 		const group = new Group()
 		group.add(islandMesh)
+
 		const sampler = new MeshSurfaceSampler(islandMesh).build()
 		const tempPosition = new Vector3()
 		const meshPositions = []
 
 		let treeCounter = 0
-		while (treeCounter < dnaArray.length){
+		while (treeCounter < dataArray.length){
 			sampler.sample(tempPosition)
 			if(new Vector3(0,0,0).distanceTo(tempPosition) < (innerRadius)){
 				const {mesh, width} = growTree(
 					tempPosition,
-					dnaArray[treeCounter].dna,
-					dnaArray[treeCounter].age
+					dataArray[treeCounter].dna,
+					dataArray[treeCounter].age
 				)
 				let check = true
 				meshPositions.forEach(item => {
@@ -61,7 +66,7 @@ const NTree = ({dnaArray, rockAmount, islandSize, width, height, className, came
 			sampler.sample(tempPosition)
 			let mesh = rock(tempPosition)
 			if (tempPosition.y > -3 && new Vector3(0,0,0).distanceTo(tempPosition) < (innerRadius)){
-				mesh.position.set(tempPosition.x, tempPosition.y, tempPosition.z);
+				mesh.position.set(tempPosition.x, tempPosition.y, tempPosition.z)
 				let check = true
 				meshPositions.forEach(item => {
 					if (item.position.distanceTo(mesh.position) < 1)
@@ -75,9 +80,8 @@ const NTree = ({dnaArray, rockAmount, islandSize, width, height, className, came
 			}
 		}
 		group.translateY(y)
-		scene.add(group)
-		generateModel(scene, setScene, container, camera, setCamera, group, width, height, cameraPosition)
-	}, [dnaArray])
+		generateModel(group, container, width, height, cameraPosition, disabled)
+	}, [])
 
 	return (
 		<div ref={container} className={className}/>
