@@ -4,7 +4,7 @@ import Image from "next/image"
 import style from "../../styles/global/productTile.module.scss"
 import NTree from "../../nTree/NTree"
 
-const ProductTile = ({ id, genes, price, contract, account}) => {
+const ProductTile = ({ id, genes, price, contract, account, birthdate}) => {
 
 	const ownerOfTreeOnSale = async (saleId)=>{
 		if(!contract) return 0
@@ -18,7 +18,7 @@ const ProductTile = ({ id, genes, price, contract, account}) => {
 		return price/1000000000000000000+" ETH"
 	}
 	const rem = document && parseFloat(getComputedStyle(document.documentElement).fontSize)
-	console.log("genes", genes)
+	console.log("genes", genes, "birthdate", birthdate)
 
 	return (
 		<Link className={"productPageLink"} href={"/product?id="+id} passHref>
