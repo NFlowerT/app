@@ -3,8 +3,7 @@ import style from "../../styles/home/hero.module.scss"
 import NTree from "../../nTree/NTree"
 import {TreesContext} from "../../pages/_app"
 
-const Hero = memo(({title, subtitle}) => {
-	const {trees, accountTrees} = useContext(TreesContext)
+const Hero = memo(({title, subtitle, trees}) => {
 	const [dataArray] = useState(
 		[
 			{

@@ -27,11 +27,6 @@ const UserPage = ({ putOnSale, endSale, receiveFunds}) => {
 
         }
         setSaleTrees([...productTiles])
-        // return (
-        //     <section className={style.productsContainer}>
-        //         {productTiles}
-        //     </section>
-        // )
     }
 
 
@@ -40,7 +35,7 @@ const UserPage = ({ putOnSale, endSale, receiveFunds}) => {
             {
                 (account!==undefined && account!== "0x0" && account!== null)?
                     <div>
-                        <Hero title={"WELCOME"} subtitle={account}></Hero>
+                        <Hero title={"WELCOME"} subtitle={account} trees={accountsTrees}></Hero>
                         <UserCollection
                             accountTrees={accountsTrees}
                             receiveFunds={receiveFunds}
