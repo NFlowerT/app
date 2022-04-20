@@ -17,6 +17,7 @@ const Gallery = ({ putOnSale, endSale }) => {
 			console.log(trees[i].tree.genes, "tilee", trees)
 			productTiles.push(<ProductTile key={trees[i].id} id={trees[i].id} tree={trees[i]}/>)
 		}
+
 		return (
 			<section className={style.productsContainer}>
 				{productTiles}
