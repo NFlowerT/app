@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const Admin = () => {
+const Admin = ({mint}) => {
 	const [password, setPassword] = useState("")
 	const [auth, setAuth] = useState(false)
 	const login = () => {
@@ -19,6 +19,7 @@ const Admin = () => {
 			<>
 				<h1> Witaj Adminie</h1>
 				<p> fsafa </p>
+				<button onClick={async() => await mint()}>mint</button>
 			</>
 		)
 	}
