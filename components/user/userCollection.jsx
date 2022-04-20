@@ -8,6 +8,7 @@ import NTree from "../../nTree/NTree"
 
 const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale, endSale, putOnSale}) => {
 	const [activeTreeId, setActiveTreeId] = useState()
+	const [activeTree, setActiveTree] = useState((accountTrees)? accountTrees[0] : undefined)
 	const [activeTreeGenes, setActiveTreeGenes] = useState()
 	const [activeTreeBirthdate, setActiveTreeBirthdate] = useState()
 	const [price, setPrice] = useState()
@@ -15,6 +16,10 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale
 	const [sale, setSale] = useState(false)
 	const [saleId, setSaleId] = useState(undefined)
 	const [showForm, setShowForm] = useState(false)
+	useEffect(()=>{
+		(accountTrees)? setActiveTree(accountTrees[0]) : undefined
+
+	}, [accountTrees])
 
 
 	const renderTrees = () => {
@@ -31,6 +36,7 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale
 				<div className={(activeTreeId==accountTrees[i].id)? style.treeNameActive : style.treeName}
 					onClick={()=>{setActiveTreeId(accountTrees[i].id)
 						setActiveTreeGenes(accountTrees[i].tree.genes)
+						setActiveTree(accountTrees[i])
 						setActiveTreeBirthdate(accountTrees[i].tree.birthdate)}}>
 					<p >name: {accountTrees[i].id}</p>
 					{
@@ -47,6 +53,7 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale
 			</div>
 		)
 	}
+	console.log(activeTree, "active tree")
 
 	return (
 		<div className={style.main}>
@@ -83,7 +90,11 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale
 						<SellForm putOnSale={putOnSale} treeId={activeTreeId} show={showForm} setShowForm={setShowForm}></SellForm>
 					</div>
 				</div>
-				<NTree dataArray={[]}/>
+				{
+					(accountTrees)?
+						((activeTree!==undefined)?<NTree dataArray={[activeTree]}/> : <button>lol</button>):  null
+				}
+				{/*<NTree dataArray={[activeTree]}/>*/}
 			</div>
 
 		</div>
