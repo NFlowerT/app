@@ -103,14 +103,8 @@ function MyApp({ Component, pageProps }) {
         else{
             //console.log("install Metamask")
         }
-         const provider = await detectEthereumProvider()
-         if (provider) {
-             setWeb3(new Web3(provider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
 
-             const chainId = await provider.request({
-                 method: 'eth_chainId'
-             })
-         }
+        setWeb3(new Web3(Web3.givenProvider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
 
         //console.log("account =============", account)
 
