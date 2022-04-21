@@ -30,7 +30,7 @@ const NTree = ({
 		return {mesh: group, width: topData.data[0].bottomRadius}
 	}
 
-	console.log(dataArray)
+	console.log(dataArray, "ntree")
 	useEffect(() => {
 		const islandMesh = createIsland(islandSize)
 		const group = new Group()
@@ -82,7 +82,7 @@ const NTree = ({
 		}
 		group.translateY(y)
 		generateModel(group, container, width, height, cameraPosition, disabled)
-	}, [])
+	}, [JSON.stringify(dataArray)])
 
 	return (
 		<div ref={container} className={className}/>
