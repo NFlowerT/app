@@ -30,7 +30,7 @@ const NTree = ({
 		return {mesh: group, width: topData.data[0].bottomRadius}
 	}
 
-	console.log(dataArray)
+	console.log(dataArray, "ntree")
 	useEffect(() => {
 		const islandMesh = createIsland(islandSize)
 		const group = new Group()
