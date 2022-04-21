@@ -33,7 +33,7 @@ const Gallery = ({ putOnSale, endSale }) => {
 						<Image src="/Rectangle14.svg" height={55} width={421}/>
 					</div>
 					<div className={style.tileTextContainer}>
-						<h1 className={style.titleText}>GALLERY</h1>
+						<h1 className={style.titleText}>GALLERYY</h1>
 					</div>
 
 				</div>
