@@ -82,7 +82,7 @@ const NTree = ({
 		}
 		group.translateY(y)
 		generateModel(group, container, width, height, cameraPosition, disabled)
-	}, [])
+	}, [JSON.stringify(dataArray)])
 
 	return (
 		<div ref={container} className={className}/>
