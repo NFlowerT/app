@@ -5,6 +5,7 @@ import {TreesContext} from "../../pages/_app"
 
 const Hero = ({title, subtitle, trees}) => {
 	const rem = typeof document !== "undefined" ? parseFloat(getComputedStyle(document.documentElement).fontSize) : 20
+	console.log("render", trees)
 	return (
 		<div className={style.heroMain}>
 
