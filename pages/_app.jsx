@@ -26,13 +26,18 @@ function MyApp({ Component, pageProps }) {
 
 	useEffect( () =>{
 		(async () =>{await loadWeb3()})()
-		if (typeof window !== "undefined"){
-			window.addEventListener("resize", () => {
-				setVw(window.innerWidth)
-				setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
-			})
-		}
+
 	}, [])
+	// useEffect(()=>{
+	// 	// if (typeof window !== "undefined"){
+	// 	// 	setVw(window.innerWidth)
+	// 	// 	setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
+	// 	// 	window.addEventListener("resize", () => {
+	// 	// 		setVw(window.innerWidth)
+	// 	// 		setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
+	// 	// 	})
+	// 	// }
+	// })
 	useEffect( () =>{
 		(async () =>{await loadActiveAccountTrees()})()
 
