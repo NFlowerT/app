@@ -4,11 +4,14 @@ import style from '../styles/home.module.css'
 import Hero from "../components/home/hero"
 import TreeSection from "../components/home/treeSection"
 import IslandSection from "../components/home/islandSection"
+import {TreesContext} from "./_app";
+import React, {useContext} from 'react'
 
-const Home = ({mint}) => {
+const Home = () => {
+	const {trees} = useContext(TreesContext)
 	return (
 		<>
-			<Hero mint={async()=>await mint()}/>
+			<Hero title={"FORESTA"} subtitle={"MAKE YOUR FOREST FLY"} trees={trees}/>
 			<TreeSection/>
 			<IslandSection/>
 		</>

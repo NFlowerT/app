@@ -37,7 +37,7 @@ const Market = ({ buyTreeFromSale}) => {
                 <div className={style.tileTextContainer}>
                     <h1 className={style.titleText}>MARKET</h1>
                 </div>
-                <Search></Search>
+                {/*<Search></Search>*/}
             </div>
             <div className={style.productsContainer}>
                 {(treesOnSale.length)?renderProducts() :null}

@@ -56,7 +56,7 @@ const UserPage = ({ putOnSale, endSale, receiveFunds}) => {
                                         <div className={style.tileTextContainer}>
                                             <h3 className={style.titleText}>YOUR TREES ON SALE</h3>
                                         </div>
-                                        <Search></Search>
+                                        {/*<Search></Search>*/}
                                     </div>
                                     <div className={style.productsContainer}>
                                         {(treesOnSale.length)? saleTrees.map((tree)=> tree) :null}

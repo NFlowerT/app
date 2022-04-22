@@ -10,9 +10,14 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
         if(window.ethereum && window.ethereum.isMetaMask){
             const accounts = (async () => await window.ethereum.request({ method: 'eth_requestAccounts' }))();
             (async () => await connectWalletHandler(accounts[0]))()
-            window.ethereum.on('accountsChanged',  connectAutoWalletHandler);
+            window.ethereum.on('accountsChanged',  async(account) => await connectAutoWalletHandler(account));
             window.ethereum.on('chainChanged', async()=>await loadBlockChainData());
             console.log("wallet")
+        }
+    }, []);
+    useEffect( () => {
+        if(window.ethereum && window.ethereum.isMetaMask){
+            window.ethereum.on('accountsChanged',  async(account) => await connectAutoWalletHandler(account));
         }
     }, []);
 
@@ -21,6 +26,7 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
         console.log("connectAutoWalletHandler")
         // setAccount(account[0].toLowerCase())
         setAccount(account[0])
+        sliceAccount(account[0])
     }
 
     //when user click connection button
@@ -30,8 +36,9 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
                 .then(async result => {
                     console.log(result[0])
                     setAccount(result[0]);
-                    setConnButtonText('Connected!');
+                    // setConnButtonText('Connected!');
                     // await loadWeb3()
+                    sliceAccount(result[0])
                 })
                 .catch(error => {
                     alert(error.message+"lol");
@@ -40,6 +47,16 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
             alert('Please install MetaMask browser extension to interact');
         }
 
+    }
+
+    const sliceAccount = (account) => {
+        if(account!== undefined && account!== "0x0"){
+            let short = ""
+            short = account.slice(0, 4)
+            short+="..."
+            short += account.slice(account.length-3, account.length)
+            setConnButtonText(short)
+        }
     }
 
     return (

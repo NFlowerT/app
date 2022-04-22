@@ -37,7 +37,8 @@ const Gallery = ({ putOnSale, endSale }) => {
 					</div>
 
 				</div>
-				<Search></Search>
+				{/*<Search></Search>*/}
+				<div></div>
 			</div>
 			<div className={style.productsContainer}>
 				{(trees)?((trees.length!==0)?renderProductTileAll():null) :null}
