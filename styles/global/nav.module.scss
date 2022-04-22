@@ -13,10 +13,14 @@
   align-items: center;
   justify-content: space-between;
   height: 5rem;
-
+  background: transparent;
   position: fixed;
   z-index: 10;
-  font-family: Poppins;
+  font-family: Poppins, Segoe UI, Calibri, serif;
+}
+
+.navScrolled{
+  background: white;
 }
 
 .logoContainer{

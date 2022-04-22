@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { BiUserCircle } from "react-icons/bi"
@@ -10,9 +10,15 @@ import Wallet from "../wallet/wallet"
 const Navbar = ({setAccount, loadBlockChainData}) => {
 	const router = useRouter()
 	const location = router.pathname
+	const [scroll, setScroll] = useState(false)
+	useEffect(() => {
+		window.addEventListener("scroll", () => {
+			setScroll(window.scrollY > 0)
+		})
+	}, [])
 	return (
 		<>
-			<nav className={style.nav}>
+			<nav className={style.nav + " " + ((scroll) && style.navScrolled)}>
 				<div className={style.logoContainer}>
 					<Link href={"/"}>
 						<div className={style.logoTitle }>FORESTA</div>

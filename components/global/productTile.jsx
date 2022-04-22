@@ -23,7 +23,7 @@ const ProductTile = ({ id, contract, account, tree, price}) => {
 	console.log("genes", tree, "birthdate")
 
 	return (
-		<Link className={"productPageLink"} href={"/product?id="+id} passHref>
+		<Link className={"productPageLink"} href={"/product/"+id} passHref>
 			<div className={style.productTile}>
 				{	(tree)?
 					((price)?
