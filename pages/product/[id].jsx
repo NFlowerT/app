@@ -35,13 +35,19 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	})
 
 	const ownerOfTree = async () => {
-		if(contract && treeId!==undefined && account){
+		if(contract && treeId!==undefined ){
 			try{
 				let owner = await contract.methods.ownerOf(treeId).call()
-				if(owner.toLowerCase() == account) {
-					setOwner(account)
+				if(account){
+					if(owner.toLowerCase() == account) {
+						setOwner(account)
+					}
+					else setOwner(owner)
+				}else {
+					setOwner(owner)
+					console.log("owner")
 				}
-				else setOwner(owner)
+
 			}
 			catch(err) {
 				console.log(err)
@@ -50,7 +56,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	}
 	const treeGenes = async () => {
 		console.log(account, treeId, contract)
-		if(contract && treeId!==undefined && account){
+		if(contract && treeId!==undefined){
 			try{
 				let tree = await contract.methods.trees(treeId).call()
 				let genes = tree.genes
