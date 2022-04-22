@@ -1,13 +1,12 @@
 import React, {useContext, useState} from 'react';
-import style from "../../styles/home/treeSection.module.scss"
-import Image from "next/image"
+import style from "../../styles/home/islandSection.module.scss"
 
 
-const TreeSection = () => {
+const IslandSection = () => {
 	return (
 		<section className={style.main}>
 			<div className={style.sectionName}>
-				<img src="/TSName.svg" className={style.image}/>
+				<img src="/ISName.svg" className={style.image}/>
 			</div>
 			<div className={style.container}>
 				<div className={style.textContainer}>
@@ -33,4 +32,4 @@ const TreeSection = () => {
 	);
 };
 
-export default TreeSection;
+export default IslandSection;

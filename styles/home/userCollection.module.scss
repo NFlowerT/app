@@ -4,7 +4,7 @@
   background: radial-gradient(60.71% 81.83% at 69.69% 48.39%, rgba(79, 119, 45, 0) 0%, rgba(79, 119, 45, 0.3) 100%);
   max-width: 1980px;
   max-height: 1080px;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 }
 .tabContainer{
@@ -12,10 +12,7 @@
   justify-content: space-between;
   height: 5rem;
 }
-.tabContainer h3{
-  margin-left: 2rem;
-  margin-top: 1.5rem;
-}
+
 .tabImages{
   position: relative;
   width: 8rem;
@@ -87,8 +84,19 @@
 }
 .foundsContainer{
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  background-image: url("/founds.svg");
+  height: 79px;
+  width: 525px;
+  margin-left: -0.3rem;
+  background-repeat: no-repeat;
+  h2{
+    color: white;
+    font-weight: bold;
+    margin-left: 2rem;
+  }
+
 }
 .button{
   height: 2rem;
@@ -100,4 +108,20 @@
 }
 .sellForm{
   margin-top: 31rem;
+}
+
+
+
+.sectionName{
+  width: 100%;
+  height: 78px;
+  margin-top: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+
+
+}
+.image{
+  height: 79px;
 }

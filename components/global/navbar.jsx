@@ -38,7 +38,7 @@ const Navbar = ({setAccount, loadBlockChainData}) => {
 					</div>
 				</div>
 			</nav>
-			{location !== "/" && <div className={style.navWrapper}/>}
+			{(location !== "/" && location !== "/user") && <div className={style.navWrapper}/>}
 		</>
 	)
 }
