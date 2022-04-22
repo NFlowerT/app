@@ -8,10 +8,9 @@ import IslandSection from "../components/home/islandSection"
 const Home = ({mint}) => {
 	return (
 		<>
-			<Hero mint={async()=>await mint()} title={"FORESTA"} subtitle={"MAKE YOUR FOREST FLY"}/>
+			<Hero mint={async()=>await mint()}/>
 			<TreeSection/>
 			<IslandSection/>
-
 		</>
 	)
 }

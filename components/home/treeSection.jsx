@@ -1,9 +1,12 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState} from "react"
 import style from "../../styles/home/treeSection.module.scss"
 import Image from "next/image"
+import NTree from "../../nTree/NTree"
+import {TreesContext} from "../../pages/_app"
 
 
 const TreeSection = () => {
+	const {rem, trees} = useContext(TreesContext)
 	return (
 		<section className={style.main}>
 			<div className={style.sectionName}>
@@ -24,13 +27,21 @@ const TreeSection = () => {
 						<button className={style.but}>Buy</button>
 					</div>
 				</div>
-
-				<div className={style.tree}>
-
-				</div>
+				<NTree
+					dataArray={trees}
+					islandSize={10}
+					rockAmount={2}
+					width={40 * rem}
+					height={30 * rem}
+					className={style.tree}
+					cameraPosition={{x: 15, y: 1, z: 15}}
+					y={-3}
+					innerRadius={8}
+					disabled={true}
+				/>
 			</div>
 		</section>
-	);
-};
+	)
+}
 
-export default TreeSection;
+export default TreeSection

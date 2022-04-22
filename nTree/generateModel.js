@@ -38,6 +38,7 @@ export const generateModel = (group, container, width, height, cameraPosition, d
 		}
 	} else {
 		controls.mouseButtons = {}
+		controls.enableZoom = false
 	}
 	controls.update()
 	controls.addEventListener( "change", () => {

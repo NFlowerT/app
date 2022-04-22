@@ -7,11 +7,10 @@
     height: 100vh;
     background-color: aliceblue;
     display: flex;
-    background-image: url("/background.png");
+    background-image: url(/background.png);
     background-position: center;
-    background-size: 100%;
     background-repeat: no-repeat;
-    object-fit: cover;
+    background-size: cover;
 }
 
 .heroLogoContainer{
