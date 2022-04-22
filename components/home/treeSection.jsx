@@ -6,7 +6,8 @@ import {TreesContext} from "../../pages/_app"
 
 
 const TreeSection = () => {
-	const {rem, trees} = useContext(TreesContext)
+	const { trees} = useContext(TreesContext)
+	const rem = typeof document !== "undefined" ? parseFloat(getComputedStyle(document.documentElement).fontSize) : 20
 	return (
 		<section className={style.main}>
 			<div className={style.sectionName}>
