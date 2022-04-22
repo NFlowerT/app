@@ -3,7 +3,7 @@ import {memo} from "react"
 // import Footer from "./footer"
 
 // eslint-disable-next-line react/display-name
-const BaseLayout = memo(({ children, setAccount, loadBlockChainData, mint }) => {
+const BaseLayout = ({ children, setAccount, loadBlockChainData, mint }) => {
 
 	return (
 		<>
@@ -14,6 +14,6 @@ const BaseLayout = memo(({ children, setAccount, loadBlockChainData, mint }) => 
 			{/*<Footer/>*/}
 		</>
 	)
-})
+}
 
 export default BaseLayout

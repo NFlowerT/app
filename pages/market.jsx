@@ -15,7 +15,11 @@ const Market = ({ buyTreeFromSale}) => {
         for (let i = 0; i<treesOnSale.length; i++) {
             console.log(treesOnSale, treesOnSale.length)
             let treeId = treesOnSale[i].tree.TreeId
-            productTiles.push(<ProductTile market={true} genes={trees[treeId].tree.genes} id={treesOnSale[i].tree.TreeId} saleId={treesOnSale[i].id} contract={contract} account={account} buyTreeFromSale={buyTreeFromSale} price={treesOnSale[i].tree.valueWei}/>)
+            let tree = trees.find((tree)=> tree.id == treeId)
+            console.log(tree)
+            productTiles.push(<ProductTile market={true} tree={tree} price={treesOnSale[i].tree.valueWei}  id={treesOnSale[i].tree.TreeId} saleId={treesOnSale[i].id} contract={contract} account={account} buyTreeFromSale={buyTreeFromSale} />)
+
+            // productTiles.push(<ProductTile market={true} genes={trees[treeId].tree.genes} birthdate={trees[treeId].tree.birthdate} id={treesOnSale[i].tree.TreeId} saleId={treesOnSale[i].id} contract={contract} account={account} buyTreeFromSale={buyTreeFromSale} price={treesOnSale[i].tree.valueWei}/>)
         }
         return (
             <section className={style.productsContainer}>

@@ -36,7 +36,8 @@ export const generateModel = (group, container, width, height, cameraPosition, d
 			MIDDLE: MOUSE.DOLLY,
 			RIGHT: MOUSE.PAN
 		}
-
+	} else {
+		controls.mouseButtons = {}
 	}
 	controls.update()
 	controls.addEventListener( "change", () => {

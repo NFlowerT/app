@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import ProductTile from "../components/global/productTile";
 import Hero from "../components/home/hero";
-import UserCollection from "../components/home/userCollection";
+import UserCollection from "../components/user/userCollection";
 import style from "../styles/market/market.module.scss";
 import Image from "next/image";
 import Search from "../components/global/search";
@@ -22,16 +22,11 @@ const UserPage = ({ putOnSale, endSale, receiveFunds}) => {
             if(accountsTrees[i].saleId !== undefined){
                 let treeId = accountsTrees[i].id
                 let saleId = accountsTrees[i].saleId
-                productTiles.push(<ProductTile  genes={accountsTrees[i].tree.genes} id={treeId} saleId={saleId} contract={contract} account={account}  price={treesOnSale.find(tree=> tree.id===saleId).tree.valueWei}/>)
+                productTiles.push(<ProductTile tree={accountsTrees[i]} id={treeId} saleId={saleId} contract={contract} account={account}  price={treesOnSale.find(tree=> tree.id===saleId).tree.valueWei}/>)
             }
 
         }
         setSaleTrees([...productTiles])
-        // return (
-        //     <section className={style.productsContainer}>
-        //         {productTiles}
-        //     </section>
-        // )
     }
 
 
@@ -40,7 +35,7 @@ const UserPage = ({ putOnSale, endSale, receiveFunds}) => {
             {
                 (account!==undefined && account!== "0x0" && account!== null)?
                     <div>
-                        <Hero title={"WELCOME"} subtitle={account}></Hero>
+                        <Hero title={"WELCOME"} subtitle={account} trees={accountsTrees}></Hero>
                         <UserCollection
                             accountTrees={accountsTrees}
                             receiveFunds={receiveFunds}

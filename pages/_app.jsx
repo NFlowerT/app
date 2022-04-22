@@ -5,6 +5,7 @@ import '../styles/globals.css'
 
 import Web3 from "web3"
 import HelloWorld from '../src/abis/HelloWorld.json'
+import detectEthereumProvider from '@metamask/detect-provider'
 
 export const TreesContext = createContext()
 
@@ -97,12 +98,14 @@ function MyApp({ Component, pageProps }) {
      const loadWeb3 = async () => {
         if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
             await window.ethereum.enable()
+            await window.ethereum.send('eth_requestAccounts');
         }
         else{
             //console.log("install Metamask")
         }
 
         setWeb3(new Web3(Web3.givenProvider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
+
         //console.log("account =============", account)
 
     }
