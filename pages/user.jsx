@@ -11,9 +11,14 @@ const UserPage = ({ putOnSale, endSale, receiveFunds}) => {
     const {accountsTrees, treesOnSale, account, contract, accountsFounds} = useContext(TreesContext)
 
     const [saleTrees, setSaleTrees] = useState([])
+    const [shortAccount , setShortAccount] = useState()
+
     useEffect(()=>{
         renderProductsOnSale()
     }, [ accountsTrees])
+    useEffect(()=>{
+        sliceAccount()
+    })
 
     const renderProductsOnSale = () => {
         console.log(saleTrees)
@@ -28,6 +33,15 @@ const UserPage = ({ putOnSale, endSale, receiveFunds}) => {
         }
         setSaleTrees([...productTiles])
     }
+    const sliceAccount = () => {
+        if(account!== undefined && account!== "0x0"){
+            let short = ""
+            short = account.slice(0, 4)
+            short+="..."
+            short += account.slice(account.length-3, account.length)
+            setShortAccount(short)
+        }
+    }
 
 
     return (
@@ -35,7 +49,7 @@ const UserPage = ({ putOnSale, endSale, receiveFunds}) => {
             {
                 (account!==undefined && account!== "0x0" && account!== null)?
                     <div>
-                        <Hero title={"WELCOME"} subtitle={account} trees={accountsTrees}></Hero>
+                        <Hero title={"WELCOME"} subtitle={shortAccount} trees={accountsTrees}></Hero>
                         <UserCollection
                             accountTrees={accountsTrees}
                             receiveFunds={receiveFunds}
