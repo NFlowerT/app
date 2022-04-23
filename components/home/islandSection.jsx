@@ -46,7 +46,6 @@ const IslandSection = () => {
 					disabled={true}
 				/>
 			</div>
-			<div className={style.foot}></div>
 		</section>
 	)
 }
