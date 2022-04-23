@@ -6,7 +6,8 @@ import style from "../styles/market/market.module.scss"
 import Image from "next/image"
 import Search from "../components/global/search"
 import {TreesContext} from "./_app"
-const UserPage = ({ putOnSale, endSale, receiveFunds}) => {
+import Wallet from "../components/wallet/wallet";
+const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount}) => {
 	const {accountsTrees, treesOnSale, account, contract, accountsFounds} = useContext(TreesContext)
 	const [saleTrees, setSaleTrees] = useState([])
 	const [shortAccount , setShortAccount] = useState()
@@ -40,6 +41,8 @@ const UserPage = ({ putOnSale, endSale, receiveFunds}) => {
 
 	return (
 		<>
+			<Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>
+
 			{(account && account!== "0x0") &&
 				<div>
 					<Hero title={"WELCOME"} subtitle={shortAccount} trees={accountsTrees}></Hero>
