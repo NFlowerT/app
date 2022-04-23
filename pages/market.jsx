@@ -1,7 +1,6 @@
 import React, {useContext} from "react"
 import style from "../styles/market/market.module.scss"
 import Image from "next/image"
-//components
 import Search from "../components/global/search"
 import Filter from "../components/global/filter"
 import ProductTile from "../components/global/productTile"
@@ -12,13 +11,10 @@ const Market = ({ buyTreeFromSale}) => {
 
 	const renderProducts = () => {
 		const productTiles = []
-		for (let i = 0; i<treesOnSale.length; i++) {
-			console.log(treesOnSale, treesOnSale.length)
+		for (let i = 0; i < treesOnSale.length; i++) {
 			let treeId = treesOnSale[i].tree.TreeId
 			let tree = trees.find((tree)=> tree.id == treeId)
-			console.log(tree)
-			productTiles.push(<ProductTile market={true} tree={tree} price={treesOnSale[i].tree.valueWei}  id={treesOnSale[i].tree.TreeId} saleId={treesOnSale[i].id} contract={contract} account={account} buyTreeFromSale={buyTreeFromSale} />)
-
+			productTiles.push(<ProductTile market={true} tree={tree} price={treesOnSale[i].tree.valueWei} id={treesOnSale[i].tree.TreeId} saleId={treesOnSale[i].id} contract={contract} account={account} buyTreeFromSale={buyTreeFromSale} />)
 			// productTiles.push(<ProductTile market={true} genes={trees[treeId].tree.genes} birthdate={trees[treeId].tree.birthdate} id={treesOnSale[i].tree.TreeId} saleId={treesOnSale[i].id} contract={contract} account={account} buyTreeFromSale={buyTreeFromSale} price={treesOnSale[i].tree.valueWei}/>)
 		}
 		return (
@@ -41,7 +37,6 @@ const Market = ({ buyTreeFromSale}) => {
 			</div>
 			<div className={style.productsContainer}>
 				{(treesOnSale.length)?renderProducts() :null}
-
 			</div>
 		</main>
 

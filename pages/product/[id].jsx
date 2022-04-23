@@ -5,6 +5,7 @@ import style from "../../styles/product/product.module.scss"
 import SellForm from "../../components/global/sellForm"
 import {TreesContext} from "../_app"
 import NTree from "../../nTree/NTree";
+import {sliceAccount} from "../../functions/sliceAccount";
 
 
 const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
@@ -17,7 +18,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	const [saleId, setSaleId] = useState(undefined)
 	const [showForm, setShowForm] = useState(false)
 
-	const { treesOnSale, account, contract, rem, vw, vh } = useContext(TreesContext)
+	const { treesOnSale, account, contract, rem, vw, vh, width } = useContext(TreesContext)
 
 	const router = useRouter()
 	const { id } = router.query
@@ -100,7 +101,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 									<Image src="/Rectangle14.svg" height={54} width={421}/>
 								</div>
 								<div className={style.tileTextContainer}>
-									<h1 className={style.titleText}>NAME</h1>
+									<h1 className={style.titleText}> {birthdate} </h1>
 								</div>
 							</div>
 							{
@@ -120,9 +121,9 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 										<Image src="/Rectangle42.svg" height={185} width={653}></Image>
 									</div>
 									<div className={style.info}>
-										{(price)? <div>price: {price/1000000000000000000} ETH</div> : null}
-										<div>owner: {owner}</div>
-										<div>birthdate: {new Date(birthdate*1000).toLocaleDateString("en-US")}</div>
+										<h3>Birthdate: {new Date(birthdate*1000).toLocaleDateString("en-US")}</h3>
+										<h3>Owner: {sliceAccount(owner)}</h3>
+										{(price)? <h3>price: {price/1000000000000000000} ETH</h3> : <h3> Not on sale</h3>}
 									</div>
 									<SellForm putOnSale={putOnSale} treeId={treeId} show={showForm} setShowForm={setShowForm}></SellForm>
 								</div>
@@ -133,14 +134,14 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 								// dataArray={[tree]}
 								className={style.treeContainer}
 								disabled={false}
-								width={(100 * vw) - (30 * rem)}
-								height={(100 * vh) - (5 * rem)}
+								width={width > 800 ? (100 * vw) - (30 * rem) : 90 * vw}
+								height={width > 800 ? (100 * vh) - (5 * rem) : 50 * vh}
 								cameraPosition={{x: 8, y: -3, z: 8}}
 								y={-4}
 							/>
 						</div>
 
-					</div> : <div className={style.error}><h2>We could not find this tree :(</h2></div>}
+					</div> : <div className={style.error}><h2>Loading...</h2></div>}
 
 		</div>
 

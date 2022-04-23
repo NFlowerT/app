@@ -17,7 +17,7 @@ const ProductTile = ({ id, contract, account, tree, price}) => {
 
 	}
 	const convertWei = (price) =>{
-		return price/1000000000000000000+" ETH"
+		return price / 1000000000000000000+" ETH"
 	}
 	console.log("genes", tree, "birthdate")
 
@@ -44,7 +44,7 @@ const ProductTile = ({ id, contract, account, tree, price}) => {
 					cameraPosition={{x: 8, y: -4, z: 8}}
 					y={-5}
 				/>
-				<div className={style.productTitle}>Ala ma kota</div>
+				<div className={style.productTitle}>{tree.tree.birthdate}</div>
 				{/*{(putOnSale)? <button onClick={async()=>await putOnSale(id)}>sale</button>:null}*/}
 				{/*<button onClick={()=>{putOnSale(id)}}>sale</button>*/}
 				{/*{(saleId!==undefined && ownerOfTreeOnSale(saleId))? <button onClick={async()=>{ await endSale(saleId)}}>end sale</button> :null}*/}

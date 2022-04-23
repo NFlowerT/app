@@ -1,17 +1,15 @@
 .metaMaskButton{
-  border: #e97910 3px solid;
-  border-radius: 0.5rem;
-  font-size: 1.2rem;
-  width: 10rem;
-  height: 2rem;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-}
-.metaMaskimage{
-  width: 2rem;
-  height: 1.4rem;
-  float: right;
+  font-size: 2rem;
+  color: white;
+  background: transparent;
+  border: none;
+  &:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s ease-in-out;
+  }
+  &:focus{
+    transform: scale(0.9);
+    transition: 0.2s ease-in-out;
+  }
 }

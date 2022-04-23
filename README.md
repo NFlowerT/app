@@ -1,8 +1,8 @@
-### TODO:
+# TODO:
 ## Maks:
-- zmienic przycisk "connect to Metamask"
+- a
 
 
-##wiktoria
+## wiktoria
 - show founds
 - resieve founds

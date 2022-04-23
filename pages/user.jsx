@@ -6,17 +6,16 @@ import style from "../styles/market/market.module.scss"
 import Image from "next/image"
 import Search from "../components/global/search"
 import {TreesContext} from "./_app"
-import Wallet from "../components/wallet/wallet";
+import Wallet from "../components/wallet/wallet"
+import {sliceAccount} from "../functions/sliceAccount";
+
 const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount}) => {
 	const {accountsTrees, treesOnSale, account, contract, accountsFounds} = useContext(TreesContext)
 	const [saleTrees, setSaleTrees] = useState([])
-	const [shortAccount , setShortAccount] = useState()
+
 	useEffect(()=>{
 		renderProductsOnSale()
 	}, [accountsTrees])
-	useEffect(()=>{
-		sliceAccount()
-	})
 
 	const renderProductsOnSale = () => {
 		const productTiles = []
@@ -29,30 +28,19 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount}) => {
 		}
 		setSaleTrees([...productTiles])
 	}
-	const sliceAccount = () => {
-		if(account!== undefined && account!== "0x0"){
-			let short = ""
-			short = account.slice(0, 4)
-			short+="..."
-			short += account.slice(account.length-3, account.length)
-			setShortAccount(short)
-		}
-	}
 
 	return (
-		<>
-			{/*<Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>*/}
-
+		<div>
+			<Hero title={"WELCOME"} subtitle={sliceAccount(account) ? sliceAccount(account) : <Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>} trees={accountsTrees}></Hero>
 			{(account && account!== "0x0") &&
-				<div>
-					<Hero title={"WELCOME"} subtitle={shortAccount} trees={accountsTrees}></Hero>
-					<UserCollection
-						accountTrees={accountsTrees}
-						receiveFunds={receiveFunds}
-						endSale={endSale}
-						putOnSale={putOnSale}
-						accountsFounds={accountsFounds}/>
-					{(saleTrees.length !== 0) &&
+					<>
+						<UserCollection
+							accountTrees={accountsTrees}
+							receiveFunds={receiveFunds}
+							endSale={endSale}
+							putOnSale={putOnSale}
+							accountsFounds={accountsFounds}/>
+						{(saleTrees.length !== 0) &&
 							<div className={style.container}>
 								<div className={style.guideSection}>
 									<div className={style.titleImageContainer}>
@@ -66,12 +54,10 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount}) => {
 									{(treesOnSale.length) && saleTrees.map((tree)=> tree)}
 								</div>
 							</div>
-					}
-				</div>
+						}
+					</>
 			}
-		</>
-
-
+		</div>
 	)
 }
 
