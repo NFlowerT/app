@@ -15,7 +15,7 @@ const Navbar = () => {
 		window.addEventListener("scroll", () => {
 			setScroll(window.scrollY > 0)
 		})
-		body.addEventListener("ontouchend", () => {
+		window.addEventListener("ontouchend", () => {
 			setScroll(window.scrollY > 0)
 		})
 		router.events.on("routeChangeStart", () => {
