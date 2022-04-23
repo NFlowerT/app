@@ -29,10 +29,10 @@ const TreeSection = () => {
 						</h3>
 					</div>
 					<div className={style.buttonContainer}>
-						{width > 900 && <button className={style.buyButton}><p>Buy</p></button>}
+						{width > 900 && <button className={style.buyButton}><p>Scroll</p></button>}
 					</div>
 				</div>
-				{width <= 900 && <button className={style.buyButton}><p>Buy</p></button>}
+				{width <= 900 && <button className={style.buyButton}><p>Scroll</p></button>}
 				<NTree
 					islandSize={5}
 					rockAmount={2}

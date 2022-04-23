@@ -8,7 +8,6 @@ const IslandSection = () => {
 	const {vw, vh, width} = useContext(TreesContext)
 	return (
 		<section className={style.main}>
-
 			<div className={style.sectionName}>
 				<div className={style.tabContainer}>
 					<div className={style.tab}>
@@ -29,10 +28,10 @@ const IslandSection = () => {
 						</h3>
 					</div>
 					<div className={style.buttonContainer}>
-						{width > 900 && <button className={style.buyButton}><p>Buy</p></button>}
+						{width > 900 && <button className={style.buyButton}><p>Scroll</p></button>}
 					</div>
 				</div>
-				{width <= 900 && <button className={style.buyButton}><p>Buy</p></button>}
+				{width <= 900 && <button className={style.buyButton}><p>Scroll</p></button>}
 				<NTree
 					islandSize={5}
 					rockAmount={2}
