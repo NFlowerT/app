@@ -4,14 +4,18 @@
     width: 100%;
     height: 100vh;
     background-color: aliceblue;
-    display: flex;
-    background-image: url('/background.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     flex-wrap: wrap;
     align-items: center;
     font-size: 0.83vw;
+    background-image: url('/background.png');
+}
+
+.innerContainer{
+    display: flex;
+    flex-direction: row;
 }
 
 .heroLogoContainer{
@@ -43,11 +47,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    width: 40%;
     height: 100%;
     div{
         width: fit-content;
         height: fit-content;
         display: block;
+    }
+}
+
+@media (max-width: 800px) {
+    .heroMain{
+        padding-top: 5rem;
+    }
+    .innerContainer{
+        height: calc(100vh - 5rem);
+        flex-direction: column;
+        font-size: 1.2vw;
+    }
+    .heroLogoContainer{
+        width: 100%;
+        height: 30%;
+        align-items: flex-end;
+    }
+    .heroTreeContainer{
+        width: 100%;
+        height: 70%;
     }
 }

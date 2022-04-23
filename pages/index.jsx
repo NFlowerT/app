@@ -9,8 +9,8 @@ const Home = () => {
 	return (
 		<>
 			<Hero title={"FORESTA"} subtitle={"MAKE YOUR FOREST FLY"} trees={trees}/>
-			<TreeSection/>
-			<IslandSection/>
+			{/*<TreeSection/>*/}
+			{/*<IslandSection/>*/}
 		</>
 	)
 }

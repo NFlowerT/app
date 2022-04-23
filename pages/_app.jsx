@@ -21,7 +21,9 @@ function MyApp({ Component, pageProps }) {
 	const [totalSupply, setTotalSupply] = useState(0)
 	const [accountBalance, setAccountBalance] = useState(0)
 	const [rem, setRem] = useState(16)
-	const [vw, setVw] = useState(1920 / 100)
+	const [vw, setVw] = useState(1000 / 100)
+	const [vh, setVh] = useState(1000 / 100)
+	const [width, setWidth] = useState(1000)
 
 
 	useEffect( () =>{
@@ -31,11 +33,15 @@ function MyApp({ Component, pageProps }) {
 
 	useEffect(()=>{
 		if (typeof window !== "undefined"){
-			setVw(window.innerWidth)
+			setVw(window.innerWidth / 100)
+			setVh(window.innerHeight / 100)
 			setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
+			setWidth(window.innerWidth)
 			window.addEventListener("resize", () => {
-				setVw(window.innerWidth)
+				setVw(window.innerWidth / 100)
+				setVh(window.innerHeight / 100)
 				setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
+				setWidth(window.innerWidth)
 			})
 		}
 	}, [])
@@ -400,7 +406,9 @@ function MyApp({ Component, pageProps }) {
 					account:account,
 					contract:contract,
 					rem: rem,
-					vw: vw
+					vw: vw,
+					vh: vh,
+					width: width
 				}
 			}>
 			<BaseLayout
