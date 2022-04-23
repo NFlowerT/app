@@ -39,6 +39,8 @@ export const generateModel = (group, container, width, height, cameraPosition, d
 	} else {
 		controls.mouseButtons = {}
 		controls.enableZoom = false
+		controls.enablePan = false
+		controls.enableRotate = false
 	}
 	controls.update()
 	controls.addEventListener( "change", () => {

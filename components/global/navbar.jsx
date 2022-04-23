@@ -6,7 +6,6 @@ import style from "../../styles/global/nav.module.scss"
 import {TreesContext} from "../../pages/_app"
 import {FiMenu} from "react-icons/fi"
 
-
 const Navbar = () => {
 	const [navState, setNavState] = useState(false)
 	const router = useRouter()
@@ -29,7 +28,7 @@ const Navbar = () => {
 			{width > 600 ?
 				<nav className={style.nav + " " + ((scroll) && style.navScrolled)}>
 					<div className={style.logoContainer}>
-						<Link href={"/"} pasHref>
+						<Link href={"/"} passHref>
 							<div className={style.logoTitle }><div>FORESTA</div></div>
 						</Link>
 					</div>
@@ -56,7 +55,7 @@ const Navbar = () => {
 				<>
 					<nav className={style.mobileNav + " " + ((scroll || navState) && style.navScrolled)}>
 						<div className={style.logoContainer}>
-							<Link href={"/"} pasHref>
+							<Link href={"/"} passHref>
 								<div className={style.logoTitle}><div>FORESTA</div></div>
 							</Link>
 						</div>
