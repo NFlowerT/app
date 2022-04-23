@@ -1,7 +1,7 @@
-import React, {useContext, useState} from "react"
+import React, {useContext} from "react"
 import style from "../../styles/home/islandSection.module.scss"
 import NTree from "../../nTree/NTree"
-import {TreesContext} from "../../pages/_app";
+import {TreesContext} from "../../pages/_app"
 
 
 const IslandSection = () => {

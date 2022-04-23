@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import style from "../../styles/home/userCollection.module.scss"
+import style from "../../styles/user/userCollection.module.scss"
 import Image from "next/image"
 import ProductTile from "../global/productTile"
 import SellForm from "../global/sellForm"
@@ -65,7 +65,6 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale
 					</div>
 					<div className={style.dop}></div>
 				</div>
-
 				<div>
 					<img src="/treeSub.svg" className={style.image}/>
 				</div>
@@ -81,7 +80,6 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale
 					<div className={style.sellForm}>
 						<SellForm putOnSale={putOnSale} treeId={activeTreeId} show={showForm} setShowForm={setShowForm}></SellForm>
 					</div>
-
 				</div>
 			</div>
 

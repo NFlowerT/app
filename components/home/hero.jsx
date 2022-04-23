@@ -5,6 +5,7 @@ import {TreesContext} from "../../pages/_app"
 
 const Hero = ({title, subtitle, trees}) => {
 	const {vw, vh, width} = useContext(TreesContext)
+
 	return (
 		<div className={style.heroMain}>
 			<div className={style.innerContainer}>
@@ -18,8 +19,8 @@ const Hero = ({title, subtitle, trees}) => {
 					dataArray={trees}
 					islandSize={10}
 					rockAmount={2}
-					width={width > 800 ? 39 * vw : 80 * vw}
-					height={width > 800 ? 45 * vw : 50 * vh}
+					width={width > 900 ? 39 * vw : 80 * vw}
+					height={width > 900 ? 45 * vw : 50 * vh}
 					className={style.heroTreeContainer}
 					cameraPosition={{x: 15, y: 1, z: 15}}
 					y={-3}
@@ -27,10 +28,8 @@ const Hero = ({title, subtitle, trees}) => {
 					disabled={true}
 				/>}
 			</div>
-
 		</div>
 	)
 }
-
 
 export default Hero

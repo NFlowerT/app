@@ -8,8 +8,8 @@ const Home = () => {
 	const {trees} = useContext(TreesContext)
 	return (
 		<>
-			<Hero title={"FORESTA"} subtitle={"MAKE YOUR FOREST FLY"} trees={trees}/>
-			{/*<TreeSection/>*/}
+			{/*<Hero title={"FORESTA"} subtitle={"MAKE YOUR FOREST FLY"} trees={trees}/>*/}
+			<TreeSection/>
 			{/*<IslandSection/>*/}
 		</>
 	)

@@ -58,12 +58,13 @@
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     .heroMain{
         padding-top: 5rem;
+        min-height: 150vw;
     }
     .innerContainer{
-        height: calc(100vh - 5rem);
+        height: calc(100% - 5rem);
         flex-direction: column;
         font-size: 1.2vw;
     }
