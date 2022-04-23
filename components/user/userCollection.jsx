@@ -4,11 +4,11 @@ import Image from "next/image"
 import ProductTile from "../global/productTile"
 import SellForm from "../global/sellForm"
 import NTree from "../../nTree/NTree"
-import {TreesContext} from "../../pages/_app";
+import {TreesContext} from "../../pages/_app"
 
 
 const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOnSale}) => {
-	const { accountsFounds} = useContext(TreesContext)
+	const {accountsFounds, vw, vh, width} = useContext(TreesContext)
 	const [activeTreeId, setActiveTreeId] = useState()
 	const [activeTree, setActiveTree] = useState((accountTrees)? accountTrees[0] : undefined)
 
@@ -33,7 +33,6 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 			setActiveTree(accountTrees[0])
 			setActiveTreeBirthdate(accountTrees[0].tree.birthdate)
 		}
-
 
 	}, [accountTrees])
 
@@ -71,7 +70,7 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 	}
 
 	return (
-		<div className={style.main}>
+		<div className={style.main} id={"myTrees"}>
 			<div className={style.sectionName}>
 				<div className={style.foundsContainer}>
 					<div className={style.founds}>
@@ -84,7 +83,7 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 					<div className={style.dop}></div>
 				</div>
 				<div>
-					<img src="/treeSub.svg" className={style.image}/>
+					<img src="/treeSub.svg" className={style.image} alt={""}/>
 				</div>
 			</div>
 
@@ -96,31 +95,11 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 							<h3>Your Collection</h3>
 						</div>
 						<div className={style.list}>
-							<div className={style.collectionTree}>
-								<p>TREE NAMEEE</p>
-							</div>
-							<div className={style.collectionTree}>
-								<p>TREE NAMEEE</p>
-							</div>
-							<div className={style.collectionTree}>
-								<p>TREE NAMEEE</p>
-							</div><div className={style.collectionTree}>
-							<p>TREE NAMEEE</p>
-						</div><div className={style.collectionTree}>
-							<p>TREE NAMEEE</p>
-						</div><div className={style.collectionTree}>
-							<p>TREE NAMEEE</p>
-						</div><div className={style.collectionTree}>
-							<p>TREE NAMEEE</p>
-						</div><div className={style.collectionTree}>
-							<p>TREE NAMEEE</p>
-						</div><div className={style.collectionTree}>
-							<p>TREE NAMEEE</p>
-						</div><div className={style.collectionTree}>
-							<p>TREE NAMEEE</p>
-						</div><div className={style.collectionTree}>
-							<p>TREE NAMEEE</p>
-						</div>
+							{[214421,241412421421,21452,51521512,521251215,215521251,1152521521,52152121512,215512215,125512251,5215126,6436,643644643].map((num, i) =>
+								<div className={style.collectionTree} key={num.toString()+i.toString()}>
+									<p>{num}</p>
+								</div>
+							)}
 						</div>
 						{/*{renderTrees()}*/}
 
@@ -128,12 +107,17 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 						{/*	<SellForm putOnSale={putOnSale} treeId={activeTreeId} show={showForm} setShowForm={setShowForm}></SellForm>*/}
 						{/*</div>*/}
 					</div>
-					<div className={style.dopu}></div>
+					{width > 900 && <div className={style.dopu}/>}
 				</div>
-				<div className={style.treeContainer}></div>
-				{
-					(accountTrees) &&
-						((activeTree!==undefined) && <NTree dataArray={[activeTree]}/>)
+				{accountTrees && activeTree &&
+					<NTree
+						dataArray={[activeTree]}
+						className={style.treeContainer}
+						width={width > 900 ? 70 * vw : 80 * vw}
+						height={width > 900 ? 80 * vh : 40 * vh}
+						cameraPosition={{x: 7, y: -2, z: 7}}
+						y={-4}
+					/>
 				}
 			</div>
 

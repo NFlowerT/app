@@ -65,8 +65,8 @@ const Navbar = () => {
 					</nav>
 					{navState &&
 						<div className={style.navBody}>
-							<div>
-								<Link href={"/"} passHref><h3>SAPPLINGS</h3></Link>
+							<div onClick={() => {document.getElementById("saplingSection").scrollIntoView(); setNavState(false)}}>
+								<h3>SAPPLINGS</h3>
 							</div>
 							<div>
 								<Link href={"/gallery"} passHref><h3>GALLERY</h3></Link>

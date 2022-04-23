@@ -5,47 +5,51 @@
   width: 100%;
   height: auto;
 }
+
 .container{
   height: 83vh;
-
   overflow: hidden;
 }
+
 .titleContainer{
   width: 100%;
   background-color: white;
   margin-top: 2rem;
   display: flex;
   position: relative;
-  box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 11px rgba(0, 0, 0, 0.25);
   justify-content: space-between ;
   align-items: center;
 }
+
 .titleImageContainer{
   width: 26rem;
   position: absolute;
   z-index: 2;
   display: block;
-  padding: 0px;
+  padding: 0;
 }
+
 .titleText{
   z-index: 3;
   margin: 0;
   color: white;
   height: 100%;
-  //padding-bottom: 1rem;
 }
+
 .tileTextContainer{
   display: flex;
   justify-content: center;
   align-items: center;
   width: 19rem;
-
 }
+
 .title{
   position: relative;
   width: 21rem;
   height: 3.3rem;
 }
+
 .productContainer{
   display: flex;
   width: fit-content;
@@ -56,15 +60,18 @@
   flex-wrap: wrap;
   margin-top: 3rem;
 }
+
 .infoContainer{
   position: relative;
   height: 100%;
   width: 30rem;
 }
+
 .infoImage{
   width: 29.4rem;
   position: absolute;
 }
+
 .info{
   position: absolute;
   display: flex;
@@ -74,8 +81,8 @@
   flex-direction: column;
   align-content: center;
   padding-left: 1.2rem;
-
 }
+
 .button{
   height: 2.5rem;
   background-color: $buttonGray;
@@ -84,12 +91,26 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-.error h2{
-  height: 12rem;
-   text-align: center;
-  margin-top: 5rem;
-  padding-top: 4rem;
+
+.error {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  h2{
+    height: 12rem;
+    width: 100%;
+    text-align: center;
+    background: $greenBackground;
+    display: flex;
+    color:white;
+    align-items: center;
+    justify-content: center;
+  }
 }
+
 
 .middleContainer{
   width: 100%;

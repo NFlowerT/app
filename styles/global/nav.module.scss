@@ -46,7 +46,6 @@
 
 .navScrolled{
   background: rgba(238, 242, 234, 0.7)!important;
-
 }
 
 .logoContainer{
@@ -93,6 +92,7 @@
 }
 
 .mobileNav{
+  background: rgba(238, 242, 234, 0.7)!important;
   z-index: 10!important;
   *{
     z-index: 10!important;
@@ -120,7 +120,7 @@
   position: fixed;
   right: 0;
   top: 5rem;
-  background: white;
+  background: rgba(238, 242, 234, 0.7)!important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,7 +133,7 @@
   animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   div{
     margin: 1rem;
-    background: $greenBackground;
+    background: white;
     width: 90%;
     text-align: center;
     padding: 0.5rem 0;
@@ -142,5 +142,4 @@
   .userIcon{
     font-size: 2rem;
   }
-
 }

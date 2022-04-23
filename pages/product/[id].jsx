@@ -127,9 +127,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 									</div>
 									<SellForm putOnSale={putOnSale} treeId={treeId} show={showForm} setShowForm={setShowForm}></SellForm>
 								</div>
-
 							</div>
-
 							<NTree
 								// dataArray={[tree]}
 								className={style.treeContainer}

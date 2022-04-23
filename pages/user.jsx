@@ -30,7 +30,7 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount}) => {
 
 	return (
 		<div>
-			<Hero title={"WELCOME"} subtitle={sliceAccount(account) ? sliceAccount(account) : <Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>} trees={accountsTrees}></Hero>
+			<Hero title={"WELCOME"} scrollToId={"myTrees"} subtitle={sliceAccount(account) ? sliceAccount(account) : <Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>} trees={accountsTrees}></Hero>
 			{(account && account!== "0x0") &&
 					<>
 						<UserCollection

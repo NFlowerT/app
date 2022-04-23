@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createContext} from "react"
 
 import BaseLayout from "../components/global/baseLayout"
-import "../styles/globals.css"
+import "../styles/globals.scss"
 
 import Web3 from "web3"
 import HelloWorld from "../src/abis/HelloWorld.json"
