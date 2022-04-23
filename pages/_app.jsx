@@ -421,6 +421,7 @@ function MyApp({ Component, pageProps }) {
 				           endSale={endSale}
 				           buyTreeFromSale={buyTreeFromSale}
 				           receiveFunds={receiveFunds}
+						   setAccount={setAccount}
 				/>
 			</BaseLayout>
 		</TreesContext.Provider>

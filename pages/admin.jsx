@@ -1,6 +1,7 @@
 import React, {useState} from "react"
+import Wallet from "../components/wallet/wallet";
 
-const Admin = ({mint}) => {
+const Admin = ({mint, loadBlockChainData, setAccount}) => {
 	const [password, setPassword] = useState("")
 	const [auth, setAuth] = useState(false)
 	const login = () => {
@@ -20,6 +21,7 @@ const Admin = ({mint}) => {
 				<h1> Witaj Adminie</h1>
 				<p> fsafa </p>
 				<button onClick={async() => await mint()}>mint</button>
+				<Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>
 			</>
 		)
 	}
