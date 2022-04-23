@@ -22,10 +22,10 @@ const TreeSection = () => {
 				<div className={style.textContainer}>
 					<div className={style.text}>
 						<div className={style.title}>
-							<h2>Czym są drzewka?</h2>
+							<h2>Our trees</h2>
 						</div>
-						<h3>Lorem ipsum dolor sit amet, t, consectetur adipiscing elit. Cipa convallis sollicitudin cursus. In varius, felis vitae facilisis vulputate, kutas enim tincidunt
-							us. In varius, felis vitae facilisis vulputate, metus enim tincidunt leo, ut tempus leo lorem s
+						<h3>
+							Every tree is generated to be completely random. It grows over time, changes colors depending on the season and has tens of properties like amount of segments, trunk colors and so on.
 						</h3>
 					</div>
 					<div className={style.buttonContainer}>

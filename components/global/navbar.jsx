@@ -12,21 +12,21 @@ const Navbar = () => {
 	const location = router.pathname
 	const [scroll, setScroll] = useState(false)
 	useEffect(() => {
-		window.addEventListener("scroll", () => {
-			setScroll(window.scrollY > 0)
-		})
-		window.addEventListener("ontouchend", () => {
-			setScroll(window.scrollY > 0)
+		document.body.addEventListener("scroll", () => {
+			setScroll(document.body.scrollTop > 0)
 		})
 		router.events.on("routeChangeStart", () => {
 			setNavState(false)
 		})
-	}, [])
+		return (() => {
+			window.removeEventListener("scroll", () => {})
+		})
+	}, [router.events])
 	const {width} = useContext(TreesContext)
 	return (
 		<>
 			{width > 600 ?
-				<nav className={style.nav + " " + ((scroll) && style.navScrolled)}>
+				<nav className={style.nav + " " + ((scroll) ? style.navScrolled : "")}>
 					<div className={style.logoContainer}>
 						<Link href={"/"} passHref>
 							<div className={style.logoTitle }><div>FORESTA</div></div>
@@ -53,7 +53,7 @@ const Navbar = () => {
 
 				:
 				<>
-					<nav className={style.mobileNav + " " + ((scroll || navState) && style.navScrolled)}>
+					<nav className={style.mobileNav + " " + ((scroll || navState) ? style.navScrolled : "")}>
 						<div className={style.logoContainer}>
 							<Link href={"/"} passHref>
 								<div className={style.logoTitle}><div>FORESTA</div></div>

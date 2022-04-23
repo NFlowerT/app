@@ -22,10 +22,10 @@ const IslandSection = () => {
 				<div className={style.textContainer}>
 					<div className={style.text}>
 						<div className={style.title}>
-							<h2>Czym są drzewka?</h2>
+							<h2>The Island</h2>
 						</div>
-						<h3>Lorem ipsum dolor sit amet, t, consectetur adipiscing elit. Cipa convallis sollicitudin cursus. In varius, felis vitae facilisis vulputate, kutas enim tincidunt
-							us. In varius, felis vitae facilisis vulputate, metus enim tincidunt leo, ut tempus leo lorem s
+						<h3>
+							The island is has been carefully crafted to look ideal. Every tree is placed on it, by drawing a random point on its top face.
 						</h3>
 					</div>
 					<div className={style.buttonContainer}>

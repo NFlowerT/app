@@ -1,13 +1,13 @@
-import React from "react"
+import React, {useContext} from "react"
 import Link from "next/link"
 import Image from "next/image"
 import style from "../../styles/global/productTile.module.scss"
 import NTree from "../../nTree/NTree"
+import {TreesContext} from "../../pages/_app"
 
 // const ProductTile = ({ id, genes, price, contract, account, birthdate}) => {
 const ProductTile = ({ id, contract, account, tree, price}) => {
-
-
+	const {rem} = useContext(TreesContext)
 	const ownerOfTreeOnSale = async (saleId)=>{
 		if(!contract) return 0
 		let tree = await contract.methods.sales(saleId).call()
@@ -19,7 +19,6 @@ const ProductTile = ({ id, contract, account, tree, price}) => {
 	const convertWei = (price) =>{
 		return price/1000000000000000000+" ETH"
 	}
-	const rem = document && parseFloat(getComputedStyle(document.documentElement).fontSize)
 	console.log("genes", tree, "birthdate")
 
 	return (
@@ -39,7 +38,12 @@ const ProductTile = ({ id, contract, account, tree, price}) => {
 				<NTree
 					dataArray={[tree]}
 					className={style.treeContainer}
-					disabled={true}/>
+					disabled={true}
+					width={15 * rem}
+					height={18 * rem}
+					cameraPosition={{x: 8, y: -4, z: 8}}
+					y={-5}
+				/>
 				<div className={style.productTitle}>Ala ma kota</div>
 				{/*{(putOnSale)? <button onClick={async()=>await putOnSale(id)}>sale</button>:null}*/}
 				{/*<button onClick={()=>{putOnSale(id)}}>sale</button>*/}

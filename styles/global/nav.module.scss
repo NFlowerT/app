@@ -39,10 +39,13 @@
   background: transparent;
   position: fixed;
   font-family: Poppins, Segoe UI, Calibri, serif;
+  *{
+    z-index: 10!important;
+  }
 }
 
 .navScrolled{
-  background: white;
+  background: white!important;
 }
 
 .logoContainer{
@@ -89,6 +92,10 @@
 }
 
 .mobileNav{
+  z-index: 10!important;
+  *{
+    z-index: 10!important;
+  }
   position: fixed;
   display: flex;
   width: 100%;

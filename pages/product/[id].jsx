@@ -4,6 +4,7 @@ import Image from "next/image"
 import style from "../../styles/product/product.module.scss"
 import SellForm from "../../components/global/sellForm"
 import {TreesContext} from "../_app"
+import NTree from "../../nTree/NTree";
 
 
 const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
@@ -16,7 +17,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	const [saleId, setSaleId] = useState(undefined)
 	const [showForm, setShowForm] = useState(false)
 
-	const { treesOnSale, account, contract } = useContext(TreesContext)
+	const { treesOnSale, account, contract, rem, vw, vh } = useContext(TreesContext)
 
 	const router = useRouter()
 	const { id } = router.query
@@ -112,22 +113,33 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 								(sale && owner!=account && account!="0x0" && account!=undefined)? <button className={style.button} onClick={async ()=> await buyTreeFromSale(saleId, price) }>BUY</button> : null
 							}
 						</div>
-						<div className={style.productContainer}>
-							<div className={style.infoContainer}>
-								<div className={style.infoImage}>
-									<Image src="/Rectangle42.svg" height={185} width={653}></Image>
+						<div className={style.middleContainer}>
+							<div className={style.productContainer}>
+								<div className={style.infoContainer}>
+									<div className={style.infoImage}>
+										<Image src="/Rectangle42.svg" height={185} width={653}></Image>
+									</div>
+									<div className={style.info}>
+										{(price)? <div>price: {price/1000000000000000000} ETH</div> : null}
+										<div>owner: {owner}</div>
+										<div>birthdate: {new Date(birthdate*1000).toLocaleDateString("en-US")}</div>
+									</div>
+									<SellForm putOnSale={putOnSale} treeId={treeId} show={showForm} setShowForm={setShowForm}></SellForm>
 								</div>
-								<div className={style.info}>
-									{(price)? <div>price: {price/1000000000000000000} ETH</div> : null}
-									<div>owner: {owner}</div>
-									<div>birthdate: {new Date(birthdate*1000).toLocaleDateString("en-US")}</div>
-								</div>
-								<SellForm putOnSale={putOnSale} treeId={treeId} show={showForm} setShowForm={setShowForm}></SellForm>
+
 							</div>
 
+							<NTree
+								// dataArray={[tree]}
+								className={style.treeContainer}
+								disabled={false}
+								width={(100 * vw) - (30 * rem)}
+								height={(100 * vh) - (5 * rem)}
+								cameraPosition={{x: 8, y: -3, z: 8}}
+								y={-4}
+							/>
 						</div>
 
-						{/*{treeId}*/}
 					</div> : <div className={style.error}><h2>We could not find this tree :(</h2></div>}
 
 		</div>
