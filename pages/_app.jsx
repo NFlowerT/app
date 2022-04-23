@@ -20,10 +20,10 @@ function MyApp({ Component, pageProps }) {
 	const [accountsTrees, setAccountsTrees] = useState([])
 	const [totalSupply, setTotalSupply] = useState(0)
 	const [accountBalance, setAccountBalance] = useState(0)
-	const [rem, setRem] = useState(16)
-	const [vw, setVw] = useState(1000 / 100)
-	const [vh, setVh] = useState(1000 / 100)
-	const [width, setWidth] = useState(1000)
+	const [rem, setRem] = useState(0)
+	const [vw, setVw] = useState(0)
+	const [vh, setVh] = useState(0)
+	const [width, setWidth] = useState(0)
 
 
 	useEffect( () =>{
