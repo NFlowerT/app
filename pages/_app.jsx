@@ -76,6 +76,7 @@ function MyApp({ Component, pageProps }) {
 		(async () => {
 			await  loadTrees()
 			await  smartContractListener()
+			await loadAccountFunds()
 		})()
 
 
@@ -101,7 +102,7 @@ function MyApp({ Component, pageProps }) {
 		if(account!==undefined && account!=="" && account!=="0x0" && contract){
 			let founds = await contract.methods.ownerToFunds(account).call()
 			console.log(founds, "founds")
-			if(!isNaN(founds))setAccountFounds(founds)
+			setAccountFounds(founds)
 		}
 	}
 
