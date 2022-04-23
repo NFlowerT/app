@@ -1,10 +1,7 @@
 import React, {useContext, useState} from "react"
-import style from "../../styles/home/islandSection.module.scss"
+import style from "../../styles/home/saplingSection.module.sass"
 
-
-
-const SapplingSection = () => {
-
+const SaplingSection = () => {
 	return (
 		<section className={style.main}>
 
@@ -12,4 +9,4 @@ const SapplingSection = () => {
 	)
 }
 
-export default SapplingSection
+export default SaplingSection
