@@ -3,7 +3,7 @@ import TreeSection from "../components/home/treeSection"
 import IslandSection from "../components/home/islandSection"
 import React, {useContext} from "react"
 import {TreesContext} from "./_app"
-import SaplingSection from "../components/home/sapplingSection"
+import SaplingSection from "../components/home/saplingSection"
 
 const Home = () => {
 	const {trees} = useContext(TreesContext)
