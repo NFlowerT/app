@@ -29,6 +29,7 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale
                 You do not own any tree
 				</div>
 			)
+
 		const treesNames = []
 		for (let i = 0; i < accountTrees.length; i++) {
 			treesNames.push(

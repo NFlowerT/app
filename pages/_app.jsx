@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
 	const [totalSupply, setTotalSupply] = useState(0)
 	const [accountBalance, setAccountBalance] = useState(0)
 	const [rem, setRem] = useState(16)
-	const [vw, setVw] = useState(1920)
+	const [vw, setVw] = useState(1920 / 100)
 
 
 	useEffect( () =>{

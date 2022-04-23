@@ -11,6 +11,7 @@
     background-size: cover;
     flex-wrap: wrap;
     align-items: center;
+    font-size: 0.83vw;
 }
 
 .heroLogoContainer{
@@ -19,7 +20,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .heroLogo{
@@ -27,15 +27,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 6rem;
+    margin-bottom: 6em;
     color: white;
     h1{
-        font-size: 13rem;
-        height: 16rem;
+        font-size: 13em;
         text-shadow: 0 15.833px 15.833px rgba(0, 0, 0, 0.25);
     }
     p{
-        font-size: 3rem;
+        font-size: 3em;
         text-shadow: 0 15.833px 15.833px rgba(0, 0, 0, 0.25);
     }
 }

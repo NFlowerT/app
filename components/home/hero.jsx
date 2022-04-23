@@ -3,11 +3,10 @@ import style from "../../styles/home/hero.module.scss"
 import NTree from "../../nTree/NTree"
 import {TreesContext} from "../../pages/_app"
 
-const Hero = ({title, subtitle}) => {
-	const {rem, trees} = useContext(TreesContext)
+const Hero = ({title, subtitle, trees}) => {
+	const {vw} = useContext(TreesContext)
 	return (
 		<div className={style.heroMain}>
-
 			<div className={style.heroLogoContainer}>
 				<div className={style.heroLogo}>
 					<h1>{title}</h1>
@@ -15,19 +14,18 @@ const Hero = ({title, subtitle}) => {
 				</div>
 
 			</div>
-			{(trees) ? <NTree
+			{(trees) && <NTree
 				dataArray={trees}
 				islandSize={10}
 				rockAmount={2}
-				width={40 * rem}
-				height={45 * rem}
+				width={39 * vw}
+				height={45 * vw}
 				className={style.heroTreeContainer}
 				cameraPosition={{x: 15, y: 1, z: 15}}
 				y={-3}
 				innerRadius={8}
 				disabled={true}
-			/>: null
-			}
+			/>}
 		</div>
 	)
 }
