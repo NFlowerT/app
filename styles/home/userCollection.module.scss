@@ -4,49 +4,62 @@
   background: radial-gradient(60.71% 81.83% at 69.69% 48.39%, rgba(79, 119, 45, 0) 0%, rgba(79, 119, 45, 0.3) 100%);
   width: 100%;
   height: 100vh;
+  display: flex;
+  flex-direction: column
 }
 
-.tabContainer{
+.sectionName{
+  width: 100%;
+  height: 78px;
+  margin-top: 5rem;
   display: flex;
   justify-content: space-between;
-  height: 5rem;
+  align-items: start;
 }
-
-.tabImages{
-  position: relative;
-  width: 8rem;
-}
-
-.tabImage{
-  position: absolute;
-}
-
-.tabIconContainer{
-  position: absolute;
+.foundsContainer{
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  width: 100%;
-  height: 5rem;
+  height: 79px;
+}
+.founds{
+  background-color: #4F772D;
+  height: 79px;
+  min-width: 350px;
+  z-index: 10;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  h2{
+    color: white;
+    font-weight: bold;
+    margin-left: 2rem;
+    font-size: 1.8rem;
+
+  }
+}
+.dop{
+  background-image: url('/dop.svg');
+  height: 79px;
+  width: 50px;
+  margin-left: -0.3rem;
+  background-repeat: no-repeat;
 }
 
-.tabIcon{
-  width: 3.4rem;
+.image{
+  height: 79px;
 }
 
 .container{
   width: 100%;
   height: 100%;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
 }
 
 .collectionContainer{
-  height: 40rem;
-  width: 29.5rem;
+  width: 640px;
+  height: 640px;
   position: relative;
 }
 
@@ -55,15 +68,17 @@
   z-index: 0;
 }
 
+
+
+
+
+
+
+
+
+
 .collectionContainerTitle{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 3rem;
-  width: 26.2rem;
-  border-bottom: $greenLine 4px solid;
-  z-index: 5;
-  position: absolute;
+  width: 100%;
 }
 
 .namesContainer{
@@ -93,21 +108,7 @@
   z-index: 6;
 }
 
-.foundsContainer{
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  background-image: url("/founds.svg");
-  height: 79px;
-  width: 525px;
-  margin-left: -0.3rem;
-  background-repeat: no-repeat;
-  h3{
-    color: white;
-    font-weight: bold;
-    margin-left: 2rem;
-  }
-}
+
 
 .button{
   height: 2rem;
@@ -122,15 +123,7 @@
   margin-top: 31rem;
 }
 
-.sectionName{
-  width: 100%;
-  height: 78px;
-  margin-top: 5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-}
 
-.image{
-  height: 79px;
-}
+
+
+
