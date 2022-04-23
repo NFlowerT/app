@@ -6,12 +6,11 @@ import {TreesContext} from "../../pages/_app"
 
 
 const TreeSection = () => {
-	const {trees} = useContext(TreesContext)
-	const rem = typeof document !== "undefined" ? parseFloat(getComputedStyle(document.documentElement).fontSize) : 20
+	const {vw, vh, width} = useContext(TreesContext)
 	return (
 		<section className={style.main}>
 			<div className={style.sectionName}>
-				<img src="/TSName.svg" className={style.image}/>
+				{/*<img src="/TSName.svg" className={style.image}/>*/}
 			</div>
 			<div className={style.container}>
 				<div className={style.textContainer}>
@@ -19,20 +18,20 @@ const TreeSection = () => {
 						<div className={style.title}>
 							<h2>Czym są drzewka?</h2>
 						</div>
-
 						<h3>Lorem ipsum dolor sit amet, t, consectetur adipiscing elit. Cipa convallis sollicitudin cursus. In varius, felis vitae facilisis vulputate, kutas enim tincidunt
 							us. In varius, felis vitae facilisis vulputate, metus enim tincidunt leo, ut tempus leo lorem s
 						</h3>
 					</div>
-					<div className={style.buttonSec}>
-						<button className={style.but}>Buy</button>
+					<div className={style.buttonContainer}>
+						{width > 900 && <button className={style.buyButton}><p>Buy</p></button>}
 					</div>
 				</div>
+				{width <= 900 && <button className={style.buyButton}><p>Buy</p></button>}
 				<NTree
 					islandSize={5}
 					rockAmount={2}
-					width={40 * rem}
-					height={30 * rem}
+					width={width > 900 ? 50 * vw : 90 * vw}
+					height={width > 900 ? (80 * vh) : (55 * vh) < (250 * vw) ? (55 * vh) : (250 * vw)}
 					className={style.tree}
 					cameraPosition={{x: 10, y: 0, z: 10}}
 					y={-3}

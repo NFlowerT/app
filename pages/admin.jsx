@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import Wallet from "../components/wallet/wallet";
+import Wallet from "../components/wallet/wallet"
 
 const Admin = ({mint, loadBlockChainData, setAccount}) => {
 	const [password, setPassword] = useState("")
