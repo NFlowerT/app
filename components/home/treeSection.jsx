@@ -1,6 +1,5 @@
-import React, {useContext, useState} from "react"
+import React, {useContext} from "react"
 import style from "../../styles/home/treeSection.module.scss"
-import Image from "next/image"
 import NTree from "../../nTree/NTree"
 import {TreesContext} from "../../pages/_app"
 
@@ -8,12 +7,13 @@ import {TreesContext} from "../../pages/_app"
 const TreeSection = () => {
 	const {vw, vh, width} = useContext(TreesContext)
 	return (
-		<section className={style.main}>
+		<section className={style.main} id={"treeSection"}>
 			<div className={style.sectionName}>
 				<div className={style.tabContainer}>
 					<div className={style.tab}>
 						<h2>TREES</h2>
-						<img className={style.icon} src="/treeIcon.svg"/>
+						{/* eslint-disable-next-line @next/next/no-img-element */}
+						<img className={style.icon} src="/treeIcon.svg" alt={""}/>
 					</div>
 					<div className={style.dop}></div>
 				</div>
@@ -29,10 +29,10 @@ const TreeSection = () => {
 						</h3>
 					</div>
 					<div className={style.buttonContainer}>
-						{width > 900 && <button className={style.buyButton}><p>Scroll</p></button>}
+						{width > 900 && <button className={style.buyButton} onClick={() => document.getElementById("islandSection").scrollIntoView()}><p>Scroll</p></button>}
 					</div>
 				</div>
-				{width <= 900 && <button className={style.buyButton}><p>Scroll</p></button>}
+				{width <= 900 && <button className={style.buyButton} onClick={() => document.getElementById("islandSection").scrollIntoView()}><p>Scroll</p></button>}
 				<NTree
 					islandSize={5}
 					rockAmount={2}

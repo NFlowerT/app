@@ -9,7 +9,7 @@ const Home = () => {
 	const {trees} = useContext(TreesContext)
 	return (
 		<>
-			<Hero title={"FORESTA"} subtitle={"MAKE YOUR FOREST FLY"} trees={trees}/>
+			<Hero title={"FORESTA"} subtitle={"MAKE YOUR FOREST FLY"} trees={trees} scrollToId={"treeSection"}/>
 			<TreeSection/>
 			<IslandSection/>
 			<SaplingSection/>

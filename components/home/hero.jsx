@@ -2,8 +2,9 @@ import React, {useContext} from "react"
 import style from "../../styles/home/hero.module.scss"
 import NTree from "../../nTree/NTree"
 import {TreesContext} from "../../pages/_app"
+import {BsCaretDownFill} from "react-icons/bs"
 
-const Hero = ({title, subtitle, trees}) => {
+const Hero = ({title, subtitle, trees, scrollToId}) => {
 	const {vw, vh, width} = useContext(TreesContext)
 
 	return (
@@ -28,6 +29,11 @@ const Hero = ({title, subtitle, trees}) => {
 					disabled={true}
 				/>}
 			</div>
+			{scrollToId &&
+				<button className={style.scrollButton} onClick={() => document.getElementById(scrollToId).scrollIntoView()}>
+					<BsCaretDownFill/>
+				</button>
+			}
 		</div>
 	)
 }

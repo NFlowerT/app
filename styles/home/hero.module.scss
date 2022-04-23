@@ -11,6 +11,7 @@
     align-items: center;
     font-size: 0.83vw;
     background-image: url('/background.png');
+    position: relative;
 }
 
 .innerContainer{
@@ -55,6 +56,33 @@
         width: fit-content;
         height: fit-content;
         display: block;
+    }
+}
+
+.scrollButton{
+    width: 4rem;
+    height: 4rem;
+    position: absolute;
+    z-index: 2;
+    background: transparent;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 100rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.2rem solid white;
+    color: white;
+    font-size: 1.5rem;
+    &:hover{
+        transform: scale(1.05);
+        transition: 0.3s;
+    }
+    &:focus{
+        transform: scale(0.95);
+        transition: 0.3s;
     }
 }
 

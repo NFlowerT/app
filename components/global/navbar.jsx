@@ -35,7 +35,7 @@ const Navbar = () => {
 
 					<div className={style.categoryContainer}>
 						<div>
-							<Link href={"/"} passHref><div>SAPPLINGS</div></Link>
+							<div onClick={() => document.getElementById("saplingSection").scrollIntoView()}>SAPPLINGS</div>
 						</div>
 						<div>
 							<Link href={"/gallery"} passHref><div>GALLERY</div></Link>

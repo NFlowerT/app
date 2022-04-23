@@ -2,9 +2,10 @@
 
 .main{
   width: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
 }
 
 .sectionName{
@@ -25,7 +26,6 @@
 
 .container {
   width: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
