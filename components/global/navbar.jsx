@@ -2,14 +2,12 @@ import React, {useContext, useEffect, useState} from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { BiUserCircle } from "react-icons/bi"
-import Image from "next/image"
 import style from "../../styles/global/nav.module.scss"
-import Wallet from "../wallet/wallet"
 import {TreesContext} from "../../pages/_app"
 import {FiMenu} from "react-icons/fi"
 
 
-const Navbar = ({setAccount, loadBlockChainData}) => {
+const Navbar = () => {
 	const [navState, setNavState] = useState(false)
 	const router = useRouter()
 	const location = router.pathname
