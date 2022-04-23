@@ -41,7 +41,7 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount}) => {
 
 	return (
 		<>
-			<Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>
+			{/*<Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>*/}
 
 			{(account && account!== "0x0") &&
 				<div>
