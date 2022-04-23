@@ -10,7 +10,7 @@ const Home = () => {
 		<>
 			<Hero title={"FORESTA"} subtitle={"MAKE YOUR FOREST FLY"} trees={trees}/>
 			<TreeSection/>
-			{/*<IslandSection/>*/}
+			<IslandSection/>
 		</>
 	)
 }
