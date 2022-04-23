@@ -6,7 +6,7 @@ import {TreesContext} from "../../pages/_app"
 
 
 const TreeSection = () => {
-	const { trees} = useContext(TreesContext)
+	const {trees} = useContext(TreesContext)
 	const rem = typeof document !== "undefined" ? parseFloat(getComputedStyle(document.documentElement).fontSize) : 20
 	return (
 		<section className={style.main}>
@@ -29,15 +29,14 @@ const TreeSection = () => {
 					</div>
 				</div>
 				<NTree
-					dataArray={trees}
-					islandSize={10}
+					islandSize={5}
 					rockAmount={2}
 					width={40 * rem}
 					height={30 * rem}
 					className={style.tree}
-					cameraPosition={{x: 15, y: 1, z: 15}}
+					cameraPosition={{x: 10, y: 0, z: 10}}
 					y={-3}
-					innerRadius={8}
+					innerRadius={2}
 					disabled={true}
 				/>
 			</div>

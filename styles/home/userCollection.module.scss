@@ -5,6 +5,7 @@
   width: 100%;
   height: 100vh;
 }
+
 .tabContainer{
   display: flex;
   justify-content: space-between;
@@ -15,9 +16,11 @@
   position: relative;
   width: 8rem;
 }
+
 .tabImage{
   position: absolute;
 }
+
 .tabIconContainer{
   position: absolute;
   display: flex;
@@ -26,9 +29,11 @@
   width: 100%;
   height: 5rem;
 }
+
 .tabIcon{
   width: 3.4rem;
 }
+
 .container{
   width: 100%;
   height: 100%;
@@ -38,15 +43,18 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .collectionContainer{
   height: 40rem;
   width: 29.5rem;
   position: relative;
 }
+
 .collectionImage{
   position: absolute;
   z-index: 0;
 }
+
 .collectionContainerTitle{
   display: flex;
   justify-content: center;
@@ -57,6 +65,7 @@
   z-index: 5;
   position: absolute;
 }
+
 .namesContainer{
   margin-top: 3rem;
   height: 27rem;
@@ -68,18 +77,22 @@
   justify-content: space-around;
   padding-left: 2rem;
 }
+
 .treeName:hover{
   border-left: $buttonGray 2px solid;
   z-index: 6;
 }
+
 .treeName{
   padding-left: 0.3rem;
 }
+
 .treeNameActive{
   border-left: $buttonGray 2px solid;
   padding-left: 0.3rem;
   z-index: 6;
 }
+
 .foundsContainer{
   display: flex;
   justify-content: start;
@@ -89,13 +102,13 @@
   width: 525px;
   margin-left: -0.3rem;
   background-repeat: no-repeat;
-  h2{
+  h3{
     color: white;
     font-weight: bold;
     margin-left: 2rem;
   }
-
 }
+
 .button{
   height: 2rem;
   background-color: $buttonGray;
@@ -104,11 +117,10 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
+
 .sellForm{
   margin-top: 31rem;
 }
-
-
 
 .sectionName{
   width: 100%;
@@ -117,9 +129,8 @@
   display: flex;
   justify-content: space-between;
   align-items: start;
-
-
 }
+
 .image{
   height: 79px;
 }

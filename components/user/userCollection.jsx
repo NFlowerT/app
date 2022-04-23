@@ -30,20 +30,18 @@ const UserCollection = ({accountTrees, accountsFounds, receiveFunds, treesOnSale
 				</div>
 			)
 		const treesNames = []
-		for (let i = 0; i<accountTrees.length; i++) {
-			//console.log(trees[i].tree.genes, "tilee", trees)
+		for (let i = 0; i < accountTrees.length; i++) {
 			treesNames.push(
-				<div className={(activeTreeId==accountTrees[i].id)? style.treeNameActive : style.treeName}
+				<div className={(activeTreeId === accountTrees[i].id)? style.treeNameActive : style.treeName}
 					onClick={()=>{setActiveTreeId(accountTrees[i].id)
 						setActiveTreeGenes(accountTrees[i].tree.genes)
 						setActiveTree(accountTrees[i])
 						setActiveTreeBirthdate(accountTrees[i].tree.birthdate)}}>
-					<p >name: {accountTrees[i].id}</p>
-					{
-						(accountTrees[i].saleId!==undefined)? <button className={style.button} onClick={async() => await endSale(accountTrees[i].saleId)}>END SALE</button> :null
-					}
-					{
-						(accountTrees[i].saleId==undefined)? <button className={style.button} onClick={() => setShowForm(!showForm)}>SALE</button> :null
+					<p>name: {accountTrees[i].id}</p>
+
+					{accountTrees[i].saleId &&
+						<button className={style.button} onClick={async() => await endSale(accountTrees[i].saleId)}>END SALE</button> &&
+						<button className={style.button} onClick={() => setShowForm(!showForm)}>SALE</button>
 					}
 				</div>)
 		}

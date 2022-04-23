@@ -3,10 +3,8 @@ import style from "../../styles/home/hero.module.scss"
 import NTree from "../../nTree/NTree"
 import {TreesContext} from "../../pages/_app"
 
-const Hero = ({title, subtitle, trees}) => {
-	// const {rem} = useContext(TreesContext)
-	const rem = typeof document !== "undefined" ? parseFloat(getComputedStyle(document.documentElement).fontSize) : 20
-	console.log("render", trees)
+const Hero = ({title, subtitle}) => {
+	const {rem, trees} = useContext(TreesContext)
 	return (
 		<div className={style.heroMain}>
 

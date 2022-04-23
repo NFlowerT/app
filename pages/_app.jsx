@@ -20,24 +20,26 @@ function MyApp({ Component, pageProps }) {
 	const [accountsTrees, setAccountsTrees] = useState([])
 	const [totalSupply, setTotalSupply] = useState(0)
 	const [accountBalance, setAccountBalance] = useState(0)
-	const [rem, setRem] = useState(0)
-	const [vw, setVw] = useState(0)
+	const [rem, setRem] = useState(16)
+	const [vw, setVw] = useState(1920)
 
 
 	useEffect( () =>{
 		(async () =>{await loadWeb3()})()
 
 	}, [])
-	// useEffect(()=>{
-	// 	// if (typeof window !== "undefined"){
-	// 	// 	setVw(window.innerWidth)
-	// 	// 	setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
-	// 	// 	window.addEventListener("resize", () => {
-	// 	// 		setVw(window.innerWidth)
-	// 	// 		setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
-	// 	// 	})
-	// 	// }
-	// })
+
+	useEffect(()=>{
+		if (typeof window !== "undefined"){
+			setVw(window.innerWidth)
+			setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
+			window.addEventListener("resize", () => {
+				setVw(window.innerWidth)
+				setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
+			})
+		}
+	}, [])
+
 	useEffect( () =>{
 		(async () =>{await loadActiveAccountTrees()})()
 
