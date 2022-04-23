@@ -1,0 +1,76 @@
+@import "../global/utilities.scss";
+
+.main{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionName{
+  background-color: $greenTitle;
+  width: 100%;
+  height:4.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  h2{
+    color: white;
+    font-size: 3.8rem;
+    letter-spacing: 2px;
+    text-shadow: 0px 13.2884px 13.2884px rgba(0, 0, 0, 0.25);
+
+  }
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.title{
+  margin-top: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1{
+    font-weight: 600;
+  }
+}
+.saplingContainer{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: start;
+  margin-top: 6rem;
+}
+.saplingTile{
+  width: 20rem;
+  height: 30rem;
+  background: linear-gradient(0deg, #CDF2AF -70.57%, rgba(199, 231, 158, 0.3) 18.59%, rgba(229, 235, 224, 0) 219.57%);
+  box-shadow: 0px 8px 20px 5px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease 0s;
+}
+.saplingTile:hover{
+  width: 21rem;
+  height: 31rem;
+}
+.saplingImg{
+  width: 100%;
+  height: 80%;
+}
+.saplingName{
+  height: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  h4{
+    font-weight: bold;
+  }
+}
+

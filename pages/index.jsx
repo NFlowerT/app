@@ -3,6 +3,7 @@ import TreeSection from "../components/home/treeSection"
 import IslandSection from "../components/home/islandSection"
 import React, {useContext} from "react"
 import {TreesContext} from "./_app"
+import SaplingSection from "../components/home/sapplingSection"
 
 const Home = () => {
 	const {trees} = useContext(TreesContext)
@@ -11,6 +12,7 @@ const Home = () => {
 			<Hero title={"FORESTA"} subtitle={"MAKE YOUR FOREST FLY"} trees={trees}/>
 			<TreeSection/>
 			<IslandSection/>
+			<SaplingSection/>
 		</>
 	)
 }
