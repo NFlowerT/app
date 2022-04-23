@@ -10,7 +10,13 @@ const TreeSection = () => {
 	return (
 		<section className={style.main}>
 			<div className={style.sectionName}>
-				{/*<img src="/TSName.svg" className={style.image}/>*/}
+				<div className={style.tabContainer}>
+					<div className={style.tab}>
+						<h2>TREES</h2>
+						<img className={style.icon} src="/treeIcon.svg"/>
+					</div>
+					<div className={style.dop}></div>
+				</div>
 			</div>
 			<div className={style.container}>
 				<div className={style.textContainer}>
