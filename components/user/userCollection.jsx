@@ -89,16 +89,48 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 			</div>
 
 			<div className={style.container} >
+
 				<div className={style.collectionContainer}>
-					<div className={style.collectionContainerTitle}>
-						<h3>YOUR COLLECTION</h3>
+					<div className={style.collectionList}>
+						<div className={style.collectionTitle}>
+							<h3>Your Collection</h3>
+						</div>
+						<div className={style.list}>
+							<div className={style.collectionTree}>
+								<p>TREE NAMEEE</p>
+							</div>
+							<div className={style.collectionTree}>
+								<p>TREE NAMEEE</p>
+							</div>
+							<div className={style.collectionTree}>
+								<p>TREE NAMEEE</p>
+							</div><div className={style.collectionTree}>
+							<p>TREE NAMEEE</p>
+						</div><div className={style.collectionTree}>
+							<p>TREE NAMEEE</p>
+						</div><div className={style.collectionTree}>
+							<p>TREE NAMEEE</p>
+						</div><div className={style.collectionTree}>
+							<p>TREE NAMEEE</p>
+						</div><div className={style.collectionTree}>
+							<p>TREE NAMEEE</p>
+						</div><div className={style.collectionTree}>
+							<p>TREE NAMEEE</p>
+						</div><div className={style.collectionTree}>
+							<p>TREE NAMEEE</p>
+						</div><div className={style.collectionTree}>
+							<p>TREE NAMEEE</p>
+						</div>
+						</div>
+						{/*{renderTrees()}*/}
+
+						{/*<div className={style.sellForm}>*/}
+						{/*	<SellForm putOnSale={putOnSale} treeId={activeTreeId} show={showForm} setShowForm={setShowForm}></SellForm>*/}
+						{/*</div>*/}
 					</div>
-					{renderTrees()}
-					<div className={style.collectionImage}><Image src="/Rectangle43.svg" height={842} width={838}></Image></div>
-					<div className={style.sellForm}>
-						<SellForm putOnSale={putOnSale} treeId={activeTreeId} show={showForm} setShowForm={setShowForm}></SellForm>
-					</div>
+					<div className={style.dopu}></div>
 				</div>
+				<div className={style.treeContainer}></div>
 				{
 					(accountTrees) &&
 						((activeTree!==undefined) && <NTree dataArray={[activeTree]}/>)
