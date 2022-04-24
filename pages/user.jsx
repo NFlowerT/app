@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from "react"
 import ProductTile from "../components/global/productTile"
 import Hero from "../components/home/hero"
 import UserCollection from "../components/user/userCollection"
+import SellTree from "../components/user/sellTree"
 import style from "../styles/market/market.module.scss"
 import userStyle from "../styles/user/userCollection.module.scss"
 import Image from "next/image"
@@ -14,6 +15,8 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChain
 	const {treesOnSale, contract} = useContext(TreesContext)
 	const {accountsTrees, account, accountsFounds} = useContext(AccountContext)
 	const [saleTrees, setSaleTrees] = useState([])
+	const [activeTreeId, setActiveTreeId] = useState()
+	const [show, setShow] = useState(false)
 
 	useEffect(()=>{
 		renderProductsOnSale()
@@ -50,6 +53,10 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChain
 							endSale={endSale}
 							putOnSale={putOnSale}
 							accountsFounds={accountsFounds}
+							activeTreeId={activeTreeId}
+							setActiveTreeId={setActiveTreeId}
+							setShow={setShow}
+							show={show}
 						/>
 						{(saleTrees.length !== 0) &&
 							<div className={style.container}>
@@ -69,7 +76,9 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChain
 
 					</>
 			}
+			{(show)&&<SellTree putOnSale={putOnSale} treeId={activeTreeId} show={show} setShow={setShow} putOnSale={putOnSale}></SellTree>}
 		</div>
+
 	)
 }
 
