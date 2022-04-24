@@ -12,7 +12,7 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
 			(async () => await connectWalletHandler(accounts[0]))()
 			window.ethereum.on("accountsChanged",  async(account) => await connectAutoWalletHandler(account))
 			window.ethereum.on("chainChanged", async()=>await loadBlockChainData())
-			console.log("wallet")
+			console.log("wallertghbt")
 		}
 	}, [])
 	useEffect( () => {
@@ -34,14 +34,14 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
 		if (window.ethereum && window.ethereum.isMetaMask) {
 			await window.ethereum.request({ method: "eth_requestAccounts"})
 				.then(async result => {
-					console.log(result[0])
+					console.log(result[0], "lol")
 					setAccount(result[0])
 					// setConnButtonText('Connected!');
 					// await loadWeb3()
 					sliceAccount(result[0])
 				})
 				.catch(error => {
-					alert(error.message+"lol")
+					// alert(error.message+"lol")
 				})
 		} else {
 			alert("Please install MetaMask browser extension to interact")
