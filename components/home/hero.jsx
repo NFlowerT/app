@@ -5,7 +5,7 @@ import {TreesContext} from "../../pages/_app"
 import {BrowserContext} from "../../pages/_app"
 import {BsCaretDownFill} from "react-icons/bs"
 
-const Hero = ({title, subtitle, trees, scrollToId}) => {
+const Hero = React.memo(({title, subtitle, trees, scrollToId}) => {
 	const {vw, vh, width} = useContext(BrowserContext)
 	console.log("hhh")
 
@@ -38,6 +38,9 @@ const Hero = ({title, subtitle, trees, scrollToId}) => {
 			}
 		</div>
 	)
-}
+},(p, n) =>{
+	return Object.keys(p.trees).length === Object.keys(n.trees).length
+
+})
 
 export default Hero
