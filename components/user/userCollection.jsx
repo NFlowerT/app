@@ -4,11 +4,13 @@ import Image from "next/image"
 import ProductTile from "../global/productTile"
 import SellForm from "../global/sellForm"
 import NTree from "../../nTree/NTree"
-import {TreesContext} from "../../pages/_app"
+import {AccountContext} from "../../pages/_app"
+import {BrowserContext} from "../../pages/_app"
 
 
 const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOnSale}) => {
-	const {accountsFounds, vw, vh, width} = useContext(TreesContext)
+	const {accountsFounds} = useContext(AccountContext)
+	const {vw, vh, width} = useContext(BrowserContext)
 	const [activeTreeId, setActiveTreeId] = useState()
 	const [activeTree, setActiveTree] = useState((accountTrees)? accountTrees[0] : undefined)
 
@@ -46,14 +48,15 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 
 		const treesNames = []
 		for (let i = 0; i<accountTrees.length; i++) {
-			//console.log(trees[i].tree.genes, "tilee", trees)
+			console.log(accountTrees[i].tree.genes, "tilee")
 			treesNames.push(
-				<div className={(activeTreeId==accountTrees[i].id)? style.treeNameActive : style.treeName}
+				<div key={i.toString()}
+					className={(activeTreeId==accountTrees[i].id)? style.collectionTreeActive : style.collectionTree}
 					 onClick={()=>{setActiveTreeId(accountTrees[i].id)
 						 setActiveTreeGenes(accountTrees[i].tree.genes)
 						 setActiveTree(accountTrees[i])
 						 setActiveTreeBirthdate(accountTrees[i].tree.birthdate)}}>
-					<p >name: {accountTrees[i].id}</p>
+					<p >{accountTrees[i].id}</p>
 					{
 						(accountTrees[i].saleId!==undefined) && <button className={style.button} onClick={async() => await endSale(accountTrees[i].saleId)}>END SALE</button>
 					}
@@ -63,7 +66,7 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 				</div>)
 		}
 		return (
-			<div className={style.namesContainer}>
+			<div className={style.list}>
 				{treesNames}
 			</div>
 		)
@@ -94,13 +97,15 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 						<div className={style.collectionTitle}>
 							<h3>Your Collection</h3>
 						</div>
-						<div className={style.list}>
-							{[214421,241412421421,21452,51521512,521251215,215521251,1152521521,52152121512,215512215,125512251,5215126,6436,643644643].map((num, i) =>
-								<div className={style.collectionTree} key={num.toString()+i.toString()}>
-									<p>{num}</p>
-								</div>
-							)}
-						</div>
+						{renderTrees()}
+						{/*<div className={style.list}>*/}
+						{/*	/!*{[214421,2251,5215126,6436,643644643].map((num, i) =>*!/*/}
+						{/*	/!*	<div className={style.collectionTree} key={num.toString()+i.toString()}>*!/*/}
+						{/*	/!*		<p>{num}</p>*!/*/}
+						{/*	/!*	</div>*!/*/}
+						{/*	/!*)}*!/*/}
+						{/*	{renderTrees()}*/}
+						{/*</div>*/}
 						{/*{renderTrees()}*/}
 
 						{/*<div className={style.sellForm}>*/}
