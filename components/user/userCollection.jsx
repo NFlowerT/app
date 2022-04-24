@@ -58,10 +58,10 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 						 setActiveTreeBirthdate(accountTrees[i].tree.birthdate)}}>
 					<p >{accountTrees[i].id}</p>
 					{
-						(accountTrees[i].saleId!==undefined) && <button className={style.button} onClick={async() => await endSale(accountTrees[i].saleId)}>END SALE</button>
+						(accountTrees[i].saleId!==undefined) && <button className={style.button} onClick={async() => await endSale(accountTrees[i].saleId)}><p>END SALE</p></button>
 					}
 					{
-						(accountTrees[i].saleId==undefined) && <button className={style.button} onClick={() => setShowForm(!showForm)}>SALE</button>
+						(accountTrees[i].saleId==undefined) && <button className={style.button} onClick={() => setShowForm(!showForm)}><p>SALE</p></button>
 					}
 				</div>)
 		}
@@ -93,6 +93,7 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 			<div className={style.container} >
 
 				<div className={style.collectionContainer}>
+
 					<div className={style.collectionList}>
 						<div className={style.collectionTitle}>
 							<h3>Your Collection</h3>
@@ -112,7 +113,11 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 						{/*	<SellForm putOnSale={putOnSale} treeId={activeTreeId} show={showForm} setShowForm={setShowForm}></SellForm>*/}
 						{/*</div>*/}
 					</div>
+
 					{width > 900 && <div className={style.dopu}/>}
+					{/*<div className={style.sellForm}>*/}
+					{/*	<SellForm putOnSale={putOnSale} treeId={activeTreeId} show={showForm} setShowForm={setShowForm}></SellForm>*/}
+					{/*</div>*/}
 				</div>
 				{accountTrees && activeTree &&
 					<NTree
