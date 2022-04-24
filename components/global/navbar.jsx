@@ -12,8 +12,8 @@ const Navbar = () => {
 	const location = router.pathname
 	const [scroll, setScroll] = useState(false)
 	useEffect(() => {
-		document.body.addEventListener("scroll", () => {
-			setScroll(document.body.scrollTop > 0)
+		document.addEventListener("scroll", () => {
+			setScroll(document.body.scrollTop > 0 || document.documentElement.scrollTop > 0)
 		})
 		router.events.on("routeChangeStart", () => {
 			setNavState(false)
