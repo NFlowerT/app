@@ -4,10 +4,14 @@ import {memo} from "react"
 import style from "../../styles/global/baseLayout.module.scss"
 import Footer from "./footer"
 import Head from "next/head"
+import {useRouter} from "next/router";
 
 // eslint-disable-next-line react/display-name
 const BaseLayout = ({ children, setAccount, loadBlockChainData, mint }) => {
-
+	const router = useRouter()
+	if(router.pathname === "/tree"){
+		return <>{children}</>
+	}
 	return (
 		<>
 			<Head>
