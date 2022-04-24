@@ -76,7 +76,7 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChain
 
 					</>
 			}
-			{(show)&&<SellTree putOnSale={putOnSale} treeId={activeTreeId} show={show} setShow={setShow} putOnSale={putOnSale}></SellTree>}
+			{(show)&&<SellTree treeId={activeTreeId} show={show} setShow={setShow} putOnSale={putOnSale}></SellTree>}
 		</div>
 
 	)

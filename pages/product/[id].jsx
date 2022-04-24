@@ -147,7 +147,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 						</div>
 
 					</div> : <div className={style.error}><h2>Loading...</h2></div>}
-			{(show)&&<SellTree putOnSale={putOnSale} treeId={treeId} show={show} setShow={setShow} putOnSale={putOnSale}></SellTree>}
+			{(show)&&<SellTree putOnSale={putOnSale} treeId={treeId} show={show} setShow={setShow} ></SellTree>}
 
 		</div>
 
