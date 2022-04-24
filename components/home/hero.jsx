@@ -7,7 +7,6 @@ import {BsCaretDownFill} from "react-icons/bs"
 
 const Hero =({title, subtitle, trees, scrollToId}) => {
 	const {vw, vh, width} = useContext(BrowserContext)
-	const trees6 = trees.splice(0,6)
 	return (
 		<div className={style.heroMain}>
 			<div className={style.innerContainer}>
@@ -18,7 +17,7 @@ const Hero =({title, subtitle, trees, scrollToId}) => {
 					</div>
 				</div>
 				{(trees.length>=0) && <NTree
-					dataArray={trees6}
+					dataArray={trees.slice(0, 4)}
 					islandSize={10}
 					rockAmount={2}
 					width={width > 900 ? 39 * vw : 80 * vw}
