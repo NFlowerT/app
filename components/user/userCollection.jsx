@@ -39,7 +39,7 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 	const renderTrees = () => {
 		if(accountTrees.length===0)
 			return (
-				<div className={style.namesContainer}>
+				<div className={style.list}>
 					You do not own any tree
 				</div>
 			)
