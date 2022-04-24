@@ -5,7 +5,7 @@ import "../styles/globals.scss"
 
 import Web3 from "web3"
 import HelloWorld from "../src/abis/HelloWorld.json"
-import detectEthereumProvider from "@metamask/detect-provider"
+import WalletConnectProvider  from "@metamask/detect-provider"
 import {sliceAccount} from "../functions/sliceAccount"
 
 export const TreesContext = createContext()
@@ -189,7 +189,11 @@ function MyApp({ Component, pageProps }) {
 	}
 
 	const loadWeb3 = async () => {
-		setWeb3(new Web3(Web3.givenProvider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
+		const provider = new WalletConnectProvider({
+			infuraId: "3b919ac686e84d1e80148ea9dddfb52a",
+		});
+		setWeb3(new Web3(provider))
+		await provider.enable();
 		if (typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask) {
 			// await window.ethereum.enable()
 			// const accounts = await window.ethereum.request({ method: "eth_requestAccounts" })
