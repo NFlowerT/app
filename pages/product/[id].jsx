@@ -106,7 +106,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 									<img src="/Rectangle14.svg"/>
 								</div>
 								<div className={style.tileTextContainer}>
-									<h1 className={style.titleText}> {birthdate} </h1>
+									<h1 className={style.titleText}> {treeId} </h1>
 								</div>
 							</div>
 							{

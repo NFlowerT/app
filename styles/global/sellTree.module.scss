@@ -1,0 +1,79 @@
+@import "utilities";
+
+.background{
+	position: fixed;
+	background: rgba(211, 211, 211, 0.37);
+	width: 100vw;
+	height: 100vh;
+	z-index: 100;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.container{
+	width: 50vw;
+	height: 50vh;
+	background: white;
+	position: relative;
+
+}
+
+.close{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 2rem;
+	color: #d01e1e;
+}
+//@import "utilities";
+.containerActive{
+	height: auto;
+	width: 30rem;
+	display: flex;
+	margin-top: 10rem;
+}
+//.image{
+//	width: 29.4rem;
+//}
+//.container{
+//	display: none;
+//}
+.info{
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	height: 100%;
+	width: 100%;
+	flex-direction: column;
+	align-content: center;
+	padding-left: 3rem;
+	padding-right: 3rem;
+
+}
+.buttons{
+	margin-top: 1rem;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.button{
+	height: 2.5rem;
+	background-color: $buttonGray;
+	color: white;
+	border: none;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	margin: 1rem;
+}
+.inputPrice{
+	outline: none;
+	border: none;
+	border-bottom: $buttonGray 1px solid;
+}

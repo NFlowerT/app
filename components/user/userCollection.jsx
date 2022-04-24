@@ -8,10 +8,10 @@ import {AccountContext} from "../../pages/_app"
 import {BrowserContext} from "../../pages/_app"
 
 
-const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOnSale}) => {
+const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOnSale, activeTreeId, setActiveTreeId, setShow, show}) => {
 	const {accountFounds} = useContext(AccountContext)
 	const {vw, vh, width} = useContext(BrowserContext)
-	const [activeTreeId, setActiveTreeId] = useState()
+
 	const [activeTree, setActiveTree] = useState((accountTrees)? accountTrees[0] : undefined)
 
 	const [activeTreeGenes, setActiveTreeGenes] = useState()
@@ -59,7 +59,7 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 						(accountTrees[i].saleId!==undefined) && <button className={style.button} onClick={async() => await endSale(accountTrees[i].saleId)}><p>END SALE</p></button>
 					}
 					{
-						(accountTrees[i].saleId==undefined) && <button className={style.button} onClick={() => setShowForm(!showForm)}><p>SALE</p></button>
+						(accountTrees[i].saleId==undefined) && <button className={style.button} onClick={() => setShow(!show)}><p>SALE</p></button>
 					}
 				</div>)
 		}
