@@ -66,6 +66,7 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChain
 								</div>
 							</div>
 						}
+
 					</>
 			}
 		</div>
