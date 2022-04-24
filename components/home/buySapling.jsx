@@ -7,7 +7,17 @@ const BuySapling = ({setSapling, mint}) => {
 		<div className={style.background}>
 			<div className={style.container}>
 				<RiCloseFill className={style.close} onClick={() => setSapling(false)}/>
-				<button onClick={async () => await mint()}>buy</button>
+
+				<div className={style.treeContainer}></div>
+				<div className={style.textContainer}>
+					<h1>
+						BUY YOUR
+					</h1>
+					<h2>
+						Pine sapling
+					</h2>
+					<button onClick={async () => await mint()}>BUY</button>
+				</div>
 			</div>
 		</div>
 	)

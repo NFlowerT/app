@@ -32,7 +32,7 @@
   justify-content: start;
   align-items: center;
   z-index: 1;
-  h2{
+  h3{
     color: white;
     font-weight: bold;
     margin-left: 2rem;
@@ -98,6 +98,7 @@
   justify-content: center;
   flex-wrap: wrap;
   overflow: auto;
+  align-items: center;
 }
 
 .collectionTree{

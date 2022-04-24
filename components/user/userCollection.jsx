@@ -96,6 +96,7 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 						<div className={style.collectionTitle}>
 							<h3>Your Collection</h3>
 						</div>
+
 						{renderTrees()}
 						{/*<div className={style.list}>*/}
 						{/*	/!*{[214421,2251,5215126,6436,643644643].map((num, i) =>*!/*/}
