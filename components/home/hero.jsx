@@ -17,7 +17,7 @@ const Hero =({title, subtitle, trees, scrollToId}) => {
 					</div>
 				</div>
 				{(trees) && <NTree
-					dataArray={trees}
+					dataArray={trees.splice(0, 6)}
 					islandSize={10}
 					rockAmount={2}
 					width={width > 900 ? 39 * vw : 80 * vw}
