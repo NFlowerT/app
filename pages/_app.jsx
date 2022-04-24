@@ -63,16 +63,19 @@ function MyApp({ Component, pageProps }) {
 
 	useEffect(()=>{
 		if (typeof window !== "undefined"){
-			console.log("effect")
 			setVw(window.innerWidth / 100)
 			setVh(window.innerHeight / 100)
 			setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
 			setWidth(window.innerWidth)
+			let doit
 			window.addEventListener("resize", () => {
-				setVw(window.innerWidth / 100)
-				setVh(window.innerHeight / 100)
-				setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
-				setWidth(window.innerWidth)
+				clearTimeout(doit)
+				doit = setTimeout(() => {
+					setVw(window.innerWidth / 100)
+					setVh(window.innerHeight / 100)
+					setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
+					setWidth(window.innerWidth)
+				}, 200)
 			})
 		}
 		// (async () =>{await loadWeb3(); console.log("load web 3333")})()

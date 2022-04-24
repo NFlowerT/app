@@ -35,7 +35,7 @@ const Navbar = () => {
 
 					<div className={style.categoryContainer}>
 						<div>
-							<div onClick={() => document.getElementById("saplingSection").scrollIntoView()}>SAPPLINGS</div>
+							<div onClick={() => {router.push("/").then(() => {document.getElementById("saplingSection").scrollIntoView()})}}>SAPPLINGS</div>
 						</div>
 						<div>
 							<Link href={"/gallery"} passHref><div>GALLERY</div></Link>
@@ -50,7 +50,6 @@ const Navbar = () => {
 						</div>
 					</div>
 				</nav>
-
 				:
 				<>
 					<nav className={style.mobileNav + " " + ((scroll || navState) ? style.navScrolled : "")}>
@@ -65,7 +64,7 @@ const Navbar = () => {
 					</nav>
 					{navState &&
 						<div className={style.navBody}>
-							<div onClick={() => {document.getElementById("saplingSection").scrollIntoView(); setNavState(false)}}>
+							<div onClick={() => {router.push("/").then(() => {document.getElementById("saplingSection").scrollIntoView()});setNavState(false)}}>
 								<h3>SAPPLINGS</h3>
 							</div>
 							<div>
