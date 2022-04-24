@@ -3,6 +3,7 @@ import ProductTile from "../components/global/productTile"
 import Hero from "../components/home/hero"
 import UserCollection from "../components/user/userCollection"
 import style from "../styles/market/market.module.scss"
+import userStyle from "../styles/user/userCollection.module.scss"
 import Image from "next/image"
 import {TreesContext} from "./_app"
 import {AccountContext} from "./_app"
@@ -39,7 +40,8 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChain
 			<Hero title={"WELCOME"}
 				  scrollToId={"myTrees"}
 				  subtitle={sliceAccount(account) ? sliceAccount(account) : <Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>}
-				  trees={accountsTrees}></Hero>
+				  trees={accountsTrees}>
+			</Hero>
 			{(account && account!== "0x0") &&
 					<>
 						<UserCollection

@@ -7,8 +7,6 @@ import {BsCaretDownFill} from "react-icons/bs"
 
 const Hero =({title, subtitle, trees, scrollToId}) => {
 	const {vw, vh, width} = useContext(BrowserContext)
-	console.log("hhh")
-
 	return (
 		<div className={style.heroMain}>
 			<div className={style.innerContainer}>

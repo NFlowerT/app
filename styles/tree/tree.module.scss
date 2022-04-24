@@ -1,0 +1,21 @@
+.moveButton{
+	-webkit-user-select: none;
+	user-select: none;
+	-webkit-app-region: drag;
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	font-size: 3rem;
+	color: #ffffff;
+	top: 230px;
+	background: transparent;
+	border: none;
+	width: fit-content;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
