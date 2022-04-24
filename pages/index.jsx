@@ -6,7 +6,7 @@ import {TreesContext} from "./_app"
 import SaplingSection from "../components/home/saplingSection"
 import BuySapling from "../components/home/buySapling"
 
-const Home = () => {
+const Home = ({mint}) => {
 	const {trees} = useContext(TreesContext)
 	const [sapling, setSapling] = useState("")
 	return (
@@ -15,7 +15,7 @@ const Home = () => {
 			<TreeSection/>
 			<IslandSection/>
 			<SaplingSection setSapling={setSapling}/>
-			{sapling && <BuySapling setSapling={setSapling}/>}
+			{sapling && <BuySapling setSapling={setSapling} mint={mint}/>}
 		</>
 	)
 }
