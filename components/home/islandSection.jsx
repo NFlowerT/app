@@ -1,11 +1,11 @@
 import React, {useContext} from "react"
 import style from "../../styles/home/islandSection.module.scss"
 import NTree from "../../nTree/NTree"
-import {TreesContext} from "../../pages/_app"
+import {BrowserContext} from "../../pages/_app"
 
 
 const IslandSection = () => {
-	const {vw, vh, width} = useContext(TreesContext)
+	const {vw, vh, width} = useContext(BrowserContext)
 	return (
 		<section className={style.main} id={"islandSection"}>
 			<div className={style.sectionName}>

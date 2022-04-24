@@ -1,11 +1,11 @@
 import React, {useContext} from "react"
 import style from "../../styles/home/treeSection.module.scss"
 import NTree from "../../nTree/NTree"
-import {TreesContext} from "../../pages/_app"
+import {BrowserContext} from "../../pages/_app"
 
 
 const TreeSection = () => {
-	const {vw, vh, width} = useContext(TreesContext)
+	const {vw, vh, width} = useContext(BrowserContext)
 	return (
 		<section className={style.main} id={"treeSection"}>
 			<div className={style.sectionName}>

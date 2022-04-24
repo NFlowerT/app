@@ -4,6 +4,8 @@ import Image from "next/image"
 import style from "../../styles/product/product.module.scss"
 import SellForm from "../../components/global/sellForm"
 import {TreesContext} from "../_app"
+import {BrowserContext} from "../_app"
+import {AccountContext} from "../_app"
 import NTree from "../../nTree/NTree";
 import {sliceAccount} from "../../functions/sliceAccount";
 
@@ -18,7 +20,10 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	const [saleId, setSaleId] = useState(undefined)
 	const [showForm, setShowForm] = useState(false)
 
-	const { treesOnSale, account, contract, rem, vw, vh, width } = useContext(TreesContext)
+	const { treesOnSale, contract} = useContext(TreesContext)
+	const {  rem, vw, vh, width } = useContext(BrowserContext)
+	const { account } = useContext(AccountContext)
+
 
 	const router = useRouter()
 	const { id } = router.query

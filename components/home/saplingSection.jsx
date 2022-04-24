@@ -2,10 +2,10 @@ import React, {useContext} from "react"
 import style from "../../styles/home/saplingSection.module.scss"
 import {BsQuestion} from "react-icons/bs"
 import NTree from "../../nTree/NTree"
-import {TreesContext} from "../../pages/_app"
+import {BrowserContext} from "../../pages/_app"
 
 const SaplingSection = ({setSapling}) => {
-	const {rem} = useContext(TreesContext)
+	const {rem} = useContext(BrowserContext)
 	return (
 		<>
 			<section className={style.main} id={"saplingSection"}>

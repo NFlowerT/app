@@ -2,10 +2,12 @@ import React, {useContext} from "react"
 import style from "../../styles/home/hero.module.scss"
 import NTree from "../../nTree/NTree"
 import {TreesContext} from "../../pages/_app"
+import {BrowserContext} from "../../pages/_app"
 import {BsCaretDownFill} from "react-icons/bs"
 
 const Hero = ({title, subtitle, trees, scrollToId}) => {
-	const {vw, vh, width} = useContext(TreesContext)
+	const {vw, vh, width} = useContext(BrowserContext)
+	console.log("hhh")
 
 	return (
 		<div className={style.heroMain}>
@@ -13,7 +15,7 @@ const Hero = ({title, subtitle, trees, scrollToId}) => {
 				<div className={style.heroLogoContainer}>
 					<div className={style.heroLogo}>
 						<h1>{title}</h1>
-						<p>{subtitle}</p>
+						<div>{subtitle}</div>
 					</div>
 				</div>
 				{(trees) && <NTree

@@ -6,8 +6,11 @@ import "../styles/globals.scss"
 import Web3 from "web3"
 import HelloWorld from "../src/abis/HelloWorld.json"
 import detectEthereumProvider from "@metamask/detect-provider"
+import {sliceAccount} from "../functions/sliceAccount"
 
 export const TreesContext = createContext()
+export const AccountContext = createContext()
+export const BrowserContext = createContext()
 
 function MyApp({ Component, pageProps }) {
 	const [web3, setWeb3] = useState()
@@ -24,15 +27,43 @@ function MyApp({ Component, pageProps }) {
 	const [vw, setVw] = useState(0)
 	const [vh, setVh] = useState(0)
 	const [width, setWidth] = useState(0)
-
+	console.log("--------------------render")
 
 	useEffect( () =>{
-		(async () =>{await loadWeb3()})()
+		(async () =>{
+			setWeb3(new Web3( Web3.givenProvider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
+			// if (typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask) {
+			// 	// await window.ethereum.enable()
+			// 	// const accounts = await window.ethereum.request({ method: "eth_requestAccounts" })
+			// 	await connectWalletHandler()
+			// 	window.ethereum.on("accountsChanged",  async(account) => await connectAutoWalletHandler(account))		}
+			// else{
+			// 	//console.log("install Metamask")
+			// }
+			// console.log("load web 3333")
+			})()
 
 	}, [])
 
+
+	// useEffect( () => {
+	// 	if(window.ethereum && window.ethereum.isMetaMask){
+	// 		const accounts = (async () => await window.ethereum.request({ method: "eth_requestAccounts" }))();
+	// 		(async () => await connectWalletHandler(accounts[0]))()
+	// 		window.ethereum.on("accountsChanged",  async(account) => await connectAutoWalletHandler(account))
+	// 		// window.ethereum.on("chainChanged", async()=>await loadBlockChainData())
+	// 		// console.log("wallet")
+	// 	}
+	// }, [])
+	// useEffect( () => {
+	// 	if(window.ethereum && window.ethereum.isMetaMask){
+	// 		window.ethereum.on("accountsChanged",  async(account) => await connectAutoWalletHandler(account))
+	// 	}
+	// }, [])
+
 	useEffect(()=>{
 		if (typeof window !== "undefined"){
+			console.log("effect")
 			setVw(window.innerWidth / 100)
 			setVh(window.innerHeight / 100)
 			setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
@@ -44,6 +75,8 @@ function MyApp({ Component, pageProps }) {
 				setWidth(window.innerWidth)
 			})
 		}
+		// (async () =>{await loadWeb3(); console.log("load web 3333")})()
+
 	}, [])
 
 	useEffect( () =>{
@@ -53,10 +86,10 @@ function MyApp({ Component, pageProps }) {
 
 	useEffect(()=>{
 		if(web3!==undefined){
-			////console.log(web3)
 			(async () =>{const networkId = await web3.eth.net.getId()
 				const network = HelloWorld.networks[networkId]
 				setNetworkData(network)
+				console.log("network")
 			})()
 
 		}
@@ -66,7 +99,10 @@ function MyApp({ Component, pageProps }) {
 	useEffect(()=>{
 		//console.log(networkData, account)
 		if(networkData!==undefined ){
-			(async () => await loadBlockChainData())()
+			(async () => {
+				await loadBlockChainData()
+				console.log("data")
+			})()
 
 		}
 
@@ -86,8 +122,41 @@ function MyApp({ Component, pageProps }) {
 		(async () => {
 			await changeAccountHandler()
 		})()
+		if(account == undefined || account == "0x0")
+			setAccountsTrees([])
 
 	}, [account])
+	//when user change account in MetaMask wallet
+	const connectAutoWalletHandler = (account) => {
+		console.log("connectAutoWalletHandler")
+		// setAccount(account[0].toLowerCase())
+		setAccount(account[0])
+		// sliceAccount(account[0])
+	}
+
+	//when user click connection button
+	const connectWalletHandler = async() => {
+		if (window.ethereum && window.ethereum.isMetaMask) {
+			try{
+				await window.ethereum.request({ method: "eth_requestAccounts"})
+					.then(async result => {
+						setAccount(result[0])
+						console.log("then ")
+						// setConnButtonText('Connected!');
+						// await loadWeb3()
+						// sliceAccount(result[0])
+					})
+					.catch(error => {
+						// alert(error.message+"lol")
+					})
+			}
+			catch{
+			}
+		} else {
+			alert("Please install MetaMask browser extension to interact")
+		}
+
+	}
 
 	const changeAccountHandler = ()=>{
 		if(account!==undefined && account!=="" && account!=="0x0"){
@@ -96,9 +165,11 @@ function MyApp({ Component, pageProps }) {
 				await loadAccountFunds()
 			})()
 		}
+		console.log("change")
 	}
 
 	const loadAccountFunds = async () =>{
+		console.log("loadAccountFunds")
 		if(account!==undefined && account!=="" && account!=="0x0" && contract){
 			let founds = await contract.methods.ownerToFunds(account).call()
 			console.log(founds, "founds")
@@ -107,6 +178,7 @@ function MyApp({ Component, pageProps }) {
 	}
 
 	const receiveFunds = async () => {
+		console.log("receiveFunds")
 		if(account!==undefined && account!=="" && account!=="0x0" && contract && accountFounds!=0) {
 			await contract.methods.withdraw().send({from: account})
 				.once("receipt", async(receipt) => {
@@ -117,21 +189,23 @@ function MyApp({ Component, pageProps }) {
 	}
 
 	const loadWeb3 = async () => {
+		setWeb3(new Web3(Web3.givenProvider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
 		if (typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask) {
-			await window.ethereum.enable()
-			await window.ethereum.send("eth_requestAccounts")
-		}
+			// await window.ethereum.enable()
+			// const accounts = await window.ethereum.request({ method: "eth_requestAccounts" })
+			await connectWalletHandler()
+			window.ethereum.on("accountsChanged",  async(account) => await connectAutoWalletHandler(account))		}
 		else{
 			//console.log("install Metamask")
 		}
 
-		setWeb3(new Web3(Web3.givenProvider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
 
 		//console.log("account =============", account)
 
 	}
 
 	const smartContractListener = async() =>{
+		// console.log("smartContractListener")
 		if(contract){
 
 			contract.events.Transfer({}, async(error, data)=>{
@@ -188,7 +262,7 @@ function MyApp({ Component, pageProps }) {
 	}
 
 	const loadActiveAccountTrees = async () => {
-		//console.log("load my trees and balance", contract, account)
+		// console.log("load my trees and balance", contract, account)
 		if(contract && account!==undefined && account!== "" && account!=="0x0"){
 			//console.log("load my trees and balance", contract, account, "jest account")
 			let balance = await contract.methods.balanceOf(account).call()
@@ -225,7 +299,7 @@ function MyApp({ Component, pageProps }) {
 	}
 
 	const loadBlockChainData = async() => {
-		//console.log("load blockchaindata", account)
+		// console.log("load blockchaindata", account)
 		if(web3===undefined || networkData===undefined) return 0
 
 		if(networkData){
@@ -236,40 +310,11 @@ function MyApp({ Component, pageProps }) {
 			const contract = new web3.eth.Contract(abi, address)
 			setContract(contract)
 
-			// const contracts = [{
-			//         name: 'HelloWorld',
-			//         address: address,
-			//         abi:abi,
-			//     }];
-			// const options = {
-			//     pollInterval: 13000, // period between polls in milliseconds (default: 13000)
-			//     confirmations: 12,   // n° of confirmation blocks (default: 12)
-			//     chunkSize: 10000,    // n° of blocks to fetch at a time (default: 10000)
-			//     concurrency: 10,     // maximum n° of concurrent web3 requests (default: 10)
-			//     backoff: 1000        // retry backoff in milliseconds (default: 1000)
-			// };
-			// const ethereumEvents = new EthereumEvents(web3, contracts, options);
-			// ethereumEvents.start();
-			// alert(ethereumEvents.isRunning())
-			// ethereumEvents.on('block.confirmed', (blockNumber, events, done) => {
-			//     alert("NOWY BLOK")
-			//
-			// });
-			// ethereumEvents.on('error', err => {
-			//
-			//     alert("error")
-			//
-			// });
-			// web3.eth.subscribe('newBlockHeaders' , ()=>{
-			//     //console.log("looolll")
-			// });
-			// await loadTrees()
-
 		}
 	}
 
 	const loadTrees = async() =>{
-		//console.log("load trees", contract, account)
+		// console.log("load trees", contract, account)
 		if(contract== undefined) return 0
 		//console.log("load trees")
 
@@ -401,17 +446,27 @@ function MyApp({ Component, pageProps }) {
 			value={
 				{
 					trees: trees,
-					accountsTrees: accountsTrees,
 					treesOnSale:treesOnSale,
-					accountFounds: accountFounds,
-					account:account,
-					contract:contract,
-					rem: rem,
-					vw: vw,
-					vh: vh,
-					width: width
+					contract:contract
 				}
 			}>
+			<AccountContext.Provider
+				value={
+					{
+						accountsTrees: accountsTrees,
+						accountFounds: accountFounds,
+						account:account
+					}
+				}>
+				<BrowserContext.Provider
+					value={
+						{
+							rem: rem,
+							vw: vw,
+							vh: vh,
+							width: width
+						}
+					}>
 			<BaseLayout
 				setAccount={setAccount}
 				loadBlockChainData={loadBlockChainData}
@@ -425,6 +480,8 @@ function MyApp({ Component, pageProps }) {
 						   setAccount={setAccount}
 				/>
 			</BaseLayout>
+		</BrowserContext.Provider>
+		</AccountContext.Provider>
 		</TreesContext.Provider>
 
 	)

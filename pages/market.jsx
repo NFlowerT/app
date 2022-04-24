@@ -5,9 +5,11 @@ import Search from "../components/global/search"
 import Filter from "../components/global/filter"
 import ProductTile from "../components/global/productTile"
 import {TreesContext} from "./_app"
+import {AccountContext} from "./_app"
 
 const Market = ({ buyTreeFromSale}) => {
-	const {trees, treesOnSale, contract, account} = useContext(TreesContext)
+	const {trees, treesOnSale, contract} = useContext(TreesContext)
+	const { account} = useContext(AccountContext)
 
 	const renderProducts = () => {
 		const productTiles = []

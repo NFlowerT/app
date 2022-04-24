@@ -3,11 +3,11 @@ import Link from "next/link"
 import Image from "next/image"
 import style from "../../styles/global/productTile.module.scss"
 import NTree from "../../nTree/NTree"
-import {TreesContext} from "../../pages/_app"
+import {BrowserContext} from "../../pages/_app"
 
 // const ProductTile = ({ id, genes, price, contract, account, birthdate}) => {
 const ProductTile = ({ id, contract, account, tree, price}) => {
-	const {rem} = useContext(TreesContext)
+	const {rem} = useContext(BrowserContext)
 	const ownerOfTreeOnSale = async (saleId)=>{
 		if(!contract) return 0
 		let tree = await contract.methods.sales(saleId).call()

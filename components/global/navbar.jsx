@@ -3,7 +3,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { BiUserCircle } from "react-icons/bi"
 import style from "../../styles/global/nav.module.scss"
-import {TreesContext} from "../../pages/_app"
+import {BrowserContext} from "../../pages/_app"
 import {FiMenu} from "react-icons/fi"
 
 const Navbar = () => {
@@ -22,7 +22,7 @@ const Navbar = () => {
 			window.removeEventListener("scroll", () => {})
 		})
 	}, [router.events])
-	const {width} = useContext(TreesContext)
+	const {width} = useContext(BrowserContext)
 	return (
 		<>
 			{width > 600 ?

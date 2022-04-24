@@ -5,11 +5,13 @@ import UserCollection from "../components/user/userCollection"
 import style from "../styles/market/market.module.scss"
 import Image from "next/image"
 import {TreesContext} from "./_app"
+import {AccountContext} from "./_app"
 import Wallet from "../components/wallet/wallet"
 import {sliceAccount} from "../functions/sliceAccount"
 
-const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount}) => {
-	const {accountsTrees, treesOnSale, account, contract, accountsFounds} = useContext(TreesContext)
+const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChainData}) => {
+	const {treesOnSale, contract} = useContext(TreesContext)
+	const {accountsTrees, account, accountsFounds} = useContext(AccountContext)
 	const [saleTrees, setSaleTrees] = useState([])
 
 	useEffect(()=>{
@@ -18,19 +20,26 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount}) => {
 
 	const renderProductsOnSale = () => {
 		const productTiles = []
-		for (let i = 0; i < accountsTrees.length; i++) {
-			if(accountsTrees[i].saleId !== undefined){
-				let treeId = accountsTrees[i].id
-				let saleId = accountsTrees[i].saleId
-				productTiles.push(<ProductTile tree={accountsTrees[i]} id={treeId} saleId={saleId} contract={contract} account={account}  price={treesOnSale.find(tree=> tree.id===saleId).tree.valueWei}/>)
+		if(accountsTrees){
+			for (let i = 0; i < accountsTrees.length; i++) {
+				if(accountsTrees[i].saleId !== undefined){
+					let treeId = accountsTrees[i].id
+					let saleId = accountsTrees[i].saleId
+					productTiles.push(<ProductTile tree={accountsTrees[i]} id={treeId} saleId={saleId} contract={contract} account={account}  price={treesOnSale.find(tree=> tree.id===saleId).tree.valueWei}/>)
+				}
 			}
+			setSaleTrees([...productTiles])
 		}
-		setSaleTrees([...productTiles])
+
+
 	}
 
 	return (
 		<div>
-			<Hero title={"WELCOME"} scrollToId={"myTrees"} subtitle={sliceAccount(account) ? sliceAccount(account) : <Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>} trees={accountsTrees}></Hero>
+			<Hero title={"WELCOME"}
+				  scrollToId={"myTrees"}
+				  subtitle={sliceAccount(account) ? sliceAccount(account) : <Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>}
+				  trees={accountsTrees}></Hero>
 			{(account && account!== "0x0") &&
 					<>
 						<UserCollection
