@@ -103,7 +103,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 						<div className={style.titleContainer}>
 							<div className={style.title}>
 								<div className={style.titleImageContainer}>
-									<Image src="/Rectangle14.svg" height={54} width={421}/>
+									<img src="/Rectangle14.svg"/>
 								</div>
 								<div className={style.tileTextContainer}>
 									<h1 className={style.titleText}> {birthdate} </h1>
@@ -123,7 +123,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 							<div className={style.productContainer}>
 								<div className={style.infoContainer}>
 									<div className={style.infoImage}>
-										<Image src="/Rectangle42.svg" height={185} width={653}></Image>
+										<img src="/Rectangle42.svg" ></img>
 									</div>
 									<div className={style.info}>
 										<h3>Birthdate: {new Date(birthdate*1000).toLocaleDateString("en-US")}</h3>

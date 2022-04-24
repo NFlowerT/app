@@ -23,11 +23,16 @@
 }
 
 .titleImageContainer{
-  width: 26rem;
+  //width: 26rem;
   position: absolute;
   z-index: 2;
   display: block;
   padding: 0;
+  height: 54px;
+  width: 421px;
+  *{
+    z-index: 3;
+  }
 }
 
 .titleText{
@@ -65,11 +70,18 @@
   position: relative;
   height: 100%;
   width: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .infoImage{
   width: 29.4rem;
   position: absolute;
+  img{
+    height: 185px;
+    width: 653px;
+  }
 }
 
 .info{
@@ -110,7 +122,6 @@
     justify-content: center;
   }
 }
-
 
 .middleContainer{
   width: 100%;
