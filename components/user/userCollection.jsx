@@ -49,7 +49,7 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 			console.log(accountTrees[i].tree.genes, "tilee")
 			treesNames.push(
 				<div key={i.toString()}
-					className={(activeTreeId==accountTrees[i].id)? style.collectionTreeActive : style.collectionTree}
+					 className={(activeTreeId==accountTrees[i].id)? style.collectionTreeActive : style.collectionTree}
 					 onClick={()=>{setActiveTreeId(accountTrees[i].id)
 						 setActiveTreeGenes(accountTrees[i].tree.genes)
 						 setActiveTree(accountTrees[i])
@@ -77,9 +77,9 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 					<div className={style.founds}>
 						<h3>Your founds: {accountFounds/1000000000000000000}</h3>
 						{(accountFounds)?
-						    ((BigInt(accountFounds)>0)?
-						        <button onClick={async () => await receiveFunds()}>Recieve founds</button> : null)
-						    : null}
+							((BigInt(accountFounds)>0)?
+								<button onClick={async () => await receiveFunds()}>Recieve founds</button> : null)
+							: null}
 					</div>
 					<div className={style.dop}></div>
 				</div>
@@ -119,14 +119,14 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 					{/*</div>*/}
 				</div>
 				{accountTrees && activeTree &&
-					<NTree
-						dataArray={[activeTree]}
-						className={style.treeContainer}
-						width={width > 900 ? 70 * vw : 80 * vw}
-						height={width > 900 ? 80 * vh : 40 * vh}
-						cameraPosition={{x: 7, y: -2, z: 7}}
-						y={-4}
-					/>
+				<NTree
+					dataArray={[activeTree]}
+					className={style.treeContainer}
+					width={width > 900 ? 70 * vw : 80 * vw}
+					height={width > 900 ? 80 * vh : 40 * vh}
+					cameraPosition={{x: 7, y: -2, z: 7}}
+					y={-4}
+				/>
 				}
 			</div>
 

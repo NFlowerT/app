@@ -8,6 +8,7 @@ import {BrowserContext} from "../_app"
 import {AccountContext} from "../_app"
 import NTree from "../../nTree/NTree";
 import {sliceAccount} from "../../functions/sliceAccount";
+import SellTree from "../../components/user/sellTree";
 
 
 const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
@@ -19,6 +20,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	const [sale, setSale] = useState(false)
 	const [saleId, setSaleId] = useState(undefined)
 	const [showForm, setShowForm] = useState(false)
+	const [show, setShow] = useState(false)
 
 	const { treesOnSale, contract} = useContext(TreesContext)
 	const {  rem, vw, vh, width } = useContext(BrowserContext)
@@ -113,7 +115,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 								(sale && owner===account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={async () => {await endSale(saleId); setShowForm(false)}}>END SALE</button> : null
 							}
 							{
-								(!sale && owner==account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={()=>setShowForm(!showForm) }>SALE</button> : null
+								(!sale && owner==account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={()=>setShow(!show) }>SALE</button> : null
 							}
 							{
 								(sale && owner!=account && account!="0x0" && account!=undefined)? <button className={style.button} onClick={async ()=> await buyTreeFromSale(saleId, price) }>BUY</button> : null
@@ -145,6 +147,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 						</div>
 
 					</div> : <div className={style.error}><h2>Loading...</h2></div>}
+			{(show)&&<SellTree putOnSale={putOnSale} treeId={treeId} show={show} setShow={setShow} putOnSale={putOnSale}></SellTree>}
 
 		</div>
 

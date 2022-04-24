@@ -122,8 +122,11 @@ function MyApp({ Component, pageProps }) {
 		(async () => {
 			await changeAccountHandler()
 		})()
-		if(account == undefined || account == "0x0")
+		if(account == undefined || account == "0x0"){
+			console.log("undefined")
 			setAccountsTrees([])
+		}
+
 
 	}, [account])
 	//when user change account in MetaMask wallet
@@ -163,9 +166,10 @@ function MyApp({ Component, pageProps }) {
 			(async () => {
 				await loadActiveAccountTrees()
 				await loadAccountFunds()
+				console.log("change")
 			})()
 		}
-		console.log("change")
+
 	}
 
 	const loadAccountFunds = async () =>{
@@ -266,7 +270,7 @@ function MyApp({ Component, pageProps }) {
 		if(contract && account!==undefined && account!== "" && account!=="0x0"){
 			//console.log("load my trees and balance", contract, account, "jest account")
 			let balance = await contract.methods.balanceOf(account).call()
-			//console.log("balans: ", balance)
+			console.log("balans: ", balance)
 			setAccountBalance(balance)
 
 
@@ -292,7 +296,7 @@ function MyApp({ Component, pageProps }) {
 				//console.log("koniec drzew account")
 			}
 			finally {
-				//console.log(treesTab)
+				console.log(treesTab, "]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]")
 				setAccountsTrees([...treesTab])
 			}
 		}
@@ -353,7 +357,7 @@ function MyApp({ Component, pageProps }) {
 		//load account's trees
 		//console.log(account, "looooooooooll")
 		if(account!== undefined && account!== "" && account!=="0x"){
-			//console.log("dfgvmfdkgjdkic")
+			console.log("load accounts treese")
 			await loadActiveAccountTrees()
 		}
 
