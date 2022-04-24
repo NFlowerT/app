@@ -9,7 +9,7 @@ import {BrowserContext} from "../../pages/_app"
 
 
 const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOnSale}) => {
-	const {accountsFounds} = useContext(AccountContext)
+	const {accountFounds} = useContext(AccountContext)
 	const {vw, vh, width} = useContext(BrowserContext)
 	const [activeTreeId, setActiveTreeId] = useState()
 	const [activeTree, setActiveTree] = useState((accountTrees)? accountTrees[0] : undefined)
@@ -21,11 +21,8 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 	const [sale, setSale] = useState(false)
 	const [saleId, setSaleId] = useState(undefined)
 	const [showForm, setShowForm] = useState(false)
-	const [accountsFound, setAccountFound] = useState(accountsFounds)
 
-	useEffect(()=> {
-		setAccountFound(accountsFounds)
-	}, accountsFounds)
+
 
 	useEffect(()=>{
 		if(accountTrees.length>0){
@@ -35,6 +32,7 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 			setActiveTree(accountTrees[0])
 			setActiveTreeBirthdate(accountTrees[0].tree.birthdate)
 		}
+
 
 	}, [accountTrees])
 
@@ -77,11 +75,11 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 			<div className={style.sectionName}>
 				<div className={style.foundsContainer}>
 					<div className={style.founds}>
-						<h2>Your founds: {accountsFound}</h2>
-						{/*{(accountsFounds)?*/}
-						{/*    ((BigInt(accountsFounds)>0)?*/}
-						{/*        <button onClick={async () => await receiveFunds()}>Recieve founds</button> : null)*/}
-						{/*    : null}*/}
+						<h3>Your founds: {accountFounds/1000000000000000000}</h3>
+						{(accountFounds)?
+						    ((BigInt(accountFounds)>0)?
+						        <button onClick={async () => await receiveFunds()}>Recieve founds</button> : null)
+						    : null}
 					</div>
 					<div className={style.dop}></div>
 				</div>

@@ -5,7 +5,7 @@ import "../styles/globals.scss"
 
 import Web3 from "web3"
 import HelloWorld from "../src/abis/HelloWorld.json"
-import WalletConnectProvider  from "@metamask/detect-provider"
+import detectEthereumProvider from "@metamask/detect-provider"
 import {sliceAccount} from "../functions/sliceAccount"
 
 export const TreesContext = createContext()
@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
 			// 	//console.log("install Metamask")
 			// }
 			// console.log("load web 3333")
-			})()
+		})()
 
 	}, [])
 
@@ -63,19 +63,16 @@ function MyApp({ Component, pageProps }) {
 
 	useEffect(()=>{
 		if (typeof window !== "undefined"){
+			console.log("effect")
 			setVw(window.innerWidth / 100)
 			setVh(window.innerHeight / 100)
 			setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
 			setWidth(window.innerWidth)
-			let doit
 			window.addEventListener("resize", () => {
-				clearTimeout(doit)
-				doit = setTimeout(() => {
-					setVw(window.innerWidth / 100)
-					setVh(window.innerHeight / 100)
-					setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
-					setWidth(window.innerWidth)
-				}, 200)
+				setVw(window.innerWidth / 100)
+				setVh(window.innerHeight / 100)
+				setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
+				setWidth(window.innerWidth)
 			})
 		}
 		// (async () =>{await loadWeb3(); console.log("load web 3333")})()
@@ -192,11 +189,7 @@ function MyApp({ Component, pageProps }) {
 	}
 
 	const loadWeb3 = async () => {
-		const provider = new WalletConnectProvider({
-			infuraId: "3b919ac686e84d1e80148ea9dddfb52a",
-		});
-		setWeb3(new Web3(provider))
-		await provider.enable();
+		setWeb3(new Web3(Web3.givenProvider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
 		if (typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask) {
 			// await window.ethereum.enable()
 			// const accounts = await window.ethereum.request({ method: "eth_requestAccounts" })
@@ -474,21 +467,21 @@ function MyApp({ Component, pageProps }) {
 							width: width
 						}
 					}>
-			<BaseLayout
-				setAccount={setAccount}
-				loadBlockChainData={loadBlockChainData}
-				mint={mint}>
-				<Component {...pageProps}
-				           mint={mint}
-				           putOnSale={putOnSale}
-				           endSale={endSale}
-				           buyTreeFromSale={buyTreeFromSale}
-				           receiveFunds={receiveFunds}
-						   setAccount={setAccount}
-				/>
-			</BaseLayout>
-		</BrowserContext.Provider>
-		</AccountContext.Provider>
+					<BaseLayout
+						setAccount={setAccount}
+						loadBlockChainData={loadBlockChainData}
+						mint={mint}>
+						<Component {...pageProps}
+								   mint={mint}
+								   putOnSale={putOnSale}
+								   endSale={endSale}
+								   buyTreeFromSale={buyTreeFromSale}
+								   receiveFunds={receiveFunds}
+								   setAccount={setAccount}
+						/>
+					</BaseLayout>
+				</BrowserContext.Provider>
+			</AccountContext.Provider>
 		</TreesContext.Provider>
 
 	)
