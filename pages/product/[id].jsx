@@ -4,10 +4,14 @@ import Image from "next/image"
 import style from "../../styles/product/product.module.scss"
 import SellForm from "../../components/global/sellForm"
 import {TreesContext} from "../_app"
+import {BrowserContext} from "../_app"
+import {AccountContext} from "../_app"
+import NTree from "../../nTree/NTree";
+import {sliceAccount} from "../../functions/sliceAccount";
+import SellTree from "../../components/user/sellTree";
 
 
 const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
-	const [router] = useState(useRouter())
 	const [treeId, setTreeId] = useState()
 	const [owner, setOwner] = useState(undefined)
 	const [genes, setGenes] = useState()
@@ -16,11 +20,17 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	const [sale, setSale] = useState(false)
 	const [saleId, setSaleId] = useState(undefined)
 	const [showForm, setShowForm] = useState(false)
+	const [show, setShow] = useState(false)
 
-	const { treesOnSale, account, contract } = useContext(TreesContext)
+	const { treesOnSale, contract} = useContext(TreesContext)
+	const {  rem, vw, vh, width } = useContext(BrowserContext)
+	const { account } = useContext(AccountContext)
+
+
+	const router = useRouter()
+	const { id } = router.query
 
 	useEffect(()=>{
-		const { id } = router.query
 		setTreeId(parseInt(id))
 		console.log(id, "q")
 	}, [])
@@ -34,13 +44,19 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	})
 
 	const ownerOfTree = async () => {
-		if(contract && treeId!==undefined && account){
+		if(contract && treeId!==undefined ){
 			try{
 				let owner = await contract.methods.ownerOf(treeId).call()
-				if(owner.toLowerCase() == account) {
-					setOwner(account)
+				if(account){
+					if(owner.toLowerCase() == account) {
+						setOwner(account)
+					}
+					else setOwner(owner)
+				}else {
+					setOwner(owner)
+					console.log("owner")
 				}
-				else setOwner(owner)
+
 			}
 			catch(err) {
 				console.log(err)
@@ -49,7 +65,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	}
 	const treeGenes = async () => {
 		console.log(account, treeId, contract)
-		if(contract && treeId!==undefined && account){
+		if(contract && treeId!==undefined){
 			try{
 				let tree = await contract.methods.trees(treeId).call()
 				let genes = tree.genes
@@ -89,39 +105,49 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 						<div className={style.titleContainer}>
 							<div className={style.title}>
 								<div className={style.titleImageContainer}>
-									<Image src="/Rectangle14.svg" height={54} width={421}/>
+									<img src="/Rectangle14.svg"/>
 								</div>
 								<div className={style.tileTextContainer}>
-									<h1 className={style.titleText}>NAME</h1>
+									<h1 className={style.titleText}> {treeId} </h1>
 								</div>
 							</div>
 							{
 								(sale && owner===account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={async () => {await endSale(saleId); setShowForm(false)}}>END SALE</button> : null
 							}
 							{
-								(!sale && owner==account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={()=>setShowForm(!showForm) }>SALE</button> : null
+								(!sale && owner==account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={()=>setShow(!show) }>SALE</button> : null
 							}
 							{
 								(sale && owner!=account && account!="0x0" && account!=undefined)? <button className={style.button} onClick={async ()=> await buyTreeFromSale(saleId, price) }>BUY</button> : null
 							}
 						</div>
-						<div className={style.productContainer}>
-							<div className={style.infoContainer}>
-								<div className={style.infoImage}>
-									<Image src="/Rectangle42.svg" height={185} width={653}></Image>
+						<div className={style.middleContainer}>
+							<div className={style.productContainer}>
+								<div className={style.infoContainer}>
+									<div className={style.infoImage}>
+										<img src="/Rectangle42.svg" ></img>
+									</div>
+									<div className={style.info}>
+										<h3>Birthdate: {new Date(birthdate*1000).toLocaleDateString("en-US")}</h3>
+										<h3>Owner: {sliceAccount(owner)}</h3>
+										{(price)? <h3>price: {price/1000000000000000000} ETH</h3> : <h3> Not on sale</h3>}
+									</div>
+									<SellForm putOnSale={putOnSale} treeId={treeId} show={showForm} setShowForm={setShowForm}></SellForm>
 								</div>
-								<div className={style.info}>
-									{(price)? <div>price: {price/1000000000000000000} ETH</div> : null}
-									<div>owner: {owner}</div>
-									<div>birthdate: {new Date(birthdate*1000).toLocaleDateString("en-US")}</div>
-								</div>
-								<SellForm putOnSale={putOnSale} treeId={treeId} show={showForm} setShowForm={setShowForm}></SellForm>
 							</div>
-
+							<NTree
+								// dataArray={[tree]}
+								className={style.treeContainer}
+								disabled={false}
+								width={width > 800 ? (100 * vw) - (30 * rem) : 90 * vw}
+								height={width > 800 ? (100 * vh) - (5 * rem) : 50 * vh}
+								cameraPosition={{x: 8, y: -3, z: 8}}
+								y={-4}
+							/>
 						</div>
 
-						{/*{treeId}*/}
-					</div> : <div className={style.error}><h2>We could not find this tree :(</h2></div>}
+					</div> : <div className={style.error}><h2>Loading...</h2></div>}
+			{(show)&&<SellTree putOnSale={putOnSale} treeId={treeId} show={show} setShow={setShow} ></SellTree>}
 
 		</div>
 
