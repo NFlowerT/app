@@ -123,8 +123,6 @@ function MyApp({ Component, pageProps }) {
 			}
 			console.log("web3")
 
-
-
 			// provider.on("accountsChanged", (accounts: string[]) => {
 			// 	console.log(accounts);
 			// });
@@ -140,7 +138,27 @@ function MyApp({ Component, pageProps }) {
 			// console.log("load web 3333")
 		})()
 
+
+
 	}, [])
+
+	// useEffect(()=>{
+	// 	(async()=> {
+	// 		setWeb3(new Web3( "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
+	// 		// if(web3){
+	// 		//
+	// 		// 	(async() => {
+	// 		// 		const accounts = await web3.eth.getAccounts()
+	// 		// 		console.log(accounts, 'lllllllllllllllllllllllllllll')
+	// 		// 		//await connectWalletHandler(accounts[0])
+	// 		// 		setAccount(accounts[0])
+	// 		// 		console.log(web3)
+	// 		// 	})();
+	// 		//
+	// 		// }
+	// 	})()
+	// })
+
 	useEffect(()=>{
 		if(provider!== undefined){
 			providerListeners()

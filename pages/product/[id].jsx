@@ -136,7 +136,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 								</div>
 							</div>
 							<NTree
-								dataArray={[{tree: {birthdate: 15, genes: genes}}]}
+								dataArray={[{tree: {birthdate: birthdate, genes: genes}}]}
 								className={style.treeContainer}
 								disabled={false}
 								width={width > 800 ? (100 * vw) - (30 * rem) : 90 * vw}
