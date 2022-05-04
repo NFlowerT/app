@@ -13,7 +13,6 @@ import HelloWorld from "../src/abis/HelloWorld.json"
 import detectEthereumProvider from "@metamask/detect-provider"
 import {sliceAccount} from "../functions/sliceAccount"
 
-
 export const TreesContext = createContext()
 export const AccountContext = createContext()
 export const BrowserContext = createContext()
