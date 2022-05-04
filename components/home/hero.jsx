@@ -5,7 +5,7 @@ import {TreesContext} from "../../pages/_app"
 import {BrowserContext} from "../../pages/_app"
 import {BsCaretDownFill} from "react-icons/bs"
 
-const Hero =({title, subtitle, trees, scrollToId}) => {
+const Hero =({title, subtitle, trees, scrollToId, setProvider, setWeb3}) => {
 	const {vw, vh, width} = useContext(BrowserContext)
 	return (
 		<div className={style.heroMain}>

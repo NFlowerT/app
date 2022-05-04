@@ -11,7 +11,7 @@ import {AccountContext} from "./_app"
 import Wallet from "../components/wallet/wallet"
 import {sliceAccount} from "../functions/sliceAccount"
 
-const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChainData}) => {
+const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChainData, setWeb3, setProvider}) => {
 	const {treesOnSale, contract} = useContext(TreesContext)
 	const {accountsTrees, account, accountsFounds} = useContext(AccountContext)
 	const [saleTrees, setSaleTrees] = useState([])
@@ -42,8 +42,10 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChain
 		<div>
 			<Hero title={"WELCOME"}
 				  scrollToId={"myTrees"}
-				  subtitle={sliceAccount(account) ? sliceAccount(account) : <Wallet setAccount={setAccount} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>}
-				  trees={accountsTrees}>
+				  subtitle={sliceAccount(account) ? sliceAccount(account) : <Wallet setAccount={setAccount} setWeb3={setWeb3} setProvider={setProvider} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>}
+				  trees={accountsTrees}
+					setWeb3={setWeb3}
+					setProvider={setProvider}>
 			</Hero>
 			{(account && account!== "0x0") &&
 					<>

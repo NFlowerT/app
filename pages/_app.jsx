@@ -4,9 +4,15 @@ import BaseLayout from "../components/global/baseLayout"
 import "../styles/globals.scss"
 
 import Web3 from "web3"
+import Web3Modal from "web3modal"
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import Authereum from "authereum";
+import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
+
 import HelloWorld from "../src/abis/HelloWorld.json"
 import detectEthereumProvider from "@metamask/detect-provider"
 import {sliceAccount} from "../functions/sliceAccount"
+
 
 export const TreesContext = createContext()
 export const AccountContext = createContext()
@@ -14,10 +20,12 @@ export const BrowserContext = createContext()
 
 function MyApp({ Component, pageProps }) {
 	const [web3, setWeb3] = useState()
+	const [provider, setProvider] = useState()
 	const [account, setAccount] = useState(undefined)
 	const [accountFounds, setAccountFounds] = useState(null)
 	const [contract, setContract] = useState(undefined)
 	const [networkData, setNetworkData] = useState(undefined)
+	const [networkId, setNetworkId] = useState(undefined)
 	const [trees, setTrees] = useState([])
 	const [treesOnSale, setTreesOnSale] = useState([])
 	const [accountsTrees, setAccountsTrees] = useState([])
@@ -31,7 +39,97 @@ function MyApp({ Component, pageProps }) {
 
 	useEffect( () =>{
 		(async () =>{
-			setWeb3(new Web3( Web3.givenProvider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
+			const web3Modal = new Web3Modal({
+				network: "rinkeby", // optional
+				cacheProvider: false, // optional
+				providerOptions:{
+					walletconnect: {
+						display: {
+							// logo: "data:image/gif;base64,INSERT_BASE64_STRING",
+							name: "Mobile",
+							description: "Scan qrcode with your mobile wallet"
+						},
+						package: WalletConnectProvider, // required
+						options: {
+							infuraId: "3b919ac686e84d1e80148ea9dddfb52a" // required
+						}
+					},
+					walletlink: {
+						package:  CoinbaseWalletSDK,
+						options: {
+							appName: "Web 3 Modal Demo",
+							infuraId: "3b919ac686e84d1e80148ea9dddfb52a"
+						}
+					},
+					authereum: {
+						package: Authereum // required
+					}
+				}
+
+				// 'custom-walletlink': {
+				// 	display: {
+				// 		logo: 'https://play-lh.googleusercontent.com/PjoJoG27miSglVBXoXrxBSLveV6e3EeBPpNY55aiUUBM9Q1RCETKCOqdOkX2ZydqVf0',
+				// 		name: 'Coinbase',
+				// 		description: 'Connect to Coinbase Wallet (not Coinbase App)',
+				// 	},
+				// 	options: {
+				// 		appName: 'Coinbase', // Your app name
+				// 		networkUrl: `https://mainnet.infura.io/v3/${INFURA_ID}`,
+				// 		chainId: 1,
+				// 	},
+				// 	package: WalletLink,
+				// 	connector: async (_, options) => {
+				// 		const { appName, networkUrl, chainId } = options
+				// 		const walletLink = new WalletLink({
+				// 			appName,
+				// 		})
+				// 		const provider = walletLink.makeWeb3Provider(networkUrl, chainId)
+				// 		await provider.enable()
+				// 		return provider
+				// 	},
+			});
+			try{
+				const provider = await web3Modal.connect();
+				provider.on("accountsChanged", (accounts) => {
+					console.log(accounts)
+				})
+				setProvider(provider)
+				const web3 = new Web3(provider);
+				setWeb3(web3)
+				// if(provider!== undefined && web3){
+				// 	provider.on("accountsChanged", (accounts) => {
+				// 		console.log(accounts, "ACCOUNTS");
+				// 		setAccount(accounts[0])
+				// 	});
+				// }
+				if(web3){
+
+					(async() => {
+						const accounts = await web3.eth.getAccounts()
+						console.log(accounts, 'lllllllllllllllllllllllllllll')
+						//await connectWalletHandler(accounts[0])
+						setAccount(accounts[0])
+						console.log(web3)
+					})();
+
+
+					// provider.on("disconnect", (error) => {
+					// 	console.log(error);
+					// });
+				}
+
+			}catch(e){
+				alert(e)
+				setWeb3(new Web3( "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
+			}
+			console.log("web3")
+
+
+
+			// provider.on("accountsChanged", (accounts: string[]) => {
+			// 	console.log(accounts);
+			// });
+			//setWeb3(new Web3( Web3.givenProvider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
 			// if (typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask) {
 			// 	// await window.ethereum.enable()
 			// 	// const accounts = await window.ethereum.request({ method: "eth_requestAccounts" })
@@ -44,17 +142,63 @@ function MyApp({ Component, pageProps }) {
 		})()
 
 	}, [])
+	useEffect(()=>{
+		if(provider!== undefined){
+			providerListeners()
+		}
+	}, [provider])
+
+	const providerListeners = () => {
+		if(provider!==undefined){
+			console.log("listening")
+			provider.on("accountsChanged", (accounts) => {
+				console.log(accounts, 'accountsChanged');
+				setAccount(accounts[0])
+			});
+
+// Subscribe to chainId change
+			provider.on("chainChanged", async (chainId) => {
+				console.log(chainId, 'chainChanged');
+				await getNetworkInfo()
+			});
+
+// Subscribe to provider connection
+			provider.on("connect", (info) => {
+				console.log(info, 'connect');
+			});
+
+// Subscribe to provider disconnection
+			provider.on("disconnect", (error) => {
+				console.log(error, 'disconnect');
+				setAccount(undefined)
+			});
+		}
+
+	}
 
 
-	// useEffect( () => {
-	// 	if(window.ethereum && window.ethereum.isMetaMask){
+	//useEffect( () => {
+		// if(provider!== undefined && web3){
+		// 	provider.on("accountsChanged", (accounts) => {
+		// 		console.log(accounts, "ACCOUNTS");
+		// 		setAccount(accounts[0])
+		// 	});
+		// }
+		// if(web3){
+		// 	console.log(web3)
+		// 	const accounts = (async() => await web3.eth.getAccounts())();
+		// 	(async () => await connectWalletHandler(accounts[0]))()
+		// }
+
+	//}, [web3])
+	// 	if(window.ethereum && provider){
 	// 		const accounts = (async () => await window.ethereum.request({ method: "eth_requestAccounts" }))();
 	// 		(async () => await connectWalletHandler(accounts[0]))()
 	// 		window.ethereum.on("accountsChanged",  async(account) => await connectAutoWalletHandler(account))
 	// 		// window.ethereum.on("chainChanged", async()=>await loadBlockChainData())
 	// 		// console.log("wallet")
 	// 	}
-	// }, [])
+	// }, [provider])
 	// useEffect( () => {
 	// 	if(window.ethereum && window.ethereum.isMetaMask){
 	// 		window.ethereum.on("accountsChanged",  async(account) => await connectAutoWalletHandler(account))
@@ -85,14 +229,9 @@ function MyApp({ Component, pageProps }) {
 	}, [treesOnSale])
 
 	useEffect(()=>{
-		if(web3!==undefined){
-			(async () =>{const networkId = await web3.eth.net.getId()
-				const network = HelloWorld.networks[networkId]
-				setNetworkData(network)
-				console.log("network")
-			})()
-
-		}
+		(async () => {
+			await getNetworkInfo()
+		})()
 
 	}, [web3])
 
@@ -133,31 +272,54 @@ function MyApp({ Component, pageProps }) {
 	const connectAutoWalletHandler = (account) => {
 		console.log("connectAutoWalletHandler")
 		// setAccount(account[0].toLowerCase())
-		setAccount(account[0])
+		// setAccount(account[0])
 		// sliceAccount(account[0])
 	}
 
 	//when user click connection button
 	const connectWalletHandler = async() => {
-		if (window.ethereum && window.ethereum.isMetaMask) {
+		// if (window.ethereum && window.ethereum.isMetaMask) {
+		// 	try{
+		// 		await window.ethereum.request({ method: "eth_requestAccounts"})
+		// 			.then(async result => {
+		// 				setAccount(result[0])
+		// 				console.log("then ")
+		// 				// setConnButtonText('Connected!');
+		// 				// await loadWeb3()
+		// 				// sliceAccount(result[0])
+		// 			})
+		// 			.catch(error => {
+		// 				// alert(error.message+"lol")
+		// 			})
+		// 	}
+		// 	catch{
+		// 	}
+		// } else {
+		// 	alert("Please install MetaMask browser extension to interact")
+		// }
+
+	}
+
+	const getNetworkInfo = async()=>{
+		if(web3!==undefined){
+			const netId = await web3.eth.getChainId();
+			setNetworkId(networkId)
 			try{
-				await window.ethereum.request({ method: "eth_requestAccounts"})
-					.then(async result => {
-						setAccount(result[0])
-						console.log("then ")
-						// setConnButtonText('Connected!');
-						// await loadWeb3()
-						// sliceAccount(result[0])
-					})
-					.catch(error => {
-						// alert(error.message+"lol")
-					})
+				if(netId!= 4) {
+					alert("please change network to rinkebyyy")
+					setNetworkData(undefined)
+				}
+				else {
+					const network = HelloWorld.networks[netId]
+					setNetworkData(network)
+
+				}
 			}
-			catch{
-			}
-		} else {
-			alert("Please install MetaMask browser extension to interact")
+			catch{}
+
+			console.log("network")
 		}
+
 
 	}
 
@@ -193,15 +355,15 @@ function MyApp({ Component, pageProps }) {
 	}
 
 	const loadWeb3 = async () => {
-		setWeb3(new Web3(Web3.givenProvider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
-		if (typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask) {
-			// await window.ethereum.enable()
-			// const accounts = await window.ethereum.request({ method: "eth_requestAccounts" })
-			await connectWalletHandler()
-			window.ethereum.on("accountsChanged",  async(account) => await connectAutoWalletHandler(account))		}
-		else{
-			//console.log("install Metamask")
-		}
+		//setWeb3(new Web3(Web3.givenProvider || "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
+		// if (typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask) {
+		// 	// await window.ethereum.enable()
+		// 	// const accounts = await window.ethereum.request({ method: "eth_requestAccounts" })
+		// 	//await connectWalletHandler()
+		// 	//window.ethereum.on("accountsChanged",  async(account) => await connectAutoWalletHandler(account))		}
+		// else{
+		// 	//console.log("install Metamask")
+		// }
 
 
 		//console.log("account =============", account)
@@ -304,7 +466,10 @@ function MyApp({ Component, pageProps }) {
 
 	const loadBlockChainData = async() => {
 		// console.log("load blockchaindata", account)
-		if(web3===undefined || networkData===undefined) return 0
+		if(web3===undefined || networkData===undefined) {
+			alert("change network to rinkeby")
+			return 0
+		}
 
 		if(networkData){
 			const abi = HelloWorld.abi
@@ -451,7 +616,9 @@ function MyApp({ Component, pageProps }) {
 				{
 					trees: trees,
 					treesOnSale:treesOnSale,
-					contract:contract
+					contract:contract,
+					setProvider: setProvider,
+					setWeb3: setWeb3
 				}
 			}>
 			<AccountContext.Provider
@@ -482,6 +649,8 @@ function MyApp({ Component, pageProps }) {
 								   buyTreeFromSale={buyTreeFromSale}
 								   receiveFunds={receiveFunds}
 								   setAccount={setAccount}
+								   setProvider={setProvider}
+								   setWeb3={setWeb3}
 						/>
 					</BaseLayout>
 				</BrowserContext.Provider>

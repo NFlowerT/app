@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@coinbase/wallet-sdk": "^3.0.11",
     "@metamask/detect-provider": "^1.2.0",
     "@openzeppelin/contracts": "^4.4.1",
     "@truffle/hdwallet-provider": "^2.0.6",
+    "@walletconnect/web3-provider": "^1.7.8",
+    "authereum": "^0.1.14",
     "babel-polyfill": "6.26.0",
     "babel-preset-env": "1.7.0",
     "babel-preset-es2015": "6.24.1",
@@ -30,7 +33,9 @@
     "sass": "^1.50.0",
     "three": "^0.139.2",
     "truffle": "^5.5.9",
-    "web3": "^1.6.0"
+    "walletlink": "^2.5.0",
+    "web3": "^1.6.0",
+    "web3modal": "^1.9.7"
   },
   "devDependencies": {
     "eslint": "8.13.0",
