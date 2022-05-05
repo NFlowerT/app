@@ -34,7 +34,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	useEffect(()=>{
 		setTreeId(parseInt(id))
 		console.log(id, "q")
-	}, [])
+	})
 
 	useEffect(()=>{
 		(async () => {

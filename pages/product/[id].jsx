@@ -22,18 +22,19 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	const [showForm, setShowForm] = useState(false)
 	const [show, setShow] = useState(false)
 
-	const { treesOnSale, contract} = useContext(TreesContext)
+	const { treesOnSale, contract, trees} = useContext(TreesContext)
 	const {  rem, vw, vh, width } = useContext(BrowserContext)
 	const { account } = useContext(AccountContext)
 
-
+    console.log("render")
 	const router = useRouter()
 	const { id } = router.query
 
 	useEffect(()=>{
+
 		setTreeId(parseInt(id))
 		console.log(id, "q")
-	}, [])
+	})
 
 	useEffect(()=>{
 		(async () => {
@@ -41,7 +42,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 			await treeGenes()
 			isOnSale()
 		})()
-	})
+	}, [trees, treesOnSale])
 
 	const ownerOfTree = async () => {
 		if(contract && treeId!==undefined ){
