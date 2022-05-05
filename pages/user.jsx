@@ -10,8 +10,9 @@ import {TreesContext} from "./_app"
 import {AccountContext} from "./_app"
 import Wallet from "../components/wallet/wallet"
 import {sliceAccount} from "../functions/sliceAccount"
+import Web3Modal from "web3modal"
 
-const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChainData, setWeb3, setProvider}) => {
+const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChainData, setWeb3, setProvider, disconnect}) => {
 	const {treesOnSale, contract} = useContext(TreesContext)
 	const {accountsTrees, account, accountsFounds} = useContext(AccountContext)
 	const [saleTrees, setSaleTrees] = useState([])
@@ -38,11 +39,23 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChain
 
 	}
 
+
 	return (
 		<div>
 			<Hero title={"WELCOME"}
 				  scrollToId={"myTrees"}
-				  subtitle={sliceAccount(account) ? sliceAccount(account) : <Wallet setAccount={setAccount} setWeb3={setWeb3} setProvider={setProvider} loadBlockChainData={async () =>await loadBlockChainData()}></Wallet>}
+				  subtitle={sliceAccount(account) ?
+					  <div>
+						  {sliceAccount(account)}
+						  <p onClick={async()=>await disconnect()}>Disconnect</p>
+					  </div>
+					   :
+						  <Wallet setAccount={setAccount}
+								  setWeb3={setWeb3}
+								  setProvider={setProvider}
+								  loadBlockChainData={async () =>await loadBlockChainData()}
+						  ></Wallet>
+					  }
 				  trees={accountsTrees}
 					setWeb3={setWeb3}
 					setProvider={setProvider}>

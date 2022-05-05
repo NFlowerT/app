@@ -43,6 +43,17 @@
     div{
         font-size: 3em;
         text-shadow: 0 15.833px 15.833px rgba(0, 0, 0, 0.25);
+        div{
+            font-size: 3rem;
+            text-shadow: 0 15.833px 15.833px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            p{
+                font-size: 2rem;
+                text-shadow: 0 15.833px 15.833px rgba(0, 0, 0, 0.25);
+                text-align: center;
+
+            }
+        }
     }
 }
 

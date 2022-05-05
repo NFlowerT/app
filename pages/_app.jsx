@@ -19,6 +19,7 @@ export const BrowserContext = createContext()
 
 function MyApp({ Component, pageProps }) {
 	const [web3, setWeb3] = useState()
+	const [web3M, setWeb3M] = useState()
 	const [provider, setProvider] = useState()
 	const [account, setAccount] = useState(undefined)
 	const [accountFounds, setAccountFounds] = useState(null)
@@ -40,7 +41,7 @@ function MyApp({ Component, pageProps }) {
 		(async () =>{
 			const web3Modal = new Web3Modal({
 				network: "rinkeby", // optional
-				cacheProvider: false, // optional
+				cacheProvider: true, // optional
 				providerOptions:{
 					walletconnect: {
 						display: {
@@ -88,6 +89,7 @@ function MyApp({ Component, pageProps }) {
 				// 	},
 			});
 			try{
+				setWeb3M(web3Modal)
 				const provider = await web3Modal.connect();
 				provider.on("accountsChanged", (accounts) => {
 					console.log(accounts)
@@ -158,6 +160,10 @@ function MyApp({ Component, pageProps }) {
 	// 		// }
 	// 	})()
 	// })
+	const disconnect = async() => {
+		setAccount(undefined)
+		web3M.clearCachedProvider()
+	}
 
 	useEffect(()=>{
 		if(provider!== undefined){
@@ -668,6 +674,8 @@ function MyApp({ Component, pageProps }) {
 								   setAccount={setAccount}
 								   setProvider={setProvider}
 								   setWeb3={setWeb3}
+								   web3={web3}
+								   disconnect={disconnect}
 						/>
 					</BaseLayout>
 				</BrowserContext.Provider>
