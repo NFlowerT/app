@@ -43,6 +43,13 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 			isOnSale()
 		})()
 	}, [trees, treesOnSale])
+	useEffect(()=>{
+		(async () => {
+			await ownerOfTree()
+			await treeGenes()
+			isOnSale()
+		})()
+	}, [])
 
 	const ownerOfTree = async () => {
 		if(contract && treeId!==undefined ){
