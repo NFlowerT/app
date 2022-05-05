@@ -9,7 +9,7 @@ import {useRouter} from "next/router"
 // eslint-disable-next-line react/display-name
 const BaseLayout = ({ children, setAccount, loadBlockChainData, mint,  }) => {
 	const router = useRouter()
-	if(router.pathname === "/tree"){
+	if(router.pathname.includes("tree")){
 		return <>{children}</>
 	}
 	return (
