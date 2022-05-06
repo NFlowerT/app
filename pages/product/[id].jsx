@@ -49,7 +49,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 			await treeGenes()
 			isOnSale()
 		})()
-	}, [])
+	})
 
 	const ownerOfTree = async () => {
 		if(contract && treeId!==undefined ){
