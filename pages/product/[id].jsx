@@ -120,13 +120,16 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 								</div>
 							</div>
 							{
-								(sale && owner===account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={async () => {await endSale(saleId); setShowForm(false)}}>END SALE</button> : null
+								(sale && owner===account && account!==undefined && account!=="0x0")?
+									<button className={style.button} onClick={async () => {await endSale(saleId); setShowForm(false)}}>END SALE</button> : null
 							}
 							{
-								(!sale && owner==account && account!==undefined && account!=="0x0")? <button className={style.button} onClick={()=>setShow(!show) }>SALE</button> : null
+								(!sale && owner==account && account!==undefined && account!=="0x0")?
+									<button className={style.button} onClick={()=>setShow(!show) }>SALE</button> : null
 							}
 							{
-								(sale && owner!=account && account!="0x0" && account!=undefined)? <button className={style.button} onClick={async ()=> await buyTreeFromSale(saleId, price) }>BUY</button> : null
+								(sale && owner!=account && account!="0x0" && account!=undefined)?
+									<button className={style.button} onClick={async ()=> {console.log("lol");await buyTreeFromSale(saleId, price);  }}>BUY</button> : null
 							}
 						</div>
 						<div className={style.middleContainer}>
