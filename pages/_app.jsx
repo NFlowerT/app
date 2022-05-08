@@ -583,6 +583,9 @@ function MyApp({ Component, pageProps }) {
 					await loadWeb3()
 				})
 		}
+		else {
+			alert("please connect your wallet")
+		}
 		await loadWeb3()
 	}
 

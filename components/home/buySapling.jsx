@@ -1,11 +1,17 @@
-import React, {useContext} from "react"
+import React, {useContext, useEffect} from "react"
 import style from "../../styles/home/buySapling.module.scss"
 import {RiCloseFill} from "react-icons/ri"
 import NTree from "../../nTree/NTree"
 import {BrowserContext} from "../../pages/_app"
+import {AccountContext} from "../../pages/_app"
+import Wallet from "../wallet/wallet";
 
-const BuySapling = ({setSapling, mint}) => {
+const BuySapling = ({setSapling, mint, setAccount}) => {
 	const {rem, width, vw, vh} = useContext(BrowserContext)
+	const {account} = useContext(AccountContext)
+	useEffect(()=>{
+
+	}, [account])
 	return (
 		<div className={style.background}>
 			<div className={style.container}>
@@ -26,7 +32,7 @@ const BuySapling = ({setSapling, mint}) => {
 					<h2>
 						Pine sapling
 					</h2>
-					<button onClick={async () => await mint()}>BUY</button>
+					{(account!==undefined && account!=="0x0")?<button onClick={async () => await mint()}>BUY</button> : <Wallet setAccount={setAccount}></Wallet>}
 				</div>
 			</div>
 		</div>

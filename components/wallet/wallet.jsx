@@ -8,7 +8,7 @@ import Authereum from "authereum";
 import Web3 from "web3";
 import {TreesContext} from "../../pages/_app"
 
-const Wallet = ({ setAccount, loadBlockChainData, se}) => {
+const Wallet = ({ setAccount, loadBlockChainData}) => {
 	const [errorMessage, setErrorMessage] = useState(null)
 	const [connButtonText, setConnButtonText] = useState("Connect to MetaMask")
 	const {setWeb3, setProvider} = useContext(TreesContext)
