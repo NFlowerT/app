@@ -120,7 +120,7 @@ function MyApp({ Component, pageProps }) {
 				}
 
 			}catch(e){
-				alert(e)
+				//alert(e)
 				setWeb3(new Web3( "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
 			}
 			console.log("web3")
