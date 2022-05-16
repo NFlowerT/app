@@ -1,18 +1,14 @@
 import React, {useState, useEffect, useContext} from "react"
 import {useRouter} from "next/router"
-import Image from "next/image"
-import style from "../../styles/product/product.module.scss"
-import SellForm from "../../components/global/sellForm"
+import style from "../../styles/tree/tree.module.scss"
 import {TreesContext} from "../_app"
 import {BrowserContext} from "../_app"
 import {AccountContext} from "../_app"
 import NTree from "../../nTree/NTree"
-import {sliceAccount} from "../../functions/sliceAccount"
-import SellTree from "../../components/user/sellTree"
 import {BsArrowsMove} from "react-icons/bs"
 
 
-const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
+const TreePage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	const [treeId, setTreeId] = useState()
 	const [owner, setOwner] = useState(undefined)
 	const [genes, setGenes] = useState()
@@ -109,7 +105,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	return (
 		<>
 			{(genes) ?
-				<>
+				<div className={style.container}>
 					<NTree
 						dataArray={[{tree: {birthdate: birthdate, genes: genes}}]}
 						width={100 * vw}
@@ -121,10 +117,10 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 					<button className={style.moveButton}>
 						<BsArrowsMove/>
 					</button>
-				</>
+				</div>
 				: <div className={style.error}><h2>Loading...</h2></div>}
 		</>
 	)
 }
 
-export default ProductPage
+export default TreePage

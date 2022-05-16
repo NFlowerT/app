@@ -81,7 +81,7 @@ const NTree = ({
 			}
 		}
 		group.translateY(y)
-		generateModel(group, container, width, height, cameraPosition, disabled)
+		let {image} = generateModel(group, container, width, height, cameraPosition, disabled)
 	}, [dataArray, width, height])
 
 	return (
