@@ -256,7 +256,7 @@ function MyApp({ Component, pageProps }) {
 			await getNetworkInfo()
 		})()
 
-	}, [web3])
+	}, [web3, web3M])
 
 	useEffect(()=>{
 		//console.log(networkData, account)
@@ -324,10 +324,11 @@ function MyApp({ Component, pageProps }) {
 	}
 
 	const getNetworkInfo = async()=>{
-		if(web3!==undefined){
-			const netId = await web3.eth.getChainId();
-			setNetworkId(networkId)
+		if(web3!==undefined ){
+
 			try{
+				const netId = await web3.eth.getChainId();
+				setNetworkId(networkId)
 				if(netId!= 4) {
 					alert("please change network to rinkebyyy")
 					setNetworkData(undefined)
@@ -338,9 +339,28 @@ function MyApp({ Component, pageProps }) {
 
 				}
 			}
-			catch{}
+			catch{
+
+			}
 
 			console.log("network")
+		}
+		else if(web3M!==undefined){
+			try{
+				//const netId = await web3.eth.getChainId();
+				//setNetworkId(4)
+				if(netId!= 4) {
+					alert("please change network to rinkebyyy")
+					setNetworkData(undefined)
+				}
+				else {
+					const network = HelloWorld.networks[4]
+					setNetworkData(network)
+
+				}
+			}
+			catch {}
+
 		}
 
 
@@ -573,8 +593,8 @@ function MyApp({ Component, pageProps }) {
 	const mint = async () => {
 		//console.log("account ktory kupuje", account)
 
-		if(account!="" && account!= undefined){
-			//console.log(totalSupply, "total supply przed")
+		if(account!="" && account!== undefined && contract!==undefined){
+			console.log(account, "total supply przed", Web3.utils.toWei(String(0.1), "ether"), contract.methods)
 			await contract.methods.requestTree().send({ from: account, value: Web3.utils.toWei(String(0.1), "ether")})
 				.once("receipt", async(receipt) => {
 					//console.log("kupiono drzewk0")
@@ -644,7 +664,8 @@ function MyApp({ Component, pageProps }) {
 					treesOnSale:treesOnSale,
 					contract:contract,
 					setProvider: setProvider,
-					setWeb3: setWeb3
+					setWeb3: setWeb3,
+					setContract: setContract
 				}
 			}>
 			<AccountContext.Provider
