@@ -78,7 +78,7 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 						<h3>Your founds: {accountFounds/1000000000000000000}</h3>
 						{(accountFounds)?
 							((BigInt(accountFounds)>0)?
-								<button onClick={async () => await receiveFunds()}>Recieve founds</button> : null)
+								<button onClick={async () => await receiveFunds() }className={style.foundsButt}>Recieve</button> : null)
 							: null}
 					</div>
 					<div className={style.dop}></div>
