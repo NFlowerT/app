@@ -39,90 +39,90 @@ function MyApp({ Component, pageProps }) {
 
 	useEffect( () =>{
 		(async () =>{
-			const web3Modal = new Web3Modal({
-				network: "rinkeby", // optional
-				cacheProvider: true, // optional
-				providerOptions:{
-					walletconnect: {
-						display: {
-							// logo: "data:image/gif;base64,INSERT_BASE64_STRING",
-							name: "Mobile",
-							description: "Scan qrcode with your mobile wallet"
-						},
-						package: WalletConnectProvider, // required
-						options: {
-							infuraId: "275ceff671f1491ba5a6b65cc14e0f20" // required
-						}
-					},
-					walletlink: {
-						package:  CoinbaseWalletSDK,
-						options: {
-							appName: "Web 3 Modal Demo",
-							infuraId: "275ceff671f1491ba5a6b65cc14e0f20"
-						}
-					},
-					authereum: {
-						package: Authereum // required
-					}
-				}
-
-				// 'custom-walletlink': {
-				// 	display: {
-				// 		logo: 'https://play-lh.googleusercontent.com/PjoJoG27miSglVBXoXrxBSLveV6e3EeBPpNY55aiUUBM9Q1RCETKCOqdOkX2ZydqVf0',
-				// 		name: 'Coinbase',
-				// 		description: 'Connect to Coinbase Wallet (not Coinbase App)',
-				// 	},
-				// 	options: {
-				// 		appName: 'Coinbase', // Your app name
-				// 		networkUrl: `https://mainnet.infura.io/v3/${INFURA_ID}`,
-				// 		chainId: 1,
-				// 	},
-				// 	package: WalletLink,
-				// 	connector: async (_, options) => {
-				// 		const { appName, networkUrl, chainId } = options
-				// 		const walletLink = new WalletLink({
-				// 			appName,
-				// 		})
-				// 		const provider = walletLink.makeWeb3Provider(networkUrl, chainId)
-				// 		await provider.enable()
-				// 		return provider
-				// 	},
-			});
-			try{
-				setWeb3M(web3Modal)
-				const provider = await web3Modal.connect();
-				provider.on("accountsChanged", (accounts) => {
-					console.log(accounts)
-				})
-				setProvider(provider)
-				const web3 = new Web3(provider);
-				setWeb3(web3)
-				// if(provider!== undefined && web3){
-				// 	provider.on("accountsChanged", (accounts) => {
-				// 		console.log(accounts, "ACCOUNTS");
-				// 		setAccount(accounts[0])
-				// 	});
-				// }
-				if(web3){
-
-					(async() => {
-						const accounts = await web3.eth.getAccounts()
-						console.log(accounts, 'lllllllllllllllllllllllllllll')
-						//await connectWalletHandler(accounts[0])
-						setAccount(accounts[0])
-						console.log(web3)
-					})();
+			// const web3Modal = new Web3Modal({
+			// 	network: "rinkeby", // optional
+			// 	cacheProvider: true, // optional
+			// 	providerOptions:{
+			// 		walletconnect: {
+			// 			display: {
+			// 				// logo: "data:image/gif;base64,INSERT_BASE64_STRING",
+			// 				name: "Mobile",
+			// 				description: "Scan qrcode with your mobile wallet"
+			// 			},
+			// 			package: WalletConnectProvider, // required
+			// 			options: {
+			// 				infuraId: "275ceff671f1491ba5a6b65cc14e0f20" // required
+			// 			}
+			// 		},
+			// 		walletlink: {
+			// 			package:  CoinbaseWalletSDK,
+			// 			options: {
+			// 				appName: "Web 3 Modal Demo",
+			// 				infuraId: "275ceff671f1491ba5a6b65cc14e0f20"
+			// 			}
+			// 		},
+			// 		authereum: {
+			// 			package: Authereum // required
+			// 		}
+			// 	}
+			//
+			// 	// 'custom-walletlink': {
+			// 	// 	display: {
+			// 	// 		logo: 'https://play-lh.googleusercontent.com/PjoJoG27miSglVBXoXrxBSLveV6e3EeBPpNY55aiUUBM9Q1RCETKCOqdOkX2ZydqVf0',
+			// 	// 		name: 'Coinbase',
+			// 	// 		description: 'Connect to Coinbase Wallet (not Coinbase App)',
+			// 	// 	},
+			// 	// 	options: {
+			// 	// 		appName: 'Coinbase', // Your app name
+			// 	// 		networkUrl: `https://mainnet.infura.io/v3/${INFURA_ID}`,
+			// 	// 		chainId: 1,
+			// 	// 	},
+			// 	// 	package: WalletLink,
+			// 	// 	connector: async (_, options) => {
+			// 	// 		const { appName, networkUrl, chainId } = options
+			// 	// 		const walletLink = new WalletLink({
+			// 	// 			appName,
+			// 	// 		})
+			// 	// 		const provider = walletLink.makeWeb3Provider(networkUrl, chainId)
+			// 	// 		await provider.enable()
+			// 	// 		return provider
+			// 	// 	},
+			// });
+			// try{
+			// 	setWeb3M(web3Modal)
+			// 	const provider = await web3Modal.connect();
+			// 	provider.on("accountsChanged", (accounts) => {
+			// 		console.log(accounts)
+			// 	})
+			// 	setProvider(provider)
+			// 	const web3 = new Web3(provider);
+			// 	setWeb3(web3)
+			// 	// if(provider!== undefined && web3){
+			// 	// 	provider.on("accountsChanged", (accounts) => {
+			// 	// 		console.log(accounts, "ACCOUNTS");
+			// 	// 		setAccount(accounts[0])
+			// 	// 	});
+			// 	// }
+			// 	if(web3){
+			//
+			// 		(async() => {
+			// 			const accounts = await web3.eth.getAccounts()
+			// 			console.log(accounts, 'lllllllllllllllllllllllllllll')
+			// 			//await connectWalletHandler(accounts[0])
+			// 			setAccount(accounts[0])
+			// 			console.log(web3)
+			// 		})();
 
 
 					// provider.on("disconnect", (error) => {
 					// 	console.log(error);
 					// });
-				}
+				//}
 
-			}catch(e){
+			//}catch(e){
 				//alert(e)
 				setWeb3(new Web3( "wss://rinkeby.infura.io/ws/v3/275ceff671f1491ba5a6b65cc14e0f20"))
-			}
+			//}
 			console.log("web3")
 
 			// provider.on("accountsChanged", (accounts: string[]) => {
@@ -162,7 +162,11 @@ function MyApp({ Component, pageProps }) {
 	// })
 	const disconnect = async() => {
 		setAccount(undefined)
-		web3M.clearCachedProvider()
+		setAccountsTrees([])
+		try{
+			web3M.clearCachedProvider()
+		}
+		catch{}
 	}
 
 	useEffect(()=>{
@@ -665,7 +669,8 @@ function MyApp({ Component, pageProps }) {
 					contract:contract,
 					setProvider: setProvider,
 					setWeb3: setWeb3,
-					setContract: setContract
+					setContract: setContract,
+					setWeb3M: setWeb3M
 				}
 			}>
 			<AccountContext.Provider
