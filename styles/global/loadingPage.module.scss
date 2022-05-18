@@ -1,0 +1,29 @@
+@import "../global/utilities";
+.page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $greenBackground;
+  width: 100%;
+  height: 100vh;
+  font-size: 2rem;
+  color:white;
+}
+.error {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  h2{
+    height: 12rem;
+    width: 100%;
+    text-align: center;
+    background: $greenBackground;
+    display: flex;
+    color:white;
+    align-items: center;
+    justify-content: center;
+  }
+}

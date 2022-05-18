@@ -1,13 +1,15 @@
 import Navbar from "./navbar"
-import {memo} from "react"
+import {memo, useContext} from "react"
 // import Footer from "./footer"
 import style from "../../styles/global/baseLayout.module.scss"
 import Footer from "./footer"
 import Head from "next/head"
 import {useRouter} from "next/router"
-
+import {TreesContext} from "../../pages/_app"
+import Loading from "./loadingPage";
 // eslint-disable-next-line react/display-name
-const BaseLayout = ({ children, setAccount, loadBlockChainData, mint,  }) => {
+const BaseLayout = ({ children, setAccount, loadBlockChainData, mint }) => {
+	const {trees} = useContext(TreesContext)
 	const router = useRouter()
 	if(router.pathname.includes("tree")){
 		return <>{children}</>
@@ -31,9 +33,12 @@ const BaseLayout = ({ children, setAccount, loadBlockChainData, mint,  }) => {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			</Head>
 			<Navbar setAccount={setAccount} loadBlockChainData={async()=>{await loadBlockChainData()}}/>
-			<main mint={mint} className={style.main}>
-				{children}
-			</main>
+			{(trees.length === 0) ? <Loading></Loading> :
+				<main mint={mint} className={style.main}>
+					{children}
+				</main>
+			}
+
 			<Footer/>
 		</>
 	)
