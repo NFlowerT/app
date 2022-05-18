@@ -51,14 +51,14 @@ function MyApp({ Component, pageProps }) {
 						},
 						package: WalletConnectProvider, // required
 						options: {
-							infuraId: "3b919ac686e84d1e80148ea9dddfb52a" // required
+							infuraId: "275ceff671f1491ba5a6b65cc14e0f20" // required
 						}
 					},
 					walletlink: {
 						package:  CoinbaseWalletSDK,
 						options: {
 							appName: "Web 3 Modal Demo",
-							infuraId: "3b919ac686e84d1e80148ea9dddfb52a"
+							infuraId: "275ceff671f1491ba5a6b65cc14e0f20"
 						}
 					},
 					authereum: {
@@ -121,7 +121,7 @@ function MyApp({ Component, pageProps }) {
 
 			}catch(e){
 				//alert(e)
-				setWeb3(new Web3( "wss://rinkeby.infura.io/ws/v3/3b919ac686e84d1e80148ea9dddfb52a"))
+				setWeb3(new Web3( "wss://rinkeby.infura.io/ws/v3/275ceff671f1491ba5a6b65cc14e0f20"))
 			}
 			console.log("web3")
 
