@@ -32,6 +32,7 @@ const SaplingSection = ({setSapling}) => {
 									cameraPosition={{x: 6, y: -1, z: 6}}
 									y={-1.5}
 									age={12}
+									innerRadius={1}
 								/>
 							</div>
 							<div className={style.saplingName}>

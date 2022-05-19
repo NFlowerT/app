@@ -24,6 +24,7 @@ const BuySapling = ({setSapling, mint, setAccount}) => {
 					className={style.treeContainer}
 					y={-1.5}
 					age={12}
+					innerRadius={1}
 				/>
 				<div className={style.textContainer}>
 					<h1>
