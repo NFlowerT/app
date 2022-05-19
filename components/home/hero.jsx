@@ -19,12 +19,12 @@ const Hero =({title, subtitle, trees, scrollToId, setProvider, setWeb3}) => {
 				{(trees.length>=0) && <NTree
 					dataArray={trees.slice(0, 4)}
 					islandSize={10}
-					rockAmount={2}
+					rockAmount={8}
 					width={width > 900 ? 39 * vw : 80 * vw}
 					height={width > 900 ? 45 * vw : 50 * vh}
 					className={style.heroTreeContainer}
 					cameraPosition={{x: 15, y: 1, z: 15}}
-					y={-3}
+					y={-2}
 					innerRadius={8}
 					disabled={true}
 				/>}

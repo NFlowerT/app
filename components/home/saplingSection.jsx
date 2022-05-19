@@ -29,8 +29,8 @@ const SaplingSection = ({setSapling}) => {
 									disabled={true}
 									width={20 * rem}
 									height={22 * rem}
-									cameraPosition={{x: 6, y: -2, z: 6}}
-									y={-2.5}
+									cameraPosition={{x: 6, y: -1, z: 6}}
+									y={-1.5}
 									age={12}
 								/>
 							</div>

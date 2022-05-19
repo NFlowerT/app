@@ -34,6 +34,5 @@ export const createIsland = (radius) => {
 		colors.push( color.r, color.g, color.b )
 	})
 	mesh.geometry.setAttribute( "color", new Float32BufferAttribute( colors, 3 ) )
-	mesh.translateY(1)
 	return mesh
 }

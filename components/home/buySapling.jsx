@@ -20,9 +20,9 @@ const BuySapling = ({setSapling, mint, setAccount}) => {
 					disabled={true}
 					width={width > 900 ? 20 * vw : 80 * vw}
 					height={width > 900 ? 30 * rem : 30 * vh}
-					cameraPosition={{x: 6, y: -2, z: 6}}
+					cameraPosition={{x: 6, y: -1, z: 6}}
 					className={style.treeContainer}
-					y={-2.5}
+					y={-1.5}
 					age={12}
 				/>
 				<div className={style.textContainer}>

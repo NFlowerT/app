@@ -63,7 +63,7 @@ const NTree = ({
 		}
 
 		let rockCounter = 0
-		while (rockCounter <= rockAmount){
+		while (rockCounter < rockAmount){
 			sampler.sample(tempPosition)
 			let mesh = rock(tempPosition)
 			if (tempPosition.y > -3 && new Vector3(0,0,0).distanceTo(tempPosition) < (innerRadius)){

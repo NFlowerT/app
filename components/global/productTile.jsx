@@ -39,10 +39,12 @@ const ProductTile = ({ id, contract, account, tree, price}) => {
 					dataArray={[tree]}
 					className={style.treeContainer}
 					disabled={true}
-					width={15 * rem}
-					height={18 * rem}
-					cameraPosition={{x: 8, y: -4, z: 8}}
-					y={-5}
+					width={11 * rem}
+					height={19 * rem}
+					cameraPosition={{x: 7.5, y: -3, z: 7.5}}
+					islandSize={3}
+					innerRadius={1}
+					y={-4}
 				/>
 				<div className={style.productTitle}>{id}</div>
 				{/*{(putOnSale)? <button onClick={async()=>await putOnSale(id)}>sale</button>:null}*/}

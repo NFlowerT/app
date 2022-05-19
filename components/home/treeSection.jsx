@@ -35,13 +35,13 @@ const TreeSection = () => {
 				{width <= 900 && <button className={style.buyButton} onClick={() => document.getElementById("islandSection").scrollIntoView()}><p>Scroll</p></button>}
 				<NTree
 					islandSize={5}
-					rockAmount={2}
+					rockAmount={0}
 					width={width > 900 ? 50 * vw : 90 * vw}
 					height={width > 900 ? (80 * vh) : (55 * vh) < (250 * vw) ? (55 * vh) : (250 * vw)}
 					className={style.tree}
 					cameraPosition={{x: 10, y: 0, z: 10}}
-					y={-3}
-					innerRadius={2}
+					y={-2}
+					innerRadius={1}
 					disabled={true}
 				/>
 			</div>
