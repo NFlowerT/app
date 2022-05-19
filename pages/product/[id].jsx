@@ -152,8 +152,11 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 								disabled={false}
 								width={width > 800 ? (100 * vw) - (30 * rem) : 90 * vw}
 								height={width > 800 ? (100 * vh) - (5 * rem) : 50 * vh}
-								cameraPosition={{x: 8, y: -3, z: 8}}
-								y={-4}
+								cameraPosition={{x: 8, y: -2.6, z: 8}}
+								y={-3}
+								islandSize={3.5}
+								innerRadius={2}
+								rockAmount={3}
 							/>
 						</div>
 
