@@ -125,7 +125,7 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 					width={width > 900 ? 70 * vw : 80 * vw}
 					height={width > 900 ? 80 * vh : 40 * vh}
 					cameraPosition={{x: 7, y: -2, z: 7}}
-					y={-4}
+					y={-3}
 				/>
 				}
 			</div>
