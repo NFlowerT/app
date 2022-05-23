@@ -46,7 +46,7 @@ const UserCollection = ({accountTrees, receiveFunds, treesOnSale, endSale, putOn
 
 		const treesNames = []
 		for (let i = 0; i<accountTrees.length; i++) {
-			console.log(accountTrees[i].tree.genes, "tilee")
+			//console.log(accountTrees[i].tree.genes, "tilee")
 			treesNames.push(
 				<div key={i.toString()}
 					 className={(activeTreeId==accountTrees[i].id)? style.collectionTreeActive : style.collectionTree}

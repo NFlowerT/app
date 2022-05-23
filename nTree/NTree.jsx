@@ -30,7 +30,7 @@ const NTree = ({
 		group.scale.set(scale,scale,scale)
 		return {mesh: group, width: topData.data[0].bottomRadius}
 	}
-	console.log("drzewko reload")
+	//console.log("drzewko reload")
 	useEffect(() => {
 		const islandMesh = createIsland(islandSize)
 		const group = new Group()

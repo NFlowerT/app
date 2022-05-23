@@ -35,7 +35,6 @@ function MyApp({ Component, pageProps }) {
 	const [vw, setVw] = useState(0)
 	const [vh, setVh] = useState(0)
 	const [width, setWidth] = useState(0)
-	console.log("--------------------render")
 
 	useEffect( () =>{
 		(async () =>{
@@ -123,7 +122,7 @@ function MyApp({ Component, pageProps }) {
 				//alert(e)
 				setWeb3(new Web3( "wss://rinkeby.infura.io/ws/v3/275ceff671f1491ba5a6b65cc14e0f20"))
 			//}
-			console.log("web3")
+
 
 			// provider.on("accountsChanged", (accounts: string[]) => {
 			// 	console.log(accounts);
@@ -177,26 +176,22 @@ function MyApp({ Component, pageProps }) {
 
 	const providerListeners = () => {
 		if(provider!==undefined){
-			console.log("listening")
+
 			provider.on("accountsChanged", (accounts) => {
-				console.log(accounts, 'accountsChanged');
 				setAccount(accounts[0])
 			});
 
 // Subscribe to chainId change
 			provider.on("chainChanged", async (chainId) => {
-				console.log(chainId, 'chainChanged');
 				await getNetworkInfo()
 			});
 
 // Subscribe to provider connection
 			provider.on("connect", (info) => {
-				console.log(info, 'connect');
 			});
 
 // Subscribe to provider disconnection
 			provider.on("disconnect", (error) => {
-				console.log(error, 'disconnect');
 				setAccount(undefined)
 			});
 		}
@@ -234,7 +229,6 @@ function MyApp({ Component, pageProps }) {
 
 	useEffect(()=>{
 		if (typeof window !== "undefined"){
-			console.log("effect")
 			setVw(window.innerWidth / 100)
 			setVh(window.innerHeight / 100)
 			setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
@@ -267,7 +261,6 @@ function MyApp({ Component, pageProps }) {
 		if(networkData!==undefined ){
 			(async () => {
 				await loadBlockChainData()
-				console.log("data")
 			})()
 
 		}
@@ -289,7 +282,6 @@ function MyApp({ Component, pageProps }) {
 			await changeAccountHandler()
 		})()
 		if(account == undefined || account == "0x0"){
-			console.log("undefined")
 			setAccountsTrees([])
 		}
 
@@ -297,7 +289,6 @@ function MyApp({ Component, pageProps }) {
 	}, [account])
 	//when user change account in MetaMask wallet
 	const connectAutoWalletHandler = (account) => {
-		console.log("connectAutoWalletHandler")
 		// setAccount(account[0].toLowerCase())
 		// setAccount(account[0])
 		// sliceAccount(account[0])
@@ -343,11 +334,7 @@ function MyApp({ Component, pageProps }) {
 
 				}
 			}
-			catch{
-
-			}
-
-			console.log("network")
+			catch{}
 		}
 		else if(web3M!==undefined){
 			try{
@@ -375,23 +362,19 @@ function MyApp({ Component, pageProps }) {
 			(async () => {
 				await loadActiveAccountTrees()
 				await loadAccountFunds()
-				console.log("change")
 			})()
 		}
 
 	}
 
 	const loadAccountFunds = async () =>{
-		console.log("loadAccountFunds")
 		if(account!==undefined && account!=="" && account!=="0x0" && contract){
 			let founds = await contract.methods.ownerToFunds(account).call()
-			console.log(founds, "founds")
 			setAccountFounds(founds)
 		}
 	}
 
 	const receiveFunds = async () => {
-		console.log("receiveFunds")
 		if(account!==undefined && account!=="" && account!=="0x0" && contract && accountFounds!=0) {
 			await contract.methods.withdraw().send({from: account})
 				.once("receipt", async(receipt) => {
@@ -479,7 +462,6 @@ function MyApp({ Component, pageProps }) {
 		if(contract && account!==undefined && account!== "" && account!=="0x0"){
 			//console.log("load my trees and balance", contract, account, "jest account")
 			let balance = await contract.methods.balanceOf(account).call()
-			console.log("balans: ", balance)
 			setAccountBalance(balance)
 
 
@@ -505,7 +487,6 @@ function MyApp({ Component, pageProps }) {
 				//console.log("koniec drzew account")
 			}
 			finally {
-				console.log(treesTab, "]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]")
 				setAccountsTrees([...treesTab])
 			}
 		}
@@ -569,7 +550,6 @@ function MyApp({ Component, pageProps }) {
 		//load account's trees
 		//console.log(account, "looooooooooll")
 		if(account!== undefined && account!== "" && account!=="0x"){
-			console.log("load accounts treese")
 			await loadActiveAccountTrees()
 		}
 
@@ -598,7 +578,6 @@ function MyApp({ Component, pageProps }) {
 		//console.log("account ktory kupuje", account)
 
 		if(account!="" && account!== undefined && contract!==undefined){
-			console.log(account, "total supply przed", Web3.utils.toWei(String(0.1), "ether"), contract.methods)
 			await contract.methods.requestTree().send({ from: account, value: Web3.utils.toWei(String(0.1), "ether")})
 				.once("receipt", async(receipt) => {
 					//console.log("kupiono drzewk0")
@@ -632,7 +611,6 @@ function MyApp({ Component, pageProps }) {
 	}
 
 	const endSale = async (tokenIdOnSale) => {
-		console.log("END SALE", tokenIdOnSale)
 		if(account!="" && account!= undefined && tokenIdOnSale!==undefined && tokenIdOnSale!==null){
 			//console.log("END SALE")
 			await contract.methods.endSale(tokenIdOnSale).send({ from: account})
@@ -645,7 +623,6 @@ function MyApp({ Component, pageProps }) {
 	}
 
 	const buyTreeFromSale = async (saleId, price) => {
-		console.log("BUY FROM SALE", saleId)
 		if(account!="" && account!= undefined && saleId!==undefined && saleId!==null && price!==undefined && price!=null){
 			await contract.methods.buyTree(saleId).send({ from: account, value: String(price)})
 				.once("receipt", async(receipt) => {

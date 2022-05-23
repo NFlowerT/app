@@ -29,7 +29,6 @@ const TreePage = ({putOnSale, endSale, buyTreeFromSale}) => {
 
 	useEffect(()=>{
 		setTreeId(parseInt(id))
-		console.log(id, "q")
 	})
 
 	useEffect(()=>{
@@ -58,36 +57,34 @@ const TreePage = ({putOnSale, endSale, buyTreeFromSale}) => {
 					else setOwner(owner)
 				}else {
 					setOwner(owner)
-					console.log("owner")
 				}
 
 			}
 			catch(err) {
-				console.log(err)
+				//.log(err)
 			}
 		}
 	}
 
 	const treeGenes = async () => {
-		console.log(account, treeId, contract)
+		//.log(account, treeId, contract)
 		if(contract && treeId!==undefined){
 			try{
 				let tree = await contract.methods.trees(treeId).call()
 				let genes = tree.genes
 				let birthdate = tree.birthdate
-				console.log(tree , birthdate)
+				//console.log(tree , birthdate)
 				setGenes(genes)
 				setBirthdate(birthdate)
 			}
 			catch(err){
-				console.log(err)
+				//console.log(err)
 			}
 		}
 	}
 	const isOnSale = () => {
 		if(treesOnSale.length !== 0){
 			treesOnSale.forEach((tree, index) => {
-				console.log(tree)
 				if(tree.tree.TreeId == treeId){
 					if(tree.tree.active == true){
 						setSale(true)

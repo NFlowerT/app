@@ -34,7 +34,7 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
 
 	//when user change account in MetaMask wallet
 	const connectAutoWalletHandler = (account) => {
-		console.log("connectAutoWalletHandler")
+		//console.log("connectAutoWalletHandler")
 		setAccount(account[0])
 		sliceAccount(account[0])
 	}
@@ -47,7 +47,7 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
 			if (window.ethereum && window.ethereum.isMetaMask) {
 				await window.ethereum.request({ method: "eth_requestAccounts"})
 					.then(async result => {
-						console.log(result[0], "lol")
+						//console.log(result[0], "lol")
 						setAccount(result[0])
 						// setConnButtonText('Connected!');
 						// await loadWeb3()
@@ -60,7 +60,7 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
 						const networkId = await web3.eth.net.getId()
 							const network = HelloWorld.networks[networkId]
 							//setNetworkData(network)
-							console.log("network"+ networkId)
+							//console.log("network"+ networkId)
 							if(web3===undefined || network===undefined) {
 								alert("change network to rinkeby")
 								return 0
@@ -71,7 +71,7 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
 									//load contract
 								const contract = new web3.eth.Contract(abi, address)
 								setContract(contract)
-								console.log(contract, "contract")
+								//console.log(contract, "contract")
 							}
 						}
 
@@ -113,7 +113,7 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
 					setWeb3M(web3Modal)
 					const provider = await web3Modal.connect();
 					provider.on("accountsChanged", (accounts) => {
-						console.log(accounts)
+						//console.log(accounts)
 					})
 					setProvider(provider)
 					const web3 = new Web3(provider);
@@ -128,17 +128,17 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
 
 						(async() => {
 							const accounts = await web3.eth.getAccounts()
-							console.log(accounts, 'lllllllllllllllllllllllllllll')
+							//console.log(accounts, 'lllllllllllllllllllllllllllll')
 							//await connectWalletHandler(accounts[0])
 							setAccount(accounts[0])
-							console.log(web3)
+							//console.log(web3)
 						})();
 
 
 						const networkId = await web3.eth.net.getId()
 						const network = HelloWorld.networks[networkId]
 						//setNetworkData(network)
-						console.log("network"+ networkId)
+						//console.log("network"+ networkId)
 						if(web3===undefined || network===undefined) {
 							alert("change network to rinkeby")
 							return 0
@@ -149,13 +149,13 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
 							//load contract
 							const contract = new web3.eth.Contract(abi, address)
 							setContract(contract)
-							console.log(contract, "contract")
+							//console.log(contract, "contract")
 						}
 					}
 
 
 				}catch(e){
-					console.log(e)
+					//console.log(e)
 					setWeb3(new Web3( "wss://rinkeby.infura.io/ws/v3/275ceff671f1491ba5a6b65cc14e0f20"))
 				}
 			}
@@ -195,7 +195,7 @@ const Wallet = ({ setAccount, loadBlockChainData}) => {
 
 
 
-		console.log("web3")
+		//console.log("web3")
 
 	}
 

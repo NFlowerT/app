@@ -12,14 +12,14 @@ const ProductTile = ({ id, contract, account, tree, price}) => {
 		if(!contract) return 0
 		let tree = await contract.methods.sales(saleId).call()
 		let owner = tree.owner
-		console.log(owner.toLowerCase(),owner.toLowerCase() === account, saleId)
+		//console.log(owner.toLowerCase(),owner.toLowerCase() === account, saleId)
 		return owner.toLowerCase() === account
 
 	}
 	const convertWei = (price) =>{
 		return price / 1000000000000000000+" ETH"
 	}
-	console.log("genes", tree, "birthdate")
+	//console.log("genes", tree, "birthdate")
 
 	return (
 		<Link className={"productPageLink"} href={"/product/"+id} passHref>

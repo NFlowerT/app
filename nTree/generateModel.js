@@ -60,6 +60,6 @@ export const generateModel = (group, container, width, height, cameraPosition, d
 	animate()
 	scene.add(group)
 	let image = renderer.domElement.toDataURL()
-	console.log(image)
+	//console.log(image)
 	return {image: image}
 }

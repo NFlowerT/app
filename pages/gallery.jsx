@@ -10,11 +10,9 @@ const Gallery = ({ putOnSale, endSale }) => {
 	const {trees} = useContext(TreesContext)
 
 	const renderProductTileAll = () => {
-		console.log(trees)
 		if(trees.length===0) return 0
 		const productTiles = []
 		for (let i = 0; i<trees.length; i++) {
-			console.log(trees[i].tree.genes, "tilee", trees)
 			productTiles.push(<ProductTile key={trees[i].id} id={trees[i].id} tree={trees[i]}/>)
 		}
 

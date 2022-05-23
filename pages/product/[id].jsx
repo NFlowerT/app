@@ -26,14 +26,12 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 	const {  rem, vw, vh, width } = useContext(BrowserContext)
 	const { account } = useContext(AccountContext)
 
-    console.log("render")
+
 	const router = useRouter()
 	const { id } = router.query
 
 	useEffect(()=>{
-
 		setTreeId(parseInt(id))
-		console.log(id, "q")
 	})
 
 	useEffect(()=>{
@@ -62,35 +60,33 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 					else setOwner(owner)
 				}else {
 					setOwner(owner)
-					console.log("owner")
 				}
 
 			}
 			catch(err) {
-				console.log(err)
+				//console.log(err)
 			}
 		}
 	}
 	const treeGenes = async () => {
-		console.log(account, treeId, contract)
+		//console.log(account, treeId, contract)
 		if(contract && treeId!==undefined){
 			try{
 				let tree = await contract.methods.trees(treeId).call()
 				let genes = tree.genes
 				let birthdate = tree.birthdate
-				console.log(tree , birthdate)
+				//console.log(tree , birthdate)
 				setGenes(genes)
 				setBirthdate(birthdate)
 			}
 			catch(err){
-				console.log(err)
+				//console.log(err)
 			}
 		}
 	}
 	const isOnSale = () => {
 		if(treesOnSale.length !== 0){
 			treesOnSale.forEach((tree, index) => {
-				console.log(tree)
 				if(tree.tree.TreeId == treeId){
 					if(tree.tree.active == true){
 						setSale(true)
@@ -129,7 +125,7 @@ const ProductPage = ({putOnSale, endSale, buyTreeFromSale}) => {
 							}
 							{
 								(sale && owner!=account && account!="0x0" && account!=undefined)?
-									<button className={style.button} onClick={async ()=> {console.log("lol");await buyTreeFromSale(saleId, price);  }}>BUY</button> : null
+									<button className={style.button} onClick={async ()=> {await buyTreeFromSale(saleId, price);  }}>BUY</button> : null
 							}
 						</div>
 						<div className={style.middleContainer}>
