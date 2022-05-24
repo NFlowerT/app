@@ -34,15 +34,15 @@ const IslandSection = () => {
 				</div>
 				{width <= 900 && <button className={style.buyButton} onClick={() => document.getElementById("saplingSection").scrollIntoView()}><p>Scroll</p></button>}
 				<NTree
-					islandSize={(width > height) ? 5 : 3}
-					rockAmount={(width > height) ? 5 : 2}
+					islandSize={(width > height || width < 900) ? 5 : 3}
+					rockAmount={(width > height || width < 900) ? 5 : 2}
 					dataArray={[]}
 					width={width > 900 ? 50 * vw : 90 * vw}
 					height={width > 900 ? (80 * vh) : (55 * vh) < (250 * vw) ? (55 * vh) : (250 * vw)}
 					className={style.tree}
-					cameraPosition={{x: 7, y: 1, z: 7   }}
+					cameraPosition={{x: 7, y: 1, z: 7}}
 					y={0}
-					innerRadius={(width > height) ? 4 : 2}
+					innerRadius={(width > height || width < 900) ? 4 : 2}
 					disabled={true}
 				/>
 			</div>
