@@ -1,29 +1,51 @@
 @import "../global/utilities";
+
+@-webkit-keyframes rotating {
+  from{
+    -webkit-transform: rotate(0deg);
+  }
+  to{
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+
 .page{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $greenBackground;
   width: 100%;
   height: 100vh;
   font-size: 2rem;
   color:white;
+  z-index: 1000;
+  background: $greenBackground;
+  background: linear-gradient(0deg, $greenBackground 50%, white 50%);
+  flex-direction: column;
+  position: relative;
 }
-.error {
-  width: 100vw;
-  height: 100vh;
+
+.treeContainer{
+  background: white;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 100rem;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  h2{
-    height: 12rem;
-    width: 100%;
-    text-align: center;
-    background: $greenBackground;
-    display: flex;
-    color:white;
-    align-items: center;
-    justify-content: center;
+  box-shadow: 0 0 8px 1px #b3b3b3;
+  img{
+    max-width: 100%;
+    max-height: 90%;
   }
 }
+
+.loading{
+  font-size: 21.5rem;
+  color: #9f9f9f;
+  position: absolute;
+  z-index: 0;
+  -webkit-animation: rotating 3s linear infinite;
+}
+

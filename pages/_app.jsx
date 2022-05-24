@@ -12,6 +12,7 @@ import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
 import HelloWorld from "../src/abis/HelloWorld.json"
 import detectEthereumProvider from "@metamask/detect-provider"
 import {sliceAccount} from "../functions/sliceAccount"
+import Loading from "../components/global/loadingPage";
 
 export const TreesContext = createContext()
 export const AccountContext = createContext()
@@ -636,6 +637,7 @@ function MyApp({ Component, pageProps }) {
 		}
 	}
 
+	console.log = console.warn = console.error = () => {}
 
 	return (
 		<TreesContext.Provider
@@ -667,23 +669,26 @@ function MyApp({ Component, pageProps }) {
 							width: width
 						}
 					}>
-					<BaseLayout
-						setAccount={setAccount}
-						loadBlockChainData={loadBlockChainData}
-						mint={mint}>
-						<Component {...pageProps}
-								   mint={mint}
-								   putOnSale={putOnSale}
-								   endSale={endSale}
-								   buyTreeFromSale={buyTreeFromSale}
-								   receiveFunds={receiveFunds}
-								   setAccount={setAccount}
-								   setProvider={setProvider}
-								   setWeb3={setWeb3}
-								   web3={web3}
-								   disconnect={disconnect}
-						/>
-					</BaseLayout>
+					{(trees.length === 0) ?
+						<Loading></Loading> :
+						<BaseLayout
+							setAccount={setAccount}
+							loadBlockChainData={loadBlockChainData}
+							mint={mint}>
+							<Component {...pageProps}
+									   mint={mint}
+									   putOnSale={putOnSale}
+									   endSale={endSale}
+									   buyTreeFromSale={buyTreeFromSale}
+									   receiveFunds={receiveFunds}
+									   setAccount={setAccount}
+									   setProvider={setProvider}
+									   setWeb3={setWeb3}
+									   web3={web3}
+									   disconnect={disconnect}
+							/>
+						</BaseLayout>
+					}
 				</BrowserContext.Provider>
 			</AccountContext.Provider>
 		</TreesContext.Provider>

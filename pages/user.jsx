@@ -35,15 +35,13 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChain
 			}
 			setSaleTrees([...productTiles])
 		}
-
-
 	}
 
 
 	return (
 		<div>
 			<Hero title={"WELCOME"}
-				  scrollToId={"myTrees"}
+				  scrollToId={(account && account!== "0x0") && "myTrees"}
 				  subtitle={sliceAccount(account) ?
 					  <div>
 						  {sliceAccount(account)}
@@ -56,9 +54,9 @@ const UserPage = ({ putOnSale, endSale, receiveFunds, setAccount, loadBlockChain
 								  loadBlockChainData={async () =>await loadBlockChainData()}
 						  ></Wallet>
 					  }
-				  trees={accountsTrees}
-					setWeb3={setWeb3}
-					setProvider={setProvider}>
+			  trees={accountsTrees}
+				setWeb3={setWeb3}
+				setProvider={setProvider}>
 			</Hero>
 			{(account && account!== "0x0") &&
 					<>
