@@ -5,7 +5,7 @@ import {BrowserContext} from "../../pages/_app"
 
 
 const IslandSection = () => {
-	const {vw, vh, width} = useContext(BrowserContext)
+	const {vw, vh, width, height} = useContext(BrowserContext)
 	return (
 		<section className={style.main} id={"islandSection"}>
 			<div className={style.sectionName}>
@@ -34,15 +34,15 @@ const IslandSection = () => {
 				</div>
 				{width <= 900 && <button className={style.buyButton} onClick={() => document.getElementById("saplingSection").scrollIntoView()}><p>Scroll</p></button>}
 				<NTree
-					islandSize={5}
-					rockAmount={8}
+					islandSize={(width > height) ? 5 : 3}
+					rockAmount={(width > height) ? 5 : 2}
 					dataArray={[]}
 					width={width > 900 ? 50 * vw : 90 * vw}
 					height={width > 900 ? (80 * vh) : (55 * vh) < (250 * vw) ? (55 * vh) : (250 * vw)}
 					className={style.tree}
 					cameraPosition={{x: 7, y: 1, z: 7   }}
 					y={0}
-					innerRadius={4}
+					innerRadius={(width > height) ? 4 : 2}
 					disabled={true}
 				/>
 			</div>

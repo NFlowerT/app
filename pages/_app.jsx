@@ -36,6 +36,7 @@ function MyApp({ Component, pageProps }) {
 	const [vw, setVw] = useState(0)
 	const [vh, setVh] = useState(0)
 	const [width, setWidth] = useState(0)
+	const [height, setHeight] = useState(0)
 
 	useEffect( () =>{
 		(async () =>{
@@ -234,11 +235,13 @@ function MyApp({ Component, pageProps }) {
 			setVh(window.innerHeight / 100)
 			setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
 			setWidth(window.innerWidth)
+			setHeight(window.innerHeight)
 			window.addEventListener("resize", () => {
 				setVw(window.innerWidth / 100)
 				setVh(window.innerHeight / 100)
 				setRem(parseFloat(getComputedStyle(document.documentElement).fontSize))
 				setWidth(window.innerWidth)
+				setHeight(window.innerHeight)
 			})
 		}
 		// (async () =>{await loadWeb3(); console.log("load web 3333")})()
@@ -666,7 +669,8 @@ function MyApp({ Component, pageProps }) {
 							rem: rem,
 							vw: vw,
 							vh: vh,
-							width: width
+							width: width,
+							height: height,
 						}
 					}>
 					{(trees.length === 0) ?

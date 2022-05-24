@@ -40,7 +40,7 @@ const TreeSection = () => {
 					height={width > 900 ? (80 * vh) : (55 * vh) < (250 * vw) ? (55 * vh) : (250 * vw)}
 					className={style.tree}
 					cameraPosition={{x: 10, y: 0, z: 10}}
-					y={-2}
+					y={-3}
 					innerRadius={1}
 					disabled={true}
 				/>
