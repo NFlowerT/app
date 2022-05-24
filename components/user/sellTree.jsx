@@ -8,10 +8,10 @@ const SellTree = ({putOnSale, treeId, show, setShow}) => {
 
 		<div className={style.background}>
 			<div className={style.container}>
-				<RiCloseFill onClick={()=>setShow(false)}/>
+				<RiCloseFill className={style.close} onClick={()=>setShow(false)}/>
 				<div className={style.info}>
-					<div>
-						price:
+					<div className={style.priceText}>
+						Price
 					</div>
 					<input className={style.inputPrice}
 						   type="number"

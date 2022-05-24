@@ -17,8 +17,8 @@
 }
 
 .container{
-	width: 50vw;
-	height: 50vh;
+	width: 30vw;
+	height: 30vh;
 	background: white;
 	position: relative;
 
@@ -51,7 +51,6 @@
 	height: 100%;
 	width: 100%;
 	flex-direction: column;
-	align-content: center;
 	padding-left: 3rem;
 	padding-right: 3rem;
 
@@ -68,12 +67,31 @@
 	background-color: $buttonGray;
 	color: white;
 	border: none;
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
+	padding-left: 0.8rem;
+	padding-right: 0.8rem;
 	margin: 1rem;
+	font-family: Poppins;
+}
+.priceText{
+	font-family: Poppins;
+	margin-bottom: 1.2rem;
+	font-size: 2rem;
+	text-align: center;
+	font-weight: bold;
 }
 .inputPrice{
 	outline: none;
-	border: none;
-	border-bottom: $buttonGray 1px solid;
+	border: $buttonGray 3px solid;
+	padding: 0.6rem 0.6rem 0.6rem 0.6rem;
+	font-size: 1.2rem;
+	font-family: Poppins;
+}
+
+@media(max-width: 800px){
+	.container{
+		width: 80vw;
+		height: 25vh;
+		background: white;
+		position: relative;
+	}
 }
