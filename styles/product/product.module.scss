@@ -7,7 +7,6 @@
 }
 
 .container{
-  height: 83vh;
   overflow: hidden;
 }
 
@@ -126,7 +125,7 @@
 
 .middleContainer{
   width: 100%;
-  height: calc(100% - 4rem);
+  height: calc(100% - 6rem);
   display: flex;
   flex-direction: row;
 }
